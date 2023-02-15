@@ -16,3 +16,13 @@
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
+
+.link {
+  color: #fff;
+  transition: opacity .5s ease-in-out;
+}
+
+.link:hover {
+  cursor: pointer;
+  opacity: .7;
+}

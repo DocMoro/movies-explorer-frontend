@@ -1,5 +1,4 @@
 import './Footer.scss';
-import '../../styles/link.scss';
 
 export default function Footer() {
   return (

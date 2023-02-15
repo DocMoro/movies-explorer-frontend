@@ -1,5 +1,4 @@
 import './NavTab.scss';
-import '../../styles/link.scss';
 
 import logo from '../../images/logo.svg';
 
