@@ -1,6 +1,5 @@
 import './Footer.scss';
-
-import Href from '../Href/Href';
+import '../../styles/link.scss';
 
 export default function Footer() {
   return (
@@ -9,8 +8,8 @@ export default function Footer() {
       <div className='footer__container'>
         <p className="footer__year">{`© ${new Date().getFullYear()}`}</p>
         <div>
-          <Href classElement={'footer__link'} text={'Яндекс.Практикум'} href={'https://practicum.yandex.ru/'}/>
-          <Href classElement={'footer__link'} text={'Github'} href={'https://github.com/DocMoro'}/>
+          <a className='link footer__link' href='https://practicum.yandex.ru/'>Яндекс.Практикум</a>
+          <a className='link footer__link' href='https://github.com/DocMoro'>Github</a>
         </div>
       </div>
     </footer>

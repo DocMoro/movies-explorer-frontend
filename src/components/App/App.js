@@ -7,9 +7,11 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 export default function App() {
+  const loggedIn = false;
+
   return (
     <div className="page">
-      <Header />
+      {loggedIn && <Header />}
       <Switch>
         <Route path="/">
           <Main />

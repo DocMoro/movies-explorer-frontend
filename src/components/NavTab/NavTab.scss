@@ -1,0 +1,16 @@
+.nav-tab {
+  display: flex;
+  justify-content: space-between;
+
+  padding-top: 18px;
+  padding-bottom: 18px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    margin-left: 20px;
+  }
+}
