@@ -1,12 +1,18 @@
 .page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
+  font: {
+    family: 'Inter', Arial, sans-serif;;
+    style: normal;
+  }
   min-width: 320px;
   min-height: 100vh;
+  padding: 0 70px;
+  color: #FFF;
   background-color: #202020;
-  margin: 0 auto;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
 }

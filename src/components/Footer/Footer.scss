@@ -1,7 +1,5 @@
 %font {
   font: {
-    family: 'Inter';
-    style: normal;
     weight: 400;
     size: 13px;
   }
@@ -11,9 +9,10 @@
 .footer {
   &__header {
     @extend %font;
+    text-align: center;
     color: #8B8B8B;
 
-    margin-top: 79px auto 0;
+    margin-top: 79px;
   }
 
   &__container {
@@ -21,6 +20,7 @@
     justify-content: space-between;
     border-top: 1px solid #424242;
 
+    margin-top: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
   }
