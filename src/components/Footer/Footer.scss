@@ -5,6 +5,8 @@
 }
 
 .footer {
+  padding: 0 70px;
+  
   &__header {
     @extend %font;
     text-align: center;

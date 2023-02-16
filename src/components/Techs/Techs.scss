@@ -1,8 +1,10 @@
-.tech {
+.techs {
   align-items: center;
+  padding: 100px 70px;
+  background-color: #272727;
 
-  &__title {
-    margin-top: 100px;
+  &__container {
+    align-items: center;
   }
 
   &__subtitle {
@@ -31,17 +33,22 @@
     gap: 10px;
 
     margin-top: 100px;
-    margin-bottom: 100px;
+
+    padding: 0;
+    max-width: 100%;
   }
 
   &__cell {
     border-radius: 10px;
     background-color: #303030;
+
+    list-style-type: none;
   }
 
   &__text-cell {
     font-size: 14px;
     line-height: 17px;
-    margin: 0;
+    text-align: center;
+    margin: 21px 0 22px;
   }
 }

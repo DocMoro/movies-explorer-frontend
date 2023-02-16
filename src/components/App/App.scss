@@ -1,20 +1,33 @@
-.page {
+%font {
   font: {
     family: 'Inter', Arial, sans-serif;;
     style: normal;
     weight: 400;
   }
+}
+
+.page {
+  @extend %font;
   min-width: 320px;
   min-height: 100vh;
-  padding: 0 70px;
   color: #FFF;
   background-color: #202020;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &__title {
+    @extend %font;
+    font-size: 22px;
+    line-height: 27px;
+    margin: 0;
+
+    margin-bottom: 23px;
+  }
 }
 
 .link {
+  @extend %font;
   color: #fff;
   transition: opacity .5s ease-in-out;
 
@@ -25,6 +38,7 @@
 }
 
 .button {
+  @extend %font;
   color: #fff;
   transition: opacity .5s ease-in-out;
 
@@ -34,15 +48,9 @@
   }
 }
 
-.section {
+.container {
   display: flex;
   flex-direction: column;
 
-  &__header {
-    font-size: 22px;
-    line-height: 27px;
-    margin: 0;
-
-    border-bottom: 1px solid #DADADA;
-  }
+  border-top: 1px solid #DADADA;
 }
