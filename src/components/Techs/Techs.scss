@@ -1,0 +1,33 @@
+.tech {
+  align-items: center;
+
+  &__subtitle {
+    font-size: 50px;
+    line-height: 58px;
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 20px;
+    
+    max-width: 460px;
+    text-align: center;
+  }
+
+  &__list {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 90px);
+    gap: 10px;
+  }
+
+  &__cell {
+    border-radius: 10px;
+    background-color: #303030;
+  }
+
+  &__text-cell {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

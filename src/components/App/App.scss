@@ -33,3 +33,16 @@
     opacity: .8;
   }
 }
+
+.section {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    font-size: 22px;
+    line-height: 27px;
+    margin: 0;
+
+    border-bottom: 1px solid #DADADA;
+  }
+}

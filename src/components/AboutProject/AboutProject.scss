@@ -5,17 +5,7 @@
 
 .about-project {
   &__header {
-    font-size: 22px;
-    line-height: 27px;
-    margin: 0;
-
     margin-top: 110px;
-  }
-
-  &__container {
-    border-top: 1px solid #DADADA;
-
-    margin-top: 23px;
   }
 
   &__description {
@@ -53,12 +43,12 @@
     @extend %font;
     margin: 0;
 
-    &_green {
+    &_color_green {
       color: #000;
       background-color: #3DDC84;
     }
 
-    &_grey {
+    &_color_grey {
       background-color: #303030;
     }
   }
