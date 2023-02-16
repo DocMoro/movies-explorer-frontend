@@ -1,17 +1,27 @@
 .tech {
   align-items: center;
 
+  &__title {
+    margin-top: 100px;
+  }
+
   &__subtitle {
     font-size: 50px;
     line-height: 58px;
+    margin: 0;
+
+    margin-top: 90px;
   }
 
   &__text {
     font-size: 14px;
     line-height: 20px;
+    margin: 0;
     
     max-width: 460px;
     text-align: center;
+
+    margin-top: 26px;
   }
 
   &__list {
@@ -19,6 +29,9 @@
     justify-content: center;
     grid-template-columns: repeat(auto-fit, 90px);
     gap: 10px;
+
+    margin-top: 100px;
+    margin-bottom: 100px;
   }
 
   &__cell {
@@ -29,5 +42,6 @@
   &__text-cell {
     font-size: 14px;
     line-height: 17px;
+    margin: 0;
   }
 }
