@@ -13,16 +13,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-  margin: 0;
-}
-
 .link {
   color: #fff;
   transition: opacity .5s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    opacity: .7;
+  }
 }
 
-.link:hover {
-  cursor: pointer;
-  opacity: .7;
+.button {
+  color: #fff;
+  transition: opacity .5s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    opacity: .8;
+  }
 }
