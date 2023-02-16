@@ -6,12 +6,14 @@ export default function Promo() {
   return (
     <section className='promo'>
       <NavTab />
-      <div>
-        <h1 className='promo__header'>Учебный проект студента факультета Веб-разработки.</h1>
-        <p className='promo__text'>Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
-        <button className='button promo__button'></button>
+      <div className='promo__container'>
+        <div>
+          <h1 className='promo__header'>Учебный проект студента факультета Веб-разработки.</h1>
+          <p className='promo__text'>Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
+          <button className='button promo__button'></button>
+        </div>
+        <div className='promo_logo'></div>
       </div>
-      <div className='promo_logo'></div>
     </section>
   )
 }
