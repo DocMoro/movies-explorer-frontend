@@ -4,7 +4,7 @@ import NavTab from '../NavTab/NavTab';
 
 export default function Promo() {
   return (
-    <section className='promo'>
+    <section className='promo page__section'>
       <NavTab />
       <div className='promo__container'>
         <div className='promo__left-side'>
