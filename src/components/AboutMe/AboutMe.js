@@ -16,7 +16,7 @@ export default function AboutMe() {
             </p>
             <a className='link about-me__link' href='https://github.com/DocMoro'>Github</a>
           </div>
-          <img className='about-me__photo' href='../../images/photo.img' />
+          <img className='about-me__photo' href='../../images/photo.img' alt='photo developer' />
         </div>
         <h3 className='about-me__subtitle'>Портфолио</h3>
         <ul className='about-me__list'>
