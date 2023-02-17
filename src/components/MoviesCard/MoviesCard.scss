@@ -1,7 +1,9 @@
-.movies-card {
+.card {
   display: flex;
   flex-direction: column;
-  
+
+  list-style-type: none;
+
   &__image {
     object-position: center;
     object-fit: cover;
@@ -14,14 +16,38 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-
-    padding-bottom: 29px;
-    border-bottom: 1px solid #424242;
   }
 
   &__duration {
     font-size: 11px;
     line-height: 13px;
     color: #8B8B8B;
+
+    padding-top: 6px;
+    border-top: 1px solid #424242;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+  }
+
+  &__button-like {
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    background-color: #313131;
+    background-image: url(../../../images/like.svg);
+    background-size: cover;
+    background-position: center;
+
+    border: none;
+    border-radius: 50%;
+
+    &_active {
+      background-image: url(../../../images/like-active.svg);
+    }
   }
 }
