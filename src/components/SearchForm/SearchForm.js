@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-export default function SearchForm({callback}) {
+export default function SearchForm({}) {
   const [data, setData] = useState({
     name: '',
     ckeckbox: false
@@ -12,13 +12,14 @@ export default function SearchForm({callback}) {
 
   function handleChange(e) {
     const {name, value} = e.target;
+    console.log({name, value});
     setData({
       ...data,
       [name]: value
     });
   }
 
-  function handleSubmit(e) {
+  /* function handleSubmit(e) {
     e.preventDefault();
   
     callback(data);
@@ -26,10 +27,10 @@ export default function SearchForm({callback}) {
       name: '',
       ckeckbox: false
     });
-  }
+  } */
 
   return (
-    <form name='search' className='search' onSubmit={handleSubmit} >
+    <form name='search' className='search' /* onSubmit={handleSubmit} */ >
       <div>
         <input name='name' placeholder='Фильм' className='search__input' type='text' onClick={handleChange} value={data.name}></input>
         <button type='submit' className='search__button'></button>
