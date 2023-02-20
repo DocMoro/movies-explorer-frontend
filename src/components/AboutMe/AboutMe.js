@@ -1,5 +1,7 @@
 import './AboutMe.scss';
 
+import Portfolio from '../Portfolio/Portfolio';
+
 export default function AboutMe() {
   return (
     <section className='about-me page__section'>
@@ -18,27 +20,7 @@ export default function AboutMe() {
           </div>
           <img className='about-me__photo' href='../../images/photo.img' alt='photo developer' />
         </div>
-        <h3 className='about-me__subtitle'>Портфолио</h3>
-        <ul className='about-me__list'>
-          <li className='about-me__cell'>
-            <h4 className='about-me__name'></h4>
-            <a className='link about-me__link' href='https://github.com/DocMoro'>
-              <div className='about-me__image'></div>
-            </a>
-          </li>
-          <li className='about-me__cell'>
-            <h4 className='about-me__name'></h4>
-            <a className='link about-me__link' href='https://github.com/DocMoro'>
-              <div className='about-me__image'></div>
-            </a>
-          </li>
-          <li className='about-me__cell'>
-            <h4 className='about-me__name'></h4>
-            <a className='link about-me__link' href='https://github.com/DocMoro'>
-              <div className='about-me__image'></div>
-            </a>
-          </li>
-        </ul>
+        <Portfolio />
       </div>
     </section>
   )
