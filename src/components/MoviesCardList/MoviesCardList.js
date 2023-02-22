@@ -10,6 +10,7 @@ export default function MoviesCardList({cards}) {
           <Card card={card} />
         ))}
       </ul>
+      <button className='movies__button movies__button_activated button'>Eщё</button>
     </section>
   )
 }
