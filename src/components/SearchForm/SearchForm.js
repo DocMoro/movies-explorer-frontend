@@ -7,7 +7,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 export default function SearchForm({}) {
   const [data, setData] = useState({
     name: '',
-    ckeckbox: false
+    ckeckbox: true
   });
 
   function handleChange(e) {

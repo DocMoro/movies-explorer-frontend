@@ -1,6 +1,6 @@
 import './MoviesCardList.scss';
 
-import Card from '../MoviesCard';
+import Card from '../MoviesCard/MoviesCard';
 
 export default function MoviesCardList({cards, saved}) {
   return (

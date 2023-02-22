@@ -39,7 +39,7 @@
     width: 24px;
     height: 24px;
     background-color: #313131;
-    background-image: url(../../../images/like.svg);
+    background-image: url('../../images/like.svg');
     background-size: cover;
     background-position: center;
 
@@ -47,7 +47,7 @@
     border-radius: 50%;
 
     &_active {
-      background-image: url(../../../images/like-active.svg);
+      background-image: url('../../images/like-active.svg');
     }
   }
 
@@ -56,7 +56,7 @@
     width: 24px;
     height: 24px;
     background-color: #313131;
-    background-image: url(../../../images/delete.svg);
+    background-image: url('../../images/delete.svg');
     background-size: cover;
     background-position: center;
 

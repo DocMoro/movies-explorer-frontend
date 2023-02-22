@@ -18,9 +18,9 @@ export default function Portfolio() {
           </a>
         </li>
         <li className='portfolio__cell'>
-          <h4 className='portfolio__name'></h4>
+          <h4 className='portfolio__name'>Одностраничное приложение</h4>
           <a className='link portfolio__link' href='https://github.com/DocMoro'>
-            <div className='portfolio__image'>Одностраничное приложение</div>
+            <div className='portfolio__image'></div>
           </a>
         </li>
       </ul>
