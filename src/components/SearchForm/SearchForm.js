@@ -31,9 +31,9 @@ export default function SearchForm({}) {
 
   return (
     <form name='search' className='search' /* onSubmit={handleSubmit} */ >
-      <div>
+      <div className='search__container'>
         <input name='name' placeholder='Фильм' className='search__input' type='text' onClick={handleChange} value={data.name}></input>
-        <button type='submit' className='search__button'></button>
+        <button type='submit' className='search__button button'></button>
       </div>
         <span className='search__input-error'></span>
       <FilterCheckbox callback={handleChange} checkbox={data.checkbox} />
