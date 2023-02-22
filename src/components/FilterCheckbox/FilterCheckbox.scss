@@ -1,13 +1,13 @@
 .filter {
   margin-bottom: 39px;
   
-  &__ckeckbox {
+  &__checkbox {
     display: none;
   }
 
   &__text {
     position: relative;
-    padding-left: 12px;
+    padding-left: 48px;
     display: inline-block;
 
     font-size: 12px;
@@ -36,6 +36,7 @@
       background-color: #A0A0A0;
       box-sizing: border-box;
       border: 1px solid #FFFFFF;
+      border-radius: 50%;
       transition: .2s;
     }
 
