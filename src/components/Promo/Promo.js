@@ -8,7 +8,7 @@ export default function Promo() {
       <NavTab />
       <div className='promo__container'>
         <div className='promo__left-side'>
-          <h1 className='promo__title page__header'>Учебный проект студента факультета Веб-разработки.</h1>
+          <h1 className='promo__title page__title'>Учебный проект студента факультета Веб-разработки.</h1>
           <p className='promo__text'>Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
           <button className='button promo__button'>Узнать больше</button>
         </div>
