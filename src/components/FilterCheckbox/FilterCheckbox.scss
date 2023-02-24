@@ -1,6 +1,4 @@
 .filter {
-  margin-bottom: 39px;
-  
   &__checkbox {
     display: none;
   }
@@ -12,6 +10,8 @@
 
     font-size: 12px;
     line-height: 18px;
+
+    margin: 0;
 
     &::before {
       content: "";
