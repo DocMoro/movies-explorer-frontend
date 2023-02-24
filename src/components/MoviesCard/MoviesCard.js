@@ -5,7 +5,7 @@ export default function MoviesCard({card, saved}) {
 
   return (
     <li className='card'>
-      <img className='card__image' href={link} alt={name} />
+      <img className='card__image' src={link} alt={name} />
       <div className='card__container'>
         <h3 className='card__title'>{name}</h3>
         {saved ? <button className='card__button-like button'></button>

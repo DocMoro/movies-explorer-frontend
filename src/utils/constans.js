@@ -2,7 +2,7 @@ const cards = [
   {
     _id: 12,
     name: 'Киноальманах «100 лет дизайна»',
-    link: '../../images/card.jpg',
+    link: 'https://i.pinimg.com/736x/dc/55/db/dc55db0b2acde4a52e0d81c835110eb2.jpg',
     time: '1ч 42м'
   }
 ];
