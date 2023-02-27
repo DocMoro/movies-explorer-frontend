@@ -8,6 +8,7 @@ import Header from '../Header/Header';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
+import AuthForm from '../AuthForm/AuthForm';
 import Footer from '../Footer/Footer';
 
 import { dataCards } from '../../utils/constans';
@@ -23,21 +24,27 @@ export default function App() {
   }
 
   return (
-    <div className="page">
+    <div className='page'>
       <Switch>
-        <Route path="/saved-movies">
+        <Route path='/saved-movies'>
           <Header />
           <SavedMovies cards={cards} callback={handleButtonMore} buttonMore={buttonMore} />
         </Route>
-        <Route path="/movies">
+        <Route path='/movies'>
           <Header />
           <Movies cards={cards} callback={handleButtonMore} buttonMore={buttonMore} />
         </Route>
-        <Route path="/profile">
+        <Route path='/profile'>
           <Header />
           <Profile />
         </Route>
-        <Route path="/">
+        <Route path='/signup'>
+          <AuthForm register={true}/>
+        </Route>
+        <Route path='/signin'>
+          <AuthForm register={false}/>
+        </Route>
+        <Route path='/'>
           <Main />
         </Route>
       </Switch>

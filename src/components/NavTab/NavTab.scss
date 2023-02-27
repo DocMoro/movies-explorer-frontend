@@ -11,6 +11,18 @@
   }
 
   &__link {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+
     margin-left: 20px;
+
+    &_green {
+      width: 76px;
+      height: 32px;
+      color: #000;
+      background: #3DDC84;
+      border-radius: 3px;
+    }
   }
 }

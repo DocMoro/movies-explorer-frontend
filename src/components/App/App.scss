@@ -61,6 +61,23 @@
   }
 }
 
+.logo {
+  width: 38px;
+  height: 38px;
+}
+
+.input {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+
+  border-radius: 8px;
+  background-color: #2F2F2F;
+  color: #FFF;
+  border: none;
+  box-sizing: border-box;
+}
+
 .container {
   display: flex;
   flex-direction: column;
