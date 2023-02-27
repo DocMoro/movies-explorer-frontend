@@ -18,6 +18,9 @@
     width: 100%;
     max-width: calc(100vw - 194px);
     height: 50px;
+
+    box-sizing: border-box;
+    padding-left: 20px;
   }
 
   &__button {

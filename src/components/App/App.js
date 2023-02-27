@@ -29,10 +29,12 @@ export default function App() {
         <Route path='/saved-movies'>
           <Header />
           <SavedMovies cards={cards} callback={handleButtonMore} buttonMore={buttonMore} />
+          <Footer />
         </Route>
         <Route path='/movies'>
           <Header />
           <Movies cards={cards} callback={handleButtonMore} buttonMore={buttonMore} />
+          <Footer />
         </Route>
         <Route path='/profile'>
           <Header />
@@ -46,9 +48,9 @@ export default function App() {
         </Route>
         <Route path='/'>
           <Main />
+          <Footer />
         </Route>
       </Switch>
-      <Footer />
     </div>
   )
 }

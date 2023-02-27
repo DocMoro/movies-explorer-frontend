@@ -9,7 +9,7 @@ import logo from '../../images/logo.svg';
 export default function Header() {
   return (
     <header className='header'>
-      <Link to='/'>
+      <Link to='/' className='link'>
         <img className='header__logo logo' src={logo} alt='Логотип' />
       </Link>
       <Navigation />
