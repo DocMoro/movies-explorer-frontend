@@ -1,11 +1,15 @@
 import './AuthForm.scss';
 
+import { Link } from 'react-router-dom';
+
 import logo from '../../images/logo.svg';
 
 export default function AuthForm({register}) {
   return (
     <main className='authForm'>
-      <img className='authForm__logo logo' src={logo} alt='Логотип' />
+      <Link to='/'>
+        <img className='authForm__logo logo' src={logo} alt='Логотип' />
+      </Link>
       <h1 className='authForm__title'>{register ? 'Добро пожаловать!' : 'Рады видеть!'}</h1>
       <form className='authForm__form'>
         {
