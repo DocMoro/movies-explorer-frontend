@@ -2,7 +2,7 @@ import './AboutProject.scss';
 
 export default function AboutProject() {
   return (
-    <section className='about-project section page__section'>
+    <section className='about-project page__section'>
       <h2 className='about-project__header page__header'>О проекте</h2>
       <div className='about-project__container'>
         <div className='about-project__description'>

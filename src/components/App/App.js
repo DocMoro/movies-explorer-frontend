@@ -27,17 +27,17 @@ export default function App() {
     <div className='page'>
       <Switch>
         <Route path='/saved-movies'>
-          <Header />
+          <Header main={false} />
           <SavedMovies cards={cards} callback={handleButtonMore} buttonMore={buttonMore} />
           <Footer />
         </Route>
         <Route path='/movies'>
-          <Header />
+          <Header main={false} />
           <Movies cards={cards} callback={handleButtonMore} buttonMore={buttonMore} />
           <Footer />
         </Route>
         <Route path='/profile'>
-          <Header />
+          <Header main={false} />
           <Profile />
         </Route>
         <Route path='/signup'>
@@ -47,7 +47,7 @@ export default function App() {
           <AuthForm register={false}/>
         </Route>
         <Route path='/'>
-          <Main />
+          <Main main={true} />
           <Footer />
         </Route>
       </Switch>

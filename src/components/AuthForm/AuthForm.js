@@ -6,7 +6,7 @@ import logo from '../../images/logo.svg';
 
 export default function AuthForm({register}) {
   return (
-    <main className='authForm'>
+    <section className='authForm'>
       <Link to='/' className='link'>
         <img className='authForm__logo logo' src={logo} alt='Логотип' />
       </Link>
@@ -41,6 +41,6 @@ export default function AuthForm({register}) {
         }
         </div>
       </form>
-    </main>
+    </section>
   )
 }

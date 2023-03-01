@@ -1,15 +1,4 @@
 .nav-tab {
-  display: flex;
-  justify-content: space-between;
-
-  padding-top: 18px;
-  padding-bottom: 18px;
-
-  &__container {
-    display: flex;
-    align-items: center;
-  }
-
   &__link {
     font-weight: 500;
     font-size: 12px;

@@ -37,7 +37,7 @@ export default function SearchForm() {
   } */
 
   return (
-    <form name='search' className='search' /* onSubmit={handleSubmit} */ >
+    <form name='search' className='search page__section' /* onSubmit={handleSubmit} */ >
       <div className='search__container'>
         <input name='name' placeholder='Фильм' className='search__input input' type='text' onChange={handleChange} value={data.name}></input>
         <button type='submit' className='search__button button'></button>

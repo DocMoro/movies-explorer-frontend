@@ -54,3 +54,37 @@
     height: 304px;
   }
 }
+
+@media screen and (max-width: 918px) {
+  .promo {
+    &__container {
+      flex-direction: column-reverse;
+      justify-content: start;
+      align-items: center;
+
+      margin: 0;
+    }
+
+    &__left-side {
+      align-items: center;
+    }
+
+    &__title {
+      margin: 48px 0 0;
+    }
+
+    &__text {
+      text-align: center;
+
+      margin: 22px 0 0;
+    }
+
+    &__logo {
+      margin: 140px 0 0;
+    }
+
+    &__button {
+      margin: 92px;
+    }
+  }
+}

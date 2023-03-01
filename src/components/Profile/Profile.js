@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Profile() {
   return (
-    <main className='profile'>
+    <section className='profile'>
       <h1 className='profile__title'>Привет, Виталий!</h1>
       <ul className='profile__list'>
         <li className='profile__cell'>
@@ -18,6 +18,6 @@ export default function Profile() {
       </ul>
       <button className='profile__button button'>Редактировать</button>
       <Link to='/' className='profile__button profile__button_red link'>Выйти из аккаунта</Link>
-    </main>
+    </section>
   )
 }
