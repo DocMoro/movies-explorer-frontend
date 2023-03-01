@@ -38,6 +38,22 @@
   }
 }
 
+@media screen and (max-width: 918px) {
+  .page {
+    &__title {
+      font-size: 40px;
+      line-height: 50px;
+
+      text-align: center;
+    }
+
+    &__section {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  }
+}
+
 .link {
   @extend %font;
   color: #fff;
@@ -80,11 +96,4 @@
   color: #FFF;
   border: none;
   box-sizing: border-box;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-
-  border-top: 1px solid #DADADA;
 }

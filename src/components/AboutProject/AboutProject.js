@@ -4,7 +4,7 @@ export default function AboutProject() {
   return (
     <section className='about-project section page__section'>
       <h2 className='about-project__header page__header'>О проекте</h2>
-      <div className='container'>
+      <div className='about-project__container'>
         <div className='about-project__description'>
           <h3 className='about-project__title'>Дипломный проект включал 5 этапов</h3>
           <h3 className='about-project__title'>На выполнение диплома ушло 5 недель</h3>

@@ -3,6 +3,11 @@
     margin-top: 110px;
   }
 
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+  
   &__info {
     display: flex;
     justify-content: space-between;
