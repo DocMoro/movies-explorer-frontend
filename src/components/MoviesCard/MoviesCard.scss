@@ -76,3 +76,10 @@
     }
   }
 }
+
+@media screen and (max-width: 918px) {
+  &__image {
+    height: 190px;
+    min-height: 190px;
+  }
+}

@@ -50,3 +50,17 @@
     height: 55px;
   }
 }
+
+@media screen and (max-width: 918px) {
+  .portfolio {
+    font-weight: 400;
+  }
+
+  &__list {
+    margin-bottom: 90px;
+  }
+
+  &__name {
+    font-size: 28px;
+  }
+}

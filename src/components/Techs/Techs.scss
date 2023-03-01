@@ -1,4 +1,6 @@
 .techs {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   padding-top: 100px;
   padding-bottom: 100px;
@@ -49,6 +51,35 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    margin: 21px 0 22px;
+    margin: 21px 0;
+  }
+}
+
+@media screen and (max-width: 918px) {
+  .techs {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  &__title {
+    margin-top: 80px;
+  }
+
+  &__text {
+    font-size: 12px;
+    line-height: 18px;
+
+    margin-top: 22px;
+  }
+
+  &__list {
+    grid-template-columns: repeat(auto-fit, 84px);
+
+    margin-top: 83px;
+  }
+
+  &__text-cell {
+    font-size: 12px;
+    line-height: 15px;
   }
 }

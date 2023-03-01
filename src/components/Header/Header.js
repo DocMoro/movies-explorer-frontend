@@ -9,7 +9,7 @@ import logo from '../../images/logo.svg';
 
 export default function Header({main}) {
   return (
-    <header className={`header${main ? ' header_blue' : ''} page__section`}>
+    <header className={`header${main ? ' header_blue' : ''}`}>
       <Link to='/' className='link'>
         <img className='header__logo logo' src={logo} alt='Логотип' />
       </Link>

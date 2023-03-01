@@ -2,7 +2,7 @@ import './Footer.scss';
 
 export default function Footer() {
   return (
-    <footer className='footer page__section'>
+    <footer className='footer'>
       <h2 className='footer__header'>Учебный проект Яндекс.Практикум х BeatFilm.</h2>
       <div className='footer__container'>
         <p className="footer__year">{`© ${new Date().getFullYear()}`}</p>

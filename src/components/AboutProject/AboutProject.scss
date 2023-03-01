@@ -67,3 +67,26 @@
     color: #8B8B8B;
   }
 }
+
+@media screen and (max-width: 918px) {
+  .about-project {
+    &__header {
+      margin-top: 90px;
+    }
+
+    &__description {
+      column-gap: 30px;
+      row-gap: 22px;
+    }
+
+    &__text {
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    &__scheme {
+      margin-top: 93px;
+      margin-bottom: 76px;
+    }
+  }
+}

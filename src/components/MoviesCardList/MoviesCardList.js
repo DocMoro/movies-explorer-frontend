@@ -6,7 +6,7 @@ export default function MoviesCardList({cards, saved, callback, buttonMore}) {
   console.log(cards.length);
 
   return (
-    <section className='movies page__section'>
+    <section className='movies'>
       <ul className='movies__list'>
         {cards.map((card) => (
           <Card card={card} saved={saved} key={card._id}/>

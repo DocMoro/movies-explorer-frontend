@@ -5,6 +5,8 @@
 }
 
 .footer {
+  padding: 0 70px;
+
   &__header {
     @extend %font;
     text-align: center;
@@ -31,5 +33,11 @@
     @extend %font;
 
     margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 918px) {
+  .footer {
+    padding: 0 30px;
   }
 }
