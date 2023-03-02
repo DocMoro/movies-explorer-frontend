@@ -6,9 +6,8 @@ export default function AboutMe() {
   return (
     <section className='about-me page__section'>
       <h2 className='about-me__header page__header'>Студент</h2>
-      <div className='about-me__container'>
         <div className='about-me__info'>
-          <div className='about-me__left-side'>
+          <div className='about-me__container'>
             <h3 className='about-me__title'>Виталий</h3>
             <h4 className='about-me__subtitle'>Фронтенд-разработчик, 30 лет</h4>
             <p className='about-me__text'>Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена 
@@ -21,7 +20,6 @@ export default function AboutMe() {
           <div className='about-me__photo'></div>
         </div>
         <Portfolio />
-      </div>
     </section>
   )
 }

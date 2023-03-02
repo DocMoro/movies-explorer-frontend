@@ -1,11 +1,9 @@
 .about-me {
+  display: flex;
+  flex-direction: column;
+
   &__header {
     margin-top: 110px;
-  }
-
-  &__container {
-    display: flex;
-    flex-direction: column;
   }
 
   &__info {
@@ -16,7 +14,7 @@
     margin-bottom: 100px;
   }
 
-  &__left-side {
+  &__container {
     max-width: 600px;
     width: 47vw;
   }
@@ -69,7 +67,7 @@
     }
 
     &__info {
-      margin-bottom: 91px;
+      margin-bottom: 90px;
     }
 
     &__title {
@@ -98,6 +96,51 @@
     &__photo {
       width: 255px;
       height: 307px;
+    }
+  }
+}
+
+@media screen and (max-width: 515px) {
+  .about-me {
+    &__info {
+      flex-direction: column-reverse;
+      justify-content: start;
+
+      margin-top: 60px;
+      margin-bottom: 70px;
+    }
+
+    &__container {
+      max-width: 100%;
+      width: 100%;
+
+      margin-top: 40px;
+    }
+
+    &__title {
+      font-size: 30px;
+      line-height: 36px;
+    }
+
+    &__subtitle {
+      font-size: 11px;
+      line-height: 16px;
+
+      margin-top: 20px;
+    }
+
+    &__text {
+      font-size: 11px;
+      line-height: 16px;
+    }
+
+    &__link {
+      margin-top: 40px;
+    }
+
+    &__photo {
+      width: 100%;
+      height: auto;
     }
   }
 }

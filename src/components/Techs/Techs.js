@@ -5,29 +5,29 @@ export default function Techs() {
     <section className='techs page__section'>
       <h2 className='techs__header page__header'>Технологии</h2>
       <div className='techs__container'>
-        <h3 className='techs__title page__title'>7 технологий</h3>
-        <p className='techs__text'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
+        <h3 className='techs__title'>7 технологий</h3>
+        <p className='techs__subtitle'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
         <ul className='techs__list'>
           <li className='techs__cell'>
-            <p className='techs__text-cell'>HTML</p>
+            <p className='techs__text'>HTML</p>
           </li>
           <li className='techs__cell'>
-            <p className='techs__text-cell'>CSS</p>
+            <p className='techs__text'>CSS</p>
           </li>
           <li className='techs__cell'>
-            <p className='techs__text-cell'>JS</p>
+            <p className='techs__text'>JS</p>
           </li>
           <li className='techs__cell'>
-            <p className='techs__text-cell'>React</p>
+            <p className='techs__text'>React</p>
           </li>
           <li className='techs__cell'>
-            <p className='techs__text-cell'>Git</p>
+            <p className='techs__text'>Git</p>
           </li>
           <li className='techs__cell'>
-            <p className='techs__text-cell'>Express.js</p>
+            <p className='techs__text'>Express.js</p>
           </li>
           <li className='techs__cell'>
-            <p className='techs__text-cell'>mongoDB</p>
+            <p className='techs__text'>mongoDB</p>
           </li>
         </ul>
       </div>

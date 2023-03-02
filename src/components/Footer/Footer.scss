@@ -4,6 +4,11 @@
   margin: 0;
 }
 
+%font-mobile {
+  font-size: 12px;
+  line-height: 15px;
+}
+
 .footer {
   padding: 0 70px;
 
@@ -39,5 +44,39 @@
 @media screen and (max-width: 918px) {
   .footer {
     padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 515px) {
+  .footer {
+    padding: 0 10px;
+    
+    &__header {
+      @extend %font-mobile;
+    }
+
+    &__container {
+      flex-direction: column-reverse;
+      justify-content: start;
+      align-items: center;
+
+      padding-top: 30px;
+    }
+
+    &__year {
+      @extend %font-mobile;
+
+      margin-top: 30px
+    }
+
+    &__link {
+      @extend %font-mobile;
+
+      margin: 12px 0 0;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
   }
 }

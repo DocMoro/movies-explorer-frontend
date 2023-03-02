@@ -14,10 +14,15 @@
   }
 
   &__title {
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    margin: 0;
+
     margin-top: 90px;
   }
 
-  &__text {
+  &__subtitle {
     font-size: 14px;
     line-height: 20px;
     margin: 0;
@@ -47,7 +52,7 @@
     list-style-type: none;
   }
 
-  &__text-cell {
+  &__text {
     font-size: 14px;
     line-height: 17px;
     text-align: center;
@@ -59,27 +64,53 @@
   .techs {
     padding-top: 90px;
     padding-bottom: 90px;
+
+    &__title {
+      margin-top: 80px;
+    }
+
+    &__subtitle {
+      font-size: 12px;
+      line-height: 18px;
+
+      margin-top: 22px;
+    }
+
+    &__list {
+      grid-template-columns: repeat(auto-fit, 84px);
+
+      margin-top: 83px;
+    }
+
+    &__text {
+      font-size: 12px;
+      line-height: 15px;
+    }
   }
+}
 
-  &__title {
-    margin-top: 80px;
-  }
+@media screen and (max-width: 515px) {
+  .techs {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background-color: #202020;
 
-  &__text {
-    font-size: 12px;
-    line-height: 18px;
+    &__title {
+      font-size: 30px;
+      line-height: 36px;
 
-    margin-top: 22px;
-  }
+      margin-top: 60px;
+    }
 
-  &__list {
-    grid-template-columns: repeat(auto-fit, 84px);
+    &__subtitle {
+      font-size: 11px;
+      line-height: 16px;
 
-    margin-top: 83px;
-  }
+      margin-top: 24px;
+    }
 
-  &__text-cell {
-    font-size: 12px;
-    line-height: 15px;
+    &__list {
+      margin-top: 50px;
+    }
   }
 }

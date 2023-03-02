@@ -18,12 +18,18 @@
   }
 
   &__description {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 40px;
-    row-gap: 26px;
-
+    display: flex;
+    justify-content: space-between;
+    
     margin-top: 70px;
+  }
+
+  &__first-side{
+    max-width: calc(50vw - 90px);
+  }
+
+  &__last-side {
+    max-width: calc(50vw - 90px);
   }
 
   &__title {
@@ -36,6 +42,8 @@
     font-size: 14px;
     line-height: 20px;
     margin: 0;
+
+    margin-top: 26px;
   }
 
   &__scheme {
@@ -74,19 +82,72 @@
       margin-top: 90px;
     }
 
-    &__description {
-      column-gap: 30px;
-      row-gap: 22px;
+    &__first-side{
+      max-width: calc(50vw - 85px);
+    }
+  
+    &__last-side {
+      max-width: calc(50vw - 85px);
     }
 
     &__text {
       font-size: 12px;
       line-height: 18px;
+
+      margin-top: 22px;
     }
 
     &__scheme {
+      grid-template-columns: 140px auto;
+
       margin-top: 93px;
       margin-bottom: 76px;
+    }
+  }
+}
+
+@media screen and (max-width: 515px) {
+  .about-project {
+    &__header {
+      margin-top: 70px;
+    }
+
+    &__description {
+      flex-direction: column;
+      justify-content: start;
+
+      margin-top: 60px;
+    }
+
+    &__first-side{
+      max-width: calc(100vw - 36px);
+    }
+  
+    &__last-side {
+      max-width: calc(100vw - 36px);
+
+      margin-top: 56px;
+    }
+
+    &__title {
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    &__text {
+      font-size: 11px;
+      line-height: 16px;
+    }
+
+    &__scheme {
+      grid-template-columns: 100px auto;
+
+      margin: 60px 0;
+    }
+
+    &__cell {
+      font-size: 11px;
+      line-height: 13px;
     }
   }
 }
