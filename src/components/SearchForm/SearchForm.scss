@@ -3,7 +3,9 @@
   flex-direction: column;
   align-items: center;
 
-  padding: 0 70px;
+  padding: 0 70px 39px;
+  border-top: 1px solid #424242;
+  box-sizing: border-box;
 
   &__container {
     display: flex;
@@ -11,7 +13,6 @@
 
     width: 100%;
     margin-top: 80px;
-    margin-bottom: 28px;
   }
   
   &__input {
@@ -39,18 +40,37 @@
     
     margin-left: 10px;
   }
+
+  &__input-error {
+    height: 28px;
+  }
 }
 
 @media screen and (max-width: 918px) {
   .search {
-    padding: 0 30px;
+    padding: 0 30px 39px;
 
-    &__container {
-      margin-bottom: 40px;
+    &__input-error {
+      height: 40px;
     }
 
     &__input {
       max-width: calc(100vw - 114px);
+    }
+  }
+}
+
+@media screen and (max-width: 515px) {
+  .search {
+    padding: 0 14px 39px;
+
+    &__input {
+      height: 44px;
+      max-width: calc(100vw - 86px);
+    }
+
+    &__input-error {
+      height: 46px;
     }
   }
 }

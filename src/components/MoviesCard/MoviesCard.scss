@@ -7,9 +7,8 @@
   &__image {
     object-position: center;
     object-fit: cover;
-    height: 151px;
-    min-height: 151px;
     width: 100%;
+    height: 56%;
   }
 
   &__title {
@@ -77,9 +76,14 @@
   }
 }
 
-@media screen and (max-width: 918px) {
-  &__image {
-    height: 190px;
-    min-height: 190px;
+@media screen and (max-width: 515px) {
+  &__title {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  &__duration {
+    font-size: 10px;
+    line-height: 12px;
   }
 }
