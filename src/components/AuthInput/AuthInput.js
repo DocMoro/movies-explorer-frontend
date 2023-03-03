@@ -1,6 +1,8 @@
 import './AuthInput.scss';
 
 export default function AuthInput({text}) {
+  let data;
+  
   switch(text) {
     case 'Имя':
       data = {
