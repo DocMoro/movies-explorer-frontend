@@ -10,6 +10,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import AuthForm from '../AuthForm/AuthForm';
 import Footer from '../Footer/Footer';
+import NotFound from '../NotFound/NotFound';
 
 import { dataCards } from '../../utils/constans';
 
@@ -46,9 +47,12 @@ export default function App() {
         <Route path='/signin'>
           <AuthForm register={false}/>
         </Route>
-        <Route path='/'>
+        <Route exact path='/'>
           <Main main={true} />
           <Footer />
+        </Route>
+        <Route path='/'>
+          <NotFound />
         </Route>
       </Switch>
     </div>
