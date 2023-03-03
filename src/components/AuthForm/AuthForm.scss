@@ -1,3 +1,13 @@
+%font {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+%fontMobile {
+  font-size: 12px;
+  line-height: 15px;
+}
+
 .auth {
   display: flex;
   justify-content: center;
@@ -17,13 +27,12 @@
     font-size: 24px;
     line-height: 29px;
 
-    margin: 40px 0 0;
+    margin: 40px 0;
   }
 
   &__submit {
     font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
+    @extend %font;
 
     padding: 13px 0 15px;
     border: none;
@@ -40,8 +49,7 @@
 
   &__text {
     font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
+    @extend %font;
     color: #8B8B8B;
 
     margin: 0;
@@ -49,10 +57,49 @@
 
   &__link {
     font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
+    @extend %font;
     color: #4285F4;
 
     margin: 0 0 0 6px;
+  }
+}
+
+@media screen and (max-width: 515px) {
+  .auth {
+    &__form {
+      align-items: center;
+      
+      max-width: 100%;
+      max-height: 100vh;
+
+      box-sizing: border-box;
+      padding: 0 30px;
+    }
+
+    &__logo {
+      margin: 56px 0 0;
+    }
+
+    &__title {
+      text-align: center;
+
+      margin: 50px 0 80px;
+    }
+
+    &__submit {
+      @extend %fontMobile;
+    }
+
+    &__container {
+      margin: 14px 0 30px;
+    }
+
+    &__text {
+      @extend %fontMobile;
+    }
+
+    &__link {
+      @extend %fontMobile;
+    }
   }
 }

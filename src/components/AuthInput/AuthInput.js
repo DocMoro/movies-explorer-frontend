@@ -6,7 +6,7 @@ export default function AuthInput({text}) {
       data = {
         text: 'Имя',
         name: 'name',
-        type: 'text',
+        type: 'text'
       };
       break;
 

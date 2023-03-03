@@ -4,7 +4,7 @@
   margin: 0;
 }
 
-%font-mobile {
+%fontMobile {
   font-size: 12px;
   line-height: 15px;
 }
@@ -52,7 +52,7 @@
     padding: 0 10px;
     
     &__header {
-      @extend %font-mobile;
+      @extend %fontMobile;
     }
 
     &__container {
@@ -64,13 +64,13 @@
     }
 
     &__year {
-      @extend %font-mobile;
+      @extend %fontMobile;
 
       margin-top: 30px
     }
 
     &__link {
-      @extend %font-mobile;
+      @extend %fontMobile;
 
       margin: 12px 0 0;
 
