@@ -40,7 +40,7 @@
   }
 }
 
-@media screen and (max-width: 515px) {
+@media screen and (max-width: 520px) {
   .page {
     &__header {
       @extend %font;
@@ -62,10 +62,6 @@
   color: #fff;
   transition: opacity .5s ease-in-out;
   text-decoration: none;
-
-  &_active {
-    font-weight: 500;
-  }
 
   &:hover {
     cursor: pointer;

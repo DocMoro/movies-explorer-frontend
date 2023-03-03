@@ -7,7 +7,7 @@ import Navigation from '../Navigation/Navigation';
 
 import logo from '../../images/logo.svg';
 
-export default function Header({main}) {
+export default function Header({main, callback}) {
   return (
     <header className={`header${main ? ' header_blue' : ''}`}>
       <Link to='/' className='link'>
@@ -16,7 +16,7 @@ export default function Header({main}) {
       {
         main
         ? <NavTab />
-        : <Navigation />
+        : <Navigation callback={callback} />
       }
     </header>
   )

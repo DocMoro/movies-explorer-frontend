@@ -22,5 +22,33 @@
       background-repeat: no-repeat;
       background-position: 10px 7px;
     }
+
+    &_active {
+      font-weight: 500;
+    }
+  }
+}
+
+.button-menu {
+  display: none;
+  width: 44px;
+  height: 44px;
+
+  padding: 0;
+  border: none;
+  background-color: none;
+  
+  background-image: url('../../images/menu.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 918px) {
+  .navigation {
+    display: none;
+  }
+
+  .button-menu {
+    display: block;
   }
 }
