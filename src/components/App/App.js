@@ -48,7 +48,8 @@ export default function App() {
           <AuthForm register={false}/>
         </Route>
         <Route exact path='/'>
-          <Main main={true} />
+          <Header main={true} />
+          <Main />
           <Footer />
         </Route>
         <Route path='/'>
