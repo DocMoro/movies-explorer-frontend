@@ -1,23 +1,45 @@
 import './Profile.scss';
 
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function Profile() {
+  const [ edit, setEdit ] = useState(false);
+
+  function handleEditClick() {
+    setEdit(!edit);
+  }
+
   return (
     <section className='profile'>
-      <h1 className='profile__title'>Привет, Виталий!</h1>
-      <ul className='profile__list'>
-        <li className='profile__cell'>
-          <h2 className='profile__subtitle'>Имя</h2>
-          <p className='profile__text'>Виталий</p>
-        </li>
-        <li className='profile__cell'>
-          <h2 className='profile__subtitle'>E-mail</h2>
-          <p className='profile__text'>pochta@yandex.ru</p>
-        </li>
-      </ul>
-      <button className='profile__button button'>Редактировать</button>
-      <Link to='/' className='profile__button profile__button_red link'>Выйти из аккаунта</Link>
+      <form name='search' className='profile__form'>
+        <div>
+          <h1 className='profile__title'>Привет, Виталий!</h1>
+          <ul className='profile__list'>
+            <li className='profile__cell'>
+              <h2 className='profile__subtitle'>Имя</h2>
+              <input className='profile__text' name='name' type='text' value='Виталий' disabled={!edit ? 'disabled' : ''} required></input>
+            </li>
+            <li className='profile__cell'>
+              <h2 className='profile__subtitle'>E-mail</h2>
+              <input className='profile__text' name='email' type='email' value='pochta@yandex.ru' disabled={!edit ? 'disabled' : ''} required></input>
+            </li>
+          </ul>
+        </div>
+        <div>
+        {
+          !edit
+          ? <>
+              <button className='profile__button button' type='button' onClick={handleEditClick}>Редактировать</button>
+              <Link to='/' className='profile__button profile__button_color_red link'>Выйти из аккаунта</Link>
+            </>
+          : <>
+              <label className='auth-input__input-error searchRegister'></label>
+              <button className='profile__button profile__button_color_blue button' type='submit'>Сохранить</button>
+            </>
+        }
+        </div>
+      </form>
     </section>
   )
 }
