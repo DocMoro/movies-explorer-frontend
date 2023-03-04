@@ -1,14 +1,23 @@
 .card {
+  position: relative;
+
   display: flex;
   flex-direction: column;
 
   list-style-type: none;
 
+  padding-top: 56%;
+
   &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: calc(100% - 79px);
+
     object-position: center;
     object-fit: cover;
-    width: 100%;
-    height: 56%;
   }
 
   &__title {
@@ -23,6 +32,8 @@
     font-size: 11px;
     line-height: 13px;
     color: #8B8B8B;
+
+    margin: 0;
 
     padding-top: 6px;
     border-top: 1px solid #424242;
@@ -78,6 +89,10 @@
 
 @media screen and (max-width: 520px) {
   .card {
+    &__image {
+      height: calc(100% - 78px);
+    }
+
     &__title {
       font-size: 12px;
       line-height: 15px;
