@@ -3,11 +3,6 @@
   line-height: 17px;
 }
 
-%fontMobile {
-  font-size: 12px;
-  line-height: 15px;
-}
-
 .auth {
   display: flex;
   justify-content: center;
@@ -17,9 +12,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  
+
     max-width: 396px;
-    max-height: 560px;
+    width: 100%;
+    min-height: 700px;
+    height: 100vh;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%
+  }
+
+  &__logo {
+    margin: 70px 0 0;
   }
 
   &__title {
@@ -33,6 +41,8 @@
   &__submit {
     font-weight: 500;
     @extend %font;
+
+    width: 100%;
 
     padding: 13px 0 15px;
     border: none;
@@ -67,13 +77,14 @@
 @media screen and (max-width: 520px) {
   .auth {
     &__form {
-      align-items: center;
-      
       max-width: 100%;
-      max-height: 100vh;
 
       box-sizing: border-box;
       padding: 0 30px;
+    }
+
+    &__content {
+      align-items: center;
     }
 
     &__logo {
@@ -87,7 +98,8 @@
     }
 
     &__submit {
-      @extend %fontMobile;
+      font-size: 12px;
+      line-height: 15px;
     }
 
     &__container {
@@ -95,11 +107,13 @@
     }
 
     &__text {
-      @extend %fontMobile;
+      font-size: 12px;
+      line-height: 15px;
     }
 
     &__link {
-      @extend %fontMobile;
+      font-size: 12px;
+      line-height: 15px;
     }
   }
 }

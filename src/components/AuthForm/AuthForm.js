@@ -10,7 +10,7 @@ export default function AuthForm({register}) {
   return (
     <section className='auth'>
       <form name='auth' className='auth__form'>
-        <div>
+        <div className='auth__content'>
           <Link to='/' className='link'>
             <img className='auth__logo logo' src={logo} alt='Логотип' />
           </Link>
@@ -19,9 +19,9 @@ export default function AuthForm({register}) {
             register && <AuthInput text='Имя' /> 
           }
           <AuthInput text='E-mail' />
-          <AuthInput txet='Пароль' />
+          <AuthInput text='Пароль' />
         </div>
-        <div>
+        <div className='auth__content'>
           <button className='auth__submit button' type='submit'>{register ? 'Зарегистрироваться' : 'Войти'}</button>
           <div className='auth__container'>
           {

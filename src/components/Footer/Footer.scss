@@ -4,11 +4,6 @@
   margin: 0;
 }
 
-%fontMobile {
-  font-size: 12px;
-  line-height: 15px;
-}
-
 .footer {
   padding: 0 70px;
 
@@ -52,7 +47,8 @@
     padding: 0 10px;
     
     &__header {
-      @extend %fontMobile;
+      font-size: 12px;
+      line-height: 15px;
     }
 
     &__container {
@@ -64,13 +60,15 @@
     }
 
     &__year {
-      @extend %fontMobile;
+      font-size: 12px;
+      line-height: 15px;
 
       margin-top: 30px
     }
 
     &__link {
-      @extend %fontMobile;
+      font-size: 12px;
+      line-height: 15px;
 
       margin: 12px 0 0;
 

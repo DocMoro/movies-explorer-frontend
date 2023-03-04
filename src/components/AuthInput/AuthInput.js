@@ -27,6 +27,13 @@ export default function AuthInput({text}) {
         type: 'password'
       };
       break;
+
+    default:
+      data = {
+        text: undefined,
+        name: undefined,
+        type: undefined
+      };
   }
 
   return (

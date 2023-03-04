@@ -1,7 +1,6 @@
 .techs {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding-top: 100px;
   padding-bottom: 100px;
   background-color: #272727;
@@ -9,7 +8,6 @@
   &__container {
     display: flex;
     flex-direction: column;
-
     align-items: center;
   }
 
