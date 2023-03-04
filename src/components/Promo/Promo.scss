@@ -9,6 +9,7 @@
   &__container {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
   }
 
   &__title {
@@ -39,8 +40,7 @@
     background-color: #073042;
     border: 1px solid rgba(#FFF, .6);
     border-radius: 3px;
-    max-width: 129px;
-    padding: 10px 0;
+    padding: 10px 20px;
 
     margin-top: 146px;
     margin-bottom: 75px;
@@ -57,7 +57,7 @@
   }
 }
 
-@media screen and (max-width: 918px) {
+@media screen and (max-width: 1090px) {
   .promo {
     flex-direction: column-reverse;
     justify-content: start;

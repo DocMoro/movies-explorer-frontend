@@ -13,7 +13,7 @@ export default function Profile() {
   return (
     <section className='profile'>
       <form name='search' className='profile__form'>
-        <div>
+        <div className='profile__attic'>
           <h1 className='profile__title'>Привет, Виталий!</h1>
           <ul className='profile__list'>
             <li className='profile__cell'>
@@ -26,7 +26,7 @@ export default function Profile() {
             </li>
           </ul>
         </div>
-        <div>
+        <div className='profile__basement'>
         {
           !edit
           ? <>

@@ -41,9 +41,10 @@
   background-image: url('../../images/menu.svg');
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #202020;
 }
 
-@media screen and (max-width: 918px) {
+@media screen and (max-width: 1090px) {
   .navigation {
     display: none;
   }

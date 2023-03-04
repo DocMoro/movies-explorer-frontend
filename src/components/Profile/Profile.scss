@@ -8,23 +8,30 @@
     flex-direction: column;
     justify-content: space-between;
 
-    max-height: 482px;
     max-width: 410px;
+    width: 100%;
+    min-height: 622px;
+    height: 100vh;
+  }
 
-    margin: 70px 0;
+  &__attic {
+    display: flex;
+    flex-direction: column;
   }
 
   &__title {
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
+    text-align: center;
 
-    margin: 0;
+    margin: 70px 0 0;
   }
 
   &__list {
     max-width: 410px;
     width: 100%;
+    padding: 0;
 
     margin: 107px 0 0;
   }
@@ -42,6 +49,8 @@
   }
 
   &__subtitle {
+    display: flex;
+    align-items: center;
     font-weight: 500;
     font-size: 11px;
     line-height: 13px;
@@ -50,11 +59,24 @@
   }
 
   &__text {
+    outline: none;
     font-weight: 400;
     font-size: 11px;
     line-height: 13px;
+    text-align: right;
+
+    background: none;
+    border: none;
+    color: #FFF;
 
     margin: 0;
+  }
+
+  &__basement {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 0 70px;
   }
 
   &__button {
@@ -68,9 +90,10 @@
 
     &_color_red {
       font-weight: 500;
+      text-align: center;
       color: #EE3465;
 
-      margin: 16px 0 70px;
+      margin: 16px 0 0;
     }
 
     &_color_blue {
@@ -84,21 +107,17 @@
   }
 }
 
-@media screen and (max-width: 918px) {
+@media screen and (max-width: 1090px) {
   .profile {
-    &__title {
-      margin: 236px 0 0;
-    }
-  
     &__list{
       margin: 80px 0 0;
     }
 
     &__button {
-      margin: 194px 0 0;
+      margin:  0;
   
-      &_red {
-        margin: 16px 0 269px;
+      &_color_red {
+        margin: 16px 0 70px;
       }
     }
   }
@@ -114,8 +133,6 @@
 
       box-sizing: border-box;
       padding: 0 30px;
-
-      margin: 70px 0 40px;
     }
 
     &__button {
