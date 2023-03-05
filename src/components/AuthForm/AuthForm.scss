@@ -1,4 +1,5 @@
 %font {
+  font-weight: 400;
   font-size: 14px;
   line-height: 17px;
 }
@@ -8,6 +9,8 @@
   justify-content: center;
   align-items: center;
 
+  height: 100vh;
+
   &__form {
     display: flex;
     flex-direction: column;
@@ -15,8 +18,8 @@
 
     max-width: 396px;
     width: 100%;
-    min-height: 700px;
-    height: 100vh;
+    max-height: 700px;
+    height: 100%;
   }
 
   &__content {
@@ -39,8 +42,8 @@
   }
 
   &__submit {
-    font-weight: 500;
     @extend %font;
+    font-weight: 500;
 
     width: 100%;
 
@@ -58,7 +61,6 @@
   }
 
   &__text {
-    font-weight: 400;
     @extend %font;
     color: #8B8B8B;
 
@@ -66,7 +68,6 @@
   }
 
   &__link {
-    font-weight: 400;
     @extend %font;
     color: #4285F4;
 
@@ -78,6 +79,7 @@
   .auth {
     &__form {
       max-width: 100%;
+      max-height: 100%;
 
       box-sizing: border-box;
       padding: 0 30px;

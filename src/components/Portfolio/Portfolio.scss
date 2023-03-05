@@ -1,4 +1,7 @@
 .portfolio {
+  display: flex;
+  flex-direction: column;
+
   &__title {
     font-weight: 400;
     font-size: 18px;
@@ -50,21 +53,28 @@
       repeat: no-repeat;
       size: contain;
     }
-    width: 20px;
+    width: 21px;
     height: 55px;
   }
 }
 
 @media screen and (max-width: 1090px) {
   .portfolio {
-    font-weight: 400;
-
     &__list {
       margin-bottom: 90px;
     }
 
     &__name {
       font-size: 28px;
+    }
+
+    &__cell {
+      border-bottom: 1px solid #E6E6E6;
+    }
+
+    &__image {
+      width: 19px;
+      height: 55px;
     }
   }
 }
@@ -84,6 +94,11 @@
     &__name {
       font-size: 18px;
       line-height: 28px;
+    }
+
+    &__image {
+      width: 12px;
+      height: 22px;
     }
   }
 }

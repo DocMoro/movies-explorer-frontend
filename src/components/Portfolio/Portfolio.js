@@ -2,7 +2,7 @@ import './Portfolio.scss';
 
 export default function Portfolio() {
   return (
-    <>
+    <div className='portfolio'>
       <h3 className='portfolio__title'>Портфолио</h3>
       <ul className='portfolio__list'>
         <li className='portfolio__cell'>
@@ -24,6 +24,6 @@ export default function Portfolio() {
           </a>
         </li>
       </ul>
-    </>
+    </div>
   )
 }
