@@ -1,0 +1,148 @@
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: calc(100vh - 75px);
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    max-width: 410px;
+    width: 100%;
+    height: 622px;
+  }
+
+  &__attic {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+
+    margin: 70px 0 0;
+  }
+
+  &__list {
+    max-width: 410px;
+    width: 100%;
+    padding: 0;
+
+    margin: 107px 0 0;
+  }
+
+  &__cell {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 16px 0;
+    border-bottom: 1px solid #424242;
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  &__subtitle {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+
+    margin: 0;
+  }
+
+  &__text {
+    outline: none;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: right;
+
+    background: none;
+    border: none;
+    color: #FFF;
+
+    margin: 0;
+  }
+
+  &__basement {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 0 70px;
+  }
+
+  &__button {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+
+    padding: 0;
+    border: none;
+    background: none;
+
+    &_color_red {
+      font-weight: 500;
+      text-align: center;
+      color: #EE3465;
+
+      margin: 16px 0 0;
+    }
+
+    &_color_blue {
+      font-weight: 500;
+      text-align: center;
+
+      padding: 15px 0;
+      border-radius: 3px;
+      background: #4285F4;
+    }
+  }
+}
+
+@media screen and (max-width: 1090px) {
+  .profile {
+    &__list{
+      margin: 80px 0 0;
+    }
+
+    &__button {
+      margin:  0;
+  
+      &_color_red {
+        margin: 16px 0 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .profile {
+    &__form {
+      align-items: center;
+      
+      max-width: 100%;
+      height: 100%;
+
+      box-sizing: border-box;
+      padding: 0 30px;
+    }
+
+    &__basement {
+      margin: 0 0 40px;
+    }
+
+    &__button {
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+}

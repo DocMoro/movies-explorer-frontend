@@ -1,0 +1,158 @@
+%font {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin: 0;
+
+  padding-top: 9px;
+}
+
+.about-project {
+  &__header {
+    margin-top: 110px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__description {
+    display: flex;
+    justify-content: space-between;
+    
+    margin-top: 70px;
+  }
+
+  &__first-side{
+    max-width: calc(50vw - 90px);
+  }
+
+  &__last-side {
+    max-width: calc(50vw - 90px);
+  }
+
+  &__title {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+
+    margin-top: 26px;
+  }
+
+  &__scheme {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 36px 36px;
+    align-items: stretch;
+
+    margin-top: 110px;
+    margin-bottom: 96px;
+  }
+
+  &__cell {
+    @extend %font;
+
+    &_color_green {
+      color: #000;
+      background-color: #3DDC84;
+    }
+
+    &_color_grey {
+      background-color: #303030;
+    }
+  }
+
+  &__cell-bottom {
+    @extend %font;
+    font-weight: 500;
+    color: #8B8B8B;
+  }
+}
+
+@media screen and (max-width: 1090px) {
+  .about-project {
+    &__header {
+      margin-top: 90px;
+    }
+
+    &__first-side{
+      max-width: calc(50vw - 85px);
+    }
+  
+    &__last-side {
+      max-width: calc(50vw - 85px);
+    }
+
+    &__text {
+      font-size: 12px;
+      line-height: 18px;
+
+      margin-top: 22px;
+    }
+
+    &__scheme {
+      grid-template-columns: 140px auto;
+
+      margin-top: 93px;
+      margin-bottom: 76px;
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .about-project {
+    &__header {
+      margin-top: 70px;
+    }
+
+    &__description {
+      flex-direction: column;
+      justify-content: start;
+
+      margin-top: 60px;
+    }
+
+    &__first-side{
+      max-width: calc(100vw - 36px);
+    }
+  
+    &__last-side {
+      max-width: calc(100vw - 36px);
+
+      margin-top: 56px;
+    }
+
+    &__title {
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    &__text {
+      font-size: 11px;
+      line-height: 16px;
+    }
+
+    &__scheme {
+      grid-template-columns: 100px auto;
+
+      margin: 60px 0;
+    }
+
+    &__cell {
+      font-size: 11px;
+      line-height: 13px;
+
+      padding-top: 11px;
+    }
+  }
+}

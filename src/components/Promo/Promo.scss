@@ -1,0 +1,123 @@
+.promo {
+  display: flex;
+  justify-content: space-between;
+  
+  background-color: #073042;
+
+  padding-top: 75px;
+    
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__title {
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    margin: 0;
+
+    max-width: 640px;
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    max-width: 310px;
+
+    margin: 0;
+    margin-top: 36px;
+
+    opacity: 0.5;
+  }
+
+  &__button {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+
+    background-color: #073042;
+    border: 1px solid rgba(#FFF, .6);
+    border-radius: 3px;
+    padding: 10px 20px;
+
+    margin-top: 146px;
+    margin-bottom: 75px;
+  }
+
+  &__logo {
+    background: {
+      image: url('../../images/landing-logo.svg');
+      size: contain;
+      repeat: no-repeat;
+    }
+    width: 310px;
+    height: 304px;
+  }
+}
+
+@media screen and (max-width: 1090px) {
+  .promo {
+    flex-direction: column-reverse;
+    justify-content: start;
+    align-items: center;
+
+    padding: 0;
+
+    &__container {
+      align-items: center;
+    }
+
+    &__title {
+      font-size: 40px;
+      line-height: 50px;
+
+      text-align: center;
+
+      margin: 48px 0 0;
+    }
+
+    &__text {
+      max-width: 260px;
+      text-align: center;
+
+      margin: 22px 0 0;
+    }
+
+    &__logo {
+      margin: 140px 0 0;
+    }
+
+    &__button {
+      margin: 92px 0 76px;
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .promo {
+    &__logo {
+      width: 210px;
+      height: 206px;
+
+      margin: 70px 0 0;
+    }
+
+    &__title {
+      font-size: 30px;
+      line-height: 38px;
+
+      margin: 44px 0 0;
+    }
+
+    &__text {
+      margin: 24px 0 0;
+    }
+
+    &__button {
+      margin: 80px 0 30px;
+    }
+  }
+}
