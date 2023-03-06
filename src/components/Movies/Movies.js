@@ -5,7 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 export default function Movies({cards, callback, buttonMore}) {
   return (
-    <main>
+    <main className='main'>
       <SearchForm />
       <MoviesCardList cards={cards} saved={false} callback={callback} buttonMore={buttonMore} />
     </main>

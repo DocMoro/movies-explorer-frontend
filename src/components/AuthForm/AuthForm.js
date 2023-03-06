@@ -8,7 +8,7 @@ import logo from '../../images/logo.svg';
 
 export default function AuthForm({register}) {
   return (
-    <main className='auth'>
+    <main className='main auth'>
       <form name='auth' className='auth__form'>
         <div className='auth__content'>
           <Link to='/' className='link'>

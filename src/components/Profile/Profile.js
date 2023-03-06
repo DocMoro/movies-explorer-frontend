@@ -11,7 +11,7 @@ export default function Profile() {
   }
 
   return (
-    <main className='profile'>
+    <main className='main profile'>
       <form name='search' className='profile__form'>
         <div className='profile__attic'>
           <h1 className='profile__title'>Привет, Виталий!</h1>

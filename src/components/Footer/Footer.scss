@@ -6,7 +6,10 @@
 }
 
 .footer {
+  max-width: 1280px;
+  width: 100%;
   padding: 0 70px;
+  box-sizing: border-box;
 
   &__header {
     @extend %font;
