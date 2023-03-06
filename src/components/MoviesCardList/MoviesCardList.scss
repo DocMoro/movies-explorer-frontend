@@ -31,10 +31,11 @@
     padding: 10px 0;
     margin: 50px 0 55px;
 
-    opacity: 0;
+    visibility: hidden;
 
     &_activated {
-      opacity: 1;
+      visibility: visible;
+      
       margin: 50px 0 80px;
     }
   }
