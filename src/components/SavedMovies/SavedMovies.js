@@ -5,11 +5,9 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 export default function SavedMovies({cards, callback, buttonMore}) {
   return (
-    <>
+    <main>
       <SearchForm />
-      <main>
-        <MoviesCardList cards={cards} saved={true} callback={callback} buttonMore={buttonMore} />
-      </main>
-    </>
+      <MoviesCardList cards={cards} saved={true} callback={callback} buttonMore={buttonMore} />
+    </main>
   )
 }
