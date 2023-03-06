@@ -11,7 +11,7 @@ export default function Profile() {
   }
 
   return (
-    <section className='profile'>
+    <main className='profile'>
       <form name='search' className='profile__form'>
         <div className='profile__attic'>
           <h1 className='profile__title'>Привет, Виталий!</h1>
@@ -40,6 +40,6 @@ export default function Profile() {
         }
         </div>
       </form>
-    </section>
+    </main>
   )
 }

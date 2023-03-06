@@ -7,7 +7,9 @@ export default function Movies({cards, callback, buttonMore}) {
   return (
     <>
       <SearchForm/>
-      <MoviesCardList cards={cards} saved={false} callback={callback} buttonMore={buttonMore} />
+      <main>
+        <MoviesCardList cards={cards} saved={false} callback={callback} buttonMore={buttonMore} />
+      </main>
     </>
   )
 }

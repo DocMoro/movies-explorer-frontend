@@ -8,7 +8,7 @@ import logo from '../../images/logo.svg';
 
 export default function AuthForm({register}) {
   return (
-    <section className='auth'>
+    <main className='auth'>
       <form name='auth' className='auth__form'>
         <div className='auth__content'>
           <Link to='/' className='link'>
@@ -38,6 +38,6 @@ export default function AuthForm({register}) {
           </div>
         </div>
       </form>
-    </section>
+    </main>
   )
 }
