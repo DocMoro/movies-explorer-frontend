@@ -19,13 +19,19 @@
     left: 0;
     right: 0;
     bottom: 0;
-    opacity: .3;
+
+    opacity: 0;
+    transition: .5s;
 
     z-index: -1;
   }
 
   &_active {
     visibility: visible;
+
+    &::before {
+      opacity: .3;
+    }
 
     & .popup__container {
       transform: translateX(0);
