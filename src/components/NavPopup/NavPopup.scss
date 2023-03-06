@@ -10,8 +10,6 @@
   z-index: 1;
 
   visibility: hidden;
-  transform: translate(100%, 0);
-  transition: transform .5s linear;
 
   &::before {
     content: '';
@@ -28,7 +26,10 @@
 
   &_active {
     visibility: visible;
-    transform: translate(0, 0);
+
+    & .popup__container {
+      transform: translateX(0);
+    }
   }
 
   &__container {
@@ -49,6 +50,9 @@
     box-sizing: border-box;
   
     background-color: #202020;
+
+    transform: translateX(100%);
+    transition: .5s;
   }
 
   &__nav {
