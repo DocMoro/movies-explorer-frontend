@@ -62,11 +62,11 @@ export default function Profile() {
           !isEdit
           ? <>
               <button className='profile__button button' type='button' onClick={handleEditClick}>Редактировать</button>
-              <Link to='/' className='profile__button profile__button_color_red link'>Выйти из аккаунта</Link>
+              <Link to='/' className='profile__button profile__button_red link'>Выйти из аккаунта</Link>
             </>
           : <>
               <label className='auth-input__input-error'></label>
-              <button className={`profile__button profile__button_color_blue${isValid ? ' button' : ' profile__button_color_grey'}`} type='submit' disabled={!isValid ? 'disabled' : ''}>Сохранить</button>
+              <button className={`profile__submit ${isValid ? ' button' : ' profile__submit_disabled'}`} type='submit' disabled={!isValid ? 'disabled' : ''}>Сохранить</button>
             </>
         }
         </div>
