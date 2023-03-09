@@ -14,29 +14,38 @@ export default function AuthForm({register}) {
 
   
   function handleChange(e) {
-    const {name, value} = e.target;
+    const target = e.target;
+    const {name, value} = target;
+
     setValues({
-      ...values,
+      ...values, 
       [name]: value
     });
+
+    setErrors({
+      ...errors, 
+      [name]: target.validationMessage 
+    });
+
+    setIsValid(target.closest("form").checkValidity());
   }
 
   return (
     <main className='main auth'>
       <form name='auth' className='auth__form'>
         <div className='auth__content'>
-          <Link to='/' className='link'>
-            <img className='auth__logo logo' src={logo} alt='Логотип' />
+          <Link to='/' className='auth__logo link'>
+            <img className='logo' src={logo} alt='Логотип' />
           </Link>
           <h1 className='auth__title'>{register ? 'Добро пожаловать!' : 'Рады видеть!'}</h1>
           { 
-            register && <AuthInput text='Имя' cbChange={handleChange} value={values.name} /> 
+            register && <AuthInput text='Имя' cbChange={handleChange} value={values.name} error={errors.name} /> 
           }
-          <AuthInput text='E-mail' cbChange={handleChange} value={values.email} />
-          <AuthInput text='Пароль' cbChange={handleChange} value={values.password} />
+          <AuthInput text='E-mail' cbChange={handleChange} value={values.email} error={errors.email} />
+          <AuthInput text='Пароль' cbChange={handleChange} value={values.password} error={errors.password} />
         </div>
         <div className='auth__content'>
-          <button className='auth__submit button' type='submit'>{register ? 'Зарегистрироваться' : 'Войти'}</button>
+          <button className={`auth__submit${isValid ? ' button' : ' auth__submit_disabled'}`} type='submit' disabled={!isValid ? 'disabled' : ''} >{register ? 'Зарегистрироваться' : 'Войти'}</button>
           <div className='auth__container'>
           {
             !register

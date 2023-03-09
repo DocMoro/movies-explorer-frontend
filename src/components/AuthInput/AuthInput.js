@@ -1,6 +1,6 @@
 import './AuthInput.scss';
 
-export default function AuthInput({text, cbChange, value}) {
+export default function AuthInput({text, cbChange, value, error}) {
   let data;
   
   switch(text) {
@@ -40,7 +40,7 @@ export default function AuthInput({text, cbChange, value}) {
     <fieldset className='auth-input'>
       <h2 className='auth-input__title'>{data.text}</h2>
       <input className='auth-input__input input' name={data.name} type={data.type} value={value} onChange={cbChange} required></input>
-      <label className={`auth-input__input-error ${data.name}Register`}></label>
+      <label className='auth-input__input-error'>{error}</label>
     </fieldset>
   )
 }
