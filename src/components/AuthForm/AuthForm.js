@@ -1,5 +1,6 @@
 import './AuthForm.scss';
 
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AuthInput from '../AuthInput/AuthInput';
@@ -7,19 +8,15 @@ import AuthInput from '../AuthInput/AuthInput';
 import logo from '../../images/logo.svg';
 
 export default function AuthForm({register}) {
-  const [ data, setData ] = useState(register ? {
-    name: '',
-    email: '',
-    password: ''
-  } : {
-    email: '',
-    password: ''
-  });
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
+  const [isValid, setIsValid] = useState(false);
+
   
   function handleChange(e) {
-    const { name, value } = e.target;
-    setData({
-      ...data,
+    const {name, value} = e.target;
+    setValues({
+      ...values,
       [name]: value
     });
   }
@@ -33,10 +30,10 @@ export default function AuthForm({register}) {
           </Link>
           <h1 className='auth__title'>{register ? 'Добро пожаловать!' : 'Рады видеть!'}</h1>
           { 
-            register && <AuthInput text='Имя' cbChange={handleChange} value={data.name} /> 
+            register && <AuthInput text='Имя' cbChange={handleChange} value={values.name} /> 
           }
-          <AuthInput text='E-mail' cbChange={handleChange} value={data.email} />
-          <AuthInput text='Пароль' cbChange={handleChange} value={data.password} />
+          <AuthInput text='E-mail' cbChange={handleChange} value={values.email} />
+          <AuthInput text='Пароль' cbChange={handleChange} value={values.password} />
         </div>
         <div className='auth__content'>
           <button className='auth__submit button' type='submit'>{register ? 'Зарегистрироваться' : 'Войти'}</button>

@@ -18,7 +18,7 @@ export default function SearchForm() {
     });
   }
 
-  function handleClick() {
+  function handleClickCheckbox() {
     setData({
       ...data,
       checkbox: !data.checkbox
@@ -43,7 +43,7 @@ export default function SearchForm() {
         <button type='submit' className='search__button button'></button>
       </div>
         <label className='search__input-error nameRegister'></label>
-      <FilterCheckbox callback={handleClick} checkbox={data.checkbox} />
+      <FilterCheckbox callback={handleClickCheckbox} checkbox={data.checkbox} />
     </form>
   )
 }

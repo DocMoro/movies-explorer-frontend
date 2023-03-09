@@ -8,23 +8,20 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 export default function Profile() {
   const currentUser = useContext(CurrentUserContext);
 
-  const [ data, setData ] = useState({
-    name: '',
-    email: ''
-  })
-  const [ edit, setEdit ] = useState(false);
+  const [ values, setValues ] = useState({})
+  const [ isEdit, setIsEdit ] = useState(false);
 
   useEffect(() => {
     const { name, email } = currentUser;
 
-    setData({
+    setValues({
       name,
       email
     });
   }, [currentUser]);
 
   function handleEditClick() {
-    setEdit(!edit);
+    setIsEdit(!isEdit);
   }
 
   return (
@@ -35,17 +32,17 @@ export default function Profile() {
           <ul className='profile__list'>
             <li className='profile__cell'>
               <h2 className='profile__subtitle'>Имя</h2>
-              <input className='profile__text' name='name' type='text' value={data.name} disabled={!edit ? 'disabled' : ''} required></input>
+              <input className='profile__text' name='name' type='text' value={values.name} disabled={!isEdit ? 'disabled' : ''} required></input>
             </li>
             <li className='profile__cell'>
               <h2 className='profile__subtitle'>E-mail</h2>
-              <input className='profile__text' name='email' type='email' value={data.email} disabled={!edit ? 'disabled' : ''} required></input>
+              <input className='profile__text' name='email' type='email' value={values.email} disabled={!isEdit ? 'disabled' : ''} required></input>
             </li>
           </ul>
         </div>
         <div className='profile__basement'>
         {
-          !edit
+          !isEdit
           ? <>
               <button className='profile__button button' type='button' onClick={handleEditClick}>Редактировать</button>
               <Link to='/' className='profile__button profile__button_color_red link'>Выйти из аккаунта</Link>
