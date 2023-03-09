@@ -7,6 +7,23 @@ import AuthInput from '../AuthInput/AuthInput';
 import logo from '../../images/logo.svg';
 
 export default function AuthForm({register}) {
+  const [ data, setData ] = useState(register ? {
+    name: '',
+    email: '',
+    password: ''
+  } : {
+    email: '',
+    password: ''
+  });
+  
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value
+    });
+  }
+
   return (
     <main className='main auth'>
       <form name='auth' className='auth__form'>
@@ -16,10 +33,10 @@ export default function AuthForm({register}) {
           </Link>
           <h1 className='auth__title'>{register ? 'Добро пожаловать!' : 'Рады видеть!'}</h1>
           { 
-            register && <AuthInput text='Имя' /> 
+            register && <AuthInput text='Имя' cbChange={handleChange} value={data.name} /> 
           }
-          <AuthInput text='E-mail' />
-          <AuthInput text='Пароль' />
+          <AuthInput text='E-mail' cbChange={handleChange} value={data.email} />
+          <AuthInput text='Пароль' cbChange={handleChange} value={data.password} />
         </div>
         <div className='auth__content'>
           <button className='auth__submit button' type='submit'>{register ? 'Зарегистрироваться' : 'Войти'}</button>

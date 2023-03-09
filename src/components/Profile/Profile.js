@@ -1,10 +1,27 @@
 import './Profile.scss';
 
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
+
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function Profile() {
+  const currentUser = useContext(CurrentUserContext);
+
+  const [ data, setData ] = useState({
+    name: '',
+    email: ''
+  })
   const [ edit, setEdit ] = useState(false);
+
+  useEffect(() => {
+    const { name, email } = currentUser;
+
+    setData({
+      name,
+      email
+    });
+  }, [currentUser]);
 
   function handleEditClick() {
     setEdit(!edit);
@@ -18,11 +35,11 @@ export default function Profile() {
           <ul className='profile__list'>
             <li className='profile__cell'>
               <h2 className='profile__subtitle'>Имя</h2>
-              <input className='profile__text' name='name' type='text' value='Виталий' disabled={!edit ? 'disabled' : ''} required></input>
+              <input className='profile__text' name='name' type='text' value={data.name} disabled={!edit ? 'disabled' : ''} required></input>
             </li>
             <li className='profile__cell'>
               <h2 className='profile__subtitle'>E-mail</h2>
-              <input className='profile__text' name='email' type='email' value='pochta@yandex.ru' disabled={!edit ? 'disabled' : ''} required></input>
+              <input className='profile__text' name='email' type='email' value={data.email} disabled={!edit ? 'disabled' : ''} required></input>
             </li>
           </ul>
         </div>
