@@ -1,5 +1,7 @@
 const REGEX = '^[A-ZА-ЯЁ]{1}[A-ZА-ЯЁa-zа-яё\\s-]{1,29}$';
 
+const nameTechs = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];
+
 const projects = [
   {
     link: 'https://github.com/DocMoro',
@@ -392,6 +394,7 @@ const dataCards = [
 
 export {
   REGEX,
+  nameTechs,
   projects,
   dataCards
 }
