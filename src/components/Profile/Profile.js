@@ -3,6 +3,8 @@ import './Profile.scss';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 
+import { REGEX } from '../../utils/constans';
+
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function Profile() {
@@ -49,7 +51,7 @@ export default function Profile() {
           <ul className='profile__list'>
             <li className='profile__cell'>
               <h2 className='profile__subtitle'>Имя</h2>
-              <input className='profile__text' name='name' type='text' value={values.name} onChange={handleChange} disabled={!isEdit ? 'disabled' : ''} required></input>
+              <input className='profile__text' name='name' type='text' value={values.name} onChange={handleChange} minLength='2' maxLength='30' pattern={REGEX} disabled={!isEdit ? 'disabled' : ''} required></input>
             </li>
             <li className='profile__cell'>
               <h2 className='profile__subtitle'>E-mail</h2>
