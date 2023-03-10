@@ -1,4 +1,4 @@
-const REGEX = /^[A-ZА-ЯЁ]{1}[a-zа-яё\s-]{1,}$/;
+const REGEX = /^[A-ZА-ЯЁ]{1}[a-zа-яё\s-]{1,29}$/;
 
 const dataCards = [
   {

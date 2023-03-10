@@ -39,17 +39,34 @@ export default function App() {
       <div className='page'>
         <Switch>
           <Route path='/saved-movies'>
-            <Header main={false} callback={handlerButtonMenu} />
-            <SavedMovies cards={cards} callback={handleButtonMore} buttonMore={buttonMore} />
+            <Header 
+              main={false} 
+              callback={handlerButtonMenu} 
+            />
+            <SavedMovies 
+              cards={cards} 
+              callback={handleButtonMore} 
+              buttonMore={buttonMore} 
+            />
             <Footer />
           </Route>
           <Route path='/movies'>
-            <Header main={false} callback={handlerButtonMenu} />
-            <Movies cards={cards} callback={handleButtonMore} buttonMore={buttonMore} />
+            <Header 
+              main={false} 
+              callback={handlerButtonMenu} 
+            />
+            <Movies 
+              cards={cards} 
+              callback={handleButtonMore} 
+              buttonMore={buttonMore} 
+            />
             <Footer />
           </Route>
           <Route path='/profile'>
-            <Header main={false} callback={handlerButtonMenu} />
+            <Header 
+              main={false} 
+              callback={handlerButtonMenu} 
+            />
             <Profile />
           </Route>
           <Route path='/signup'>
@@ -67,7 +84,10 @@ export default function App() {
             <NotFound />
           </Route>
         </Switch>
-        <NavPopup buttonMenu={buttonMenu} callback={handlerButtonMenu} />
+        <NavPopup 
+          buttonMenu={buttonMenu} 
+          callback={handlerButtonMenu} 
+        />
       </div>
     </CurrentUserContext.Provider>
   )

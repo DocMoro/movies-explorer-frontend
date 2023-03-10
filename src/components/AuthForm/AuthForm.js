@@ -39,13 +39,33 @@ export default function AuthForm({register}) {
           </Link>
           <h1 className='auth__title'>{register ? 'Добро пожаловать!' : 'Рады видеть!'}</h1>
           { 
-            register && <AuthInput text='Имя' cbChange={handleChange} value={values.name} error={errors.name} /> 
+            register && 
+            <AuthInput 
+              text='Имя' 
+              cbChange={handleChange} 
+              value={values.name} 
+              error={errors.name} 
+            /> 
           }
-          <AuthInput text='E-mail' cbChange={handleChange} value={values.email} error={errors.email} />
-          <AuthInput text='Пароль' cbChange={handleChange} value={values.password} error={errors.password} />
+          <AuthInput 
+            text='E-mail' 
+            cbChange={handleChange} 
+            value={values.email} 
+            error={errors.email} 
+          />
+          <AuthInput 
+            text='Пароль' 
+            cbChange={handleChange} 
+            value={values.password} 
+            error={errors.password} 
+          />
         </div>
         <div className='auth__content'>
-          <button className={`auth__submit${isValid ? ' button' : ' auth__submit_disabled'}`} type='submit' disabled={!isValid ? 'disabled' : ''} >{register ? 'Зарегистрироваться' : 'Войти'}</button>
+          <button 
+            className={`auth__submit${isValid ? ' button' : ' auth__submit_disabled'}`} 
+            type='submit' 
+            disabled={!isValid ? 'disabled' : ''} 
+          >{register ? 'Зарегистрироваться' : 'Войти'}</button>
           <div className='auth__container'>
           {
             !register

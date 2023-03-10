@@ -51,11 +51,28 @@ export default function Profile() {
           <ul className='profile__list'>
             <li className='profile__cell'>
               <h2 className='profile__subtitle'>Имя</h2>
-              <input className='profile__text' name='name' type='text' value={values.name} onChange={handleChange} minLength='2' maxLength='30' pattern={REGEX} disabled={!isEdit ? 'disabled' : ''} required></input>
+              <input 
+                className='profile__text' 
+                name='name' 
+                type='text' 
+                value={values.name} 
+                onChange={handleChange} 
+                pattern={REGEX} 
+                disabled={!isEdit ? 'disabled' : ''} 
+                required
+              ></input>
             </li>
             <li className='profile__cell'>
               <h2 className='profile__subtitle'>E-mail</h2>
-              <input className='profile__text' name='email' type='email' value={values.email} onChange={handleChange} disabled={!isEdit ? 'disabled' : ''} required></input>
+              <input 
+                className='profile__text' 
+                name='email' 
+                type='email' 
+                value={values.email} 
+                onChange={handleChange} 
+                disabled={!isEdit ? 'disabled' : ''} 
+                required
+              ></input>
             </li>
           </ul>
         </div>
@@ -63,12 +80,23 @@ export default function Profile() {
         {
           !isEdit
           ? <>
-              <button className='profile__button button' type='button' onClick={handleEditClick}>Редактировать</button>
-              <Link to='/' className='profile__button profile__button_red link'>Выйти из аккаунта</Link>
+              <button 
+                className='profile__button button' 
+                type='button' 
+                onClick={handleEditClick}
+              >Редактировать</button>
+              <Link 
+                to='/' 
+                className='profile__button profile__button_red link'
+              >Выйти из аккаунта</Link>
             </>
           : <>
               <label className='auth-input__input-error'></label>
-              <button className={`profile__submit ${isValid ? ' button' : ' profile__submit_disabled'}`} type='submit' disabled={!isValid ? 'disabled' : ''}>Сохранить</button>
+              <button 
+                className={`profile__submit ${isValid ? ' button' : ' profile__submit_disabled'}`} 
+                type='submit' 
+                disabled={!isValid ? 'disabled' : ''}
+              >Сохранить</button>
             </>
         }
         </div>

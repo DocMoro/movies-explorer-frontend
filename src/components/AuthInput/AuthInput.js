@@ -43,8 +43,23 @@ export default function AuthInput({text, cbChange, value, error}) {
       <h2 className='auth-input__title'>{data.text}</h2>
       {
         data.name === 'name'
-        ? <input className='auth-input__input input' name={data.name} type={data.type} value={value} onChange={cbChange} minLength='2' maxLength='30' pattern={REGEX} required></input>
-        : <input className='auth-input__input input' name={data.name} type={data.type} value={value} onChange={cbChange} required></input>
+        ? <input 
+            className='auth-input__input input' 
+            name={data.name} 
+            type={data.type} 
+            value={value} 
+            onChange={cbChange} 
+            pattern={REGEX}
+            required
+          ></input>
+        : <input 
+            className='auth-input__input input' 
+            name={data.name} 
+            type={data.type} 
+            value={value} 
+            onChange={cbChange} 
+            required
+          ></input>
       }
       <label className='auth-input__input-error'>{error}</label>
     </fieldset>
