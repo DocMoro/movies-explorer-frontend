@@ -11,8 +11,8 @@ export default function Techs() {
         <p className='techs__subtitle'>На курсе веб-разработки мы освоили 
         технологии, которые применили в дипломном проекте.</p>
         <ul className='techs__list'>
-          {nameTechs.map(nameTech => (
-            <li className='techs__cell'>
+          {nameTechs.map((nameTech, i) => (
+            <li className='techs__cell' key={i}>
               <p className='techs__text'>{nameTech}</p>
             </li>
           ))}

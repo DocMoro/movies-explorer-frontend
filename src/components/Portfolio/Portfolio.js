@@ -9,8 +9,8 @@ export default function Portfolio() {
     <div className='portfolio'>
       <h3 className='portfolio__title'>Портфолио</h3>
       <ul className='portfolio__list'>
-        {projects.map(project => (
-          <Project project={project} />
+        {projects.map((project, i) => (
+          <Project project={project} key={i} />
         ))}
       </ul>
     </div>

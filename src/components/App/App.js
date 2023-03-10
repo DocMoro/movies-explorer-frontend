@@ -1,7 +1,7 @@
 import './App.scss';
 
 import { Route, Switch } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Main from '../Main/Main';
 import Header from '../Header/Header';
@@ -13,6 +13,8 @@ import Footer from '../Footer/Footer';
 import NotFound from '../NotFound/NotFound';
 import NavPopup from '../NavPopup/NavPopup';
 
+import moviesApi from '../../utils/MoviesApi';
+
 import { dataCards } from '../../utils/constans';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -22,11 +24,18 @@ export default function App() {
 
   const [ buttonMore, setButtonMore ] = useState(dataCards.length < 17);
   const [ buttonMenu, setButtonMenu ] = useState(false);
-  const [ cards, setCards ] = useState(dataCards.slice(0, 16));
+  const [ cards, setCards ] = useState([]);
+
+  useEffect(() => {
+    moviesApi.getCards()
+      .then(dataCards => {
+        setCards(dataCards);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
 
   function handleButtonMore() {
-    setCards(dataCards);
     setButtonMore(!buttonMore);
   }
 
