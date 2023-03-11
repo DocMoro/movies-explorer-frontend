@@ -1,7 +1,7 @@
 import './App.scss';
 
 import { Route, Switch } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import Main from '../Main/Main';
 import Header from '../Header/Header';
@@ -15,28 +15,62 @@ import NavPopup from '../NavPopup/NavPopup';
 
 import moviesApi from '../../utils/MoviesApi';
 
-import { dataCards } from '../../utils/constans';
-
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function App() {
   const [ currentUser, setCurrentUser ] = useState({ name: 'Виталий', email: 'pochta@yandex.ru' });
 
-  const [ buttonMore, setButtonMore ] = useState(dataCards.length < 17);
+  const [ buttonMore, setButtonMore ] = useState(false);
   const [ buttonMenu, setButtonMenu ] = useState(false);
+  const [ dataCards, setDataCards ] = useState([])
   const [ cards, setCards ] = useState([]);
+  const [ format, setFormat ] = useState({});
+
+  useEffect(() => {
+    function handlerResize() {
+      const width = document.documentElement.clientWidth;
+
+      let obj = { columns: 4, rows: 4 };
+  
+      if(width < 630) {
+        obj = { columns: 1, rows: 5 };
+      } else 
+        if(width < 930) {
+          obj = { columns: 2, rows: 4 };
+        } else 
+          if(width < 1280) {
+            obj = { columns: 3, rows: 4 };
+          }
+
+      setFormat(obj)
+    }
+
+    handlerResize();
+    window.addEventListener('resize', handlerResize);
+
+    return () => {
+      window.removeEventListener('resize', handlerResize);
+    }
+  }, []);
 
   useEffect(() => {
     moviesApi.getCards()
-      .then(dataCards => {
-        setCards(dataCards);
+      .then(data => {
+        setDataCards(data);
       })
       .catch(err => console.log(err));
   }, []);
 
+  useEffect(() => {
+    setCards(dataCards.slice(0, format.columns * format.rows))
+  }, [format, dataCards]);
+
+  useEffect(() => {
+    setButtonMore(cards.length < dataCards.length);
+  }, [cards, dataCards])
 
   function handleButtonMore() {
-    setButtonMore(!buttonMore);
+    setCards(dataCards.slice(0, cards.length + format.columns));
   }
 
   function handlerButtonMenu() {
