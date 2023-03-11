@@ -7,7 +7,14 @@ export default function MoviesCard({card, saved}) {
   const [like, setLike] = useState(false);
 
   function handleClickLike() {
-    setLike(!like);
+    setLike(true);
+  }
+
+  function getTimeString() {
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+
+    return `${hours}ч ${minutes}м`
   }
 
   return (
@@ -19,7 +26,7 @@ export default function MoviesCard({card, saved}) {
                : <button className={`card__button-like${like ? ' card__button-like_active' : ''} button`} onClick={handleClickLike}></button>
         }
       </div>
-      <p className='card__duration'>{duration}</p>
+      <p className='card__duration'>{getTimeString()}</p>
     </li>
   )
 }

@@ -45,12 +45,8 @@ export default function MoviesCardList({ saved, loader}) {
   }, [format]);
 
   useEffect(() => {
-    setCards(dataCards.slice(0, format.columns * format.rows));
-  }, [format]);
-
-  useEffect(() => {
     setButtonMore(cards.length < dataCards.length);
-  }, [cards])
+  }, [cards]);
 
   function handleButtonMore() {
     setCards(dataCards.slice(0, cards.length + format.columns));

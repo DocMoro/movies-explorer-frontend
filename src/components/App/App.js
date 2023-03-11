@@ -28,6 +28,10 @@ export default function App() {
       .then(data => localStorage.setItem('cards', JSON.stringify(data)))
       .then(() => setLoader(false))
       .catch(err => console.log(err));
+ 
+    return () => {
+      localStorage.removeItem('cards');
+    }
   }, []);
 
   function handlerButtonMenu() {
