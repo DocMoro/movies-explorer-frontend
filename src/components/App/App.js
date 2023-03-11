@@ -1,7 +1,7 @@
 import './App.scss';
 
 import { Route, Switch } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 import Main from '../Main/Main';
 import Header from '../Header/Header';
@@ -25,6 +25,7 @@ export default function App() {
   const [ dataCards, setDataCards ] = useState([])
   const [ cards, setCards ] = useState([]);
   const [ format, setFormat ] = useState({});
+  const [ loader, setLoader ] = useState(true);
 
   useEffect(() => {
     function handlerResize() {
@@ -55,14 +56,13 @@ export default function App() {
 
   useEffect(() => {
     moviesApi.getCards()
-      .then(data => {
-        setDataCards(data);
-      })
+      .then(data => setDataCards(data))
+      .then(() => setLoader(false))
       .catch(err => console.log(err));
   }, []);
 
   useEffect(() => {
-    setCards(dataCards.slice(0, format.columns * format.rows))
+    setCards(dataCards.slice(0, format.columns * format.rows));
   }, [format, dataCards]);
 
   useEffect(() => {
@@ -90,6 +90,7 @@ export default function App() {
               cards={cards} 
               callback={handleButtonMore} 
               buttonMore={buttonMore} 
+              loader={loader}
             />
             <Footer />
           </Route>
@@ -102,6 +103,7 @@ export default function App() {
               cards={cards} 
               callback={handleButtonMore} 
               buttonMore={buttonMore} 
+              loader={loader}
             />
             <Footer />
           </Route>
