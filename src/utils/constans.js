@@ -17,8 +17,11 @@ const projects = [
   }
 ];
 
+const ESC = 27;
+
 export {
   REGEX,
   nameTechs,
-  projects
+  projects,
+  ESC
 }

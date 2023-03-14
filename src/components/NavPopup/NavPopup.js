@@ -11,8 +11,14 @@ export default function NavPopup({buttonMenu, callback}) {
     }
   }
 
+  function handlerClickClose (e) {
+    if(e.target === e.currentTarget) {
+      callback();
+    }
+  }
+
   return (
-    <div className={`popup${buttonMenu ? ' popup_active' : ''}`}>
+    <div className={`popup${buttonMenu ? ' popup_active' : ''}`} onClick={handlerClickClose} >
       <nav className='popup__container'>
         <button onClick={callback} className='popup__close button'></button>
         <div className='popup__nav'>

@@ -14,7 +14,7 @@ export default function MoviesCardList({ saved, loader}) {
   const [ buttonMore, setButtonMore ] = useState(false);
 
   useEffect(() => {
-    function handlerResize() {
+    function handleResize() {
       const width = document.documentElement.clientWidth;
 
       let obj = { columns: 4, rows: 4 };
@@ -32,11 +32,11 @@ export default function MoviesCardList({ saved, loader}) {
       setFormat(obj)
     }
 
-    handlerResize();
-    window.addEventListener('resize', handlerResize);
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', handlerResize);
+      window.removeEventListener('resize', handleResize);
     }
   }, []);
 

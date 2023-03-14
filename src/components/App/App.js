@@ -1,7 +1,7 @@
 import './App.scss';
 
 import { Route, Switch } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import Main from '../Main/Main';
 import Header from '../Header/Header';
@@ -14,6 +14,7 @@ import NotFound from '../NotFound/NotFound';
 import NavPopup from '../NavPopup/NavPopup';
 
 import moviesApi from '../../utils/MoviesApi';
+import { ESC } from '../../utils/constans';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -34,9 +35,21 @@ export default function App() {
     }
   }, []);
 
-  function handlerButtonMenu() {
+  const handlerButtonMenu = useCallback(() => {
+    function _handleEscClose(e) {
+      if (e.keyCode === ESC) {
+        setButtonMenu(false);
+      }
+    }
+
+    if(!buttonMenu) {
+      document.addEventListener('keydown', _handleEscClose);
+    } else {
+      document.removeEventListener('keydown', _handleEscClose);
+    }
+
     setButtonMenu(!buttonMenu);
-  }
+  }, [buttonMenu]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
