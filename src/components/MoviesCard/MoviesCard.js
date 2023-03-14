@@ -3,7 +3,7 @@ import './MoviesCard.scss';
 import { useState } from 'react';
 
 export default function MoviesCard({card, saved}) {
-  const { nameRU, image, duration } = card;
+  const { nameRU, image, duration, trailerLink } = card;
   const [like, setLike] = useState(false);
 
   function handleClickLike() {
@@ -19,7 +19,9 @@ export default function MoviesCard({card, saved}) {
 
   return (
     <li className='card'>
-      <img className='card__image' src={`https://api.nomoreparties.co/${image.url}`} alt={nameRU} />
+      <a className='card__trailer-link' href={trailerLink}>
+        <img className='card__image' src={`https://api.nomoreparties.co/${image.url}`} alt={nameRU} />
+      </a>
       <div className='card__container'>
         <h3 className='card__title'>{nameRU}</h3>
         {saved ? <button className='card__button-delete'></button>
