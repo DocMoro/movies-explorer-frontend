@@ -23,6 +23,7 @@ export default function App() {
 
   const [ buttonMenu, setButtonMenu ] = useState(false);
   const [ loader, setLoader ] = useState(true);
+  const [ loggin, setLoggin ] = useState(true);
 
   useEffect(() => {
     moviesApi.getCards()
@@ -57,7 +58,7 @@ export default function App() {
         <Switch>
           <Route path='/saved-movies'>
             <Header 
-              main={false} 
+              loggin={loggin} 
               callback={handlerButtonMenu} 
             />
             <SavedMovies 
@@ -67,7 +68,7 @@ export default function App() {
           </Route>
           <Route path='/movies'>
             <Header 
-              main={false} 
+              loggin={loggin} 
               callback={handlerButtonMenu} 
             />
             <Movies 
@@ -77,7 +78,7 @@ export default function App() {
           </Route>
           <Route path='/profile'>
             <Header 
-              main={false} 
+              loggin={loggin} 
               callback={handlerButtonMenu} 
             />
             <Profile />
@@ -89,7 +90,7 @@ export default function App() {
             <AuthForm register={false} />
           </Route>
           <Route exact path='/'>
-            <Header main={true} />
+            <Header loggin={loggin} />
             <Main />
             <Footer />
           </Route>
