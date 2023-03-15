@@ -1,17 +1,39 @@
 import './AuthForm.scss';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AuthInput from '../AuthInput/AuthInput';
 
 import logo from '../../images/logo.svg';
 
-export default function AuthForm({register}) {
+import { errorsSubmit, baseError } from '../../utils/constans'
+
+export default function AuthForm({register, cbSubmit, loggedIn}) {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
+  const [errorSubmit, setErrorSubmit] = useState('');
 
+  useEffect(() => {
+    if(isValid) {
+      setErrorSubmit('');
+    }
+  }, [isValid]);
+
+  const handleSubmit = useCallback(e => {
+    e.preventDefault();
+
+    cbSubmit(values)
+      .catch(err => {
+        const replaceError = register ? errorsSubmit.registration : errorsSubmit.loggin;
+        const message = replaceError[err.message] || baseError;
+
+        setErrorSubmit(message);
+      });
+
+    setValues({});
+  }, [cbSubmit]);
   
   function handleChange(e) {
     const target = e.target;
@@ -30,9 +52,13 @@ export default function AuthForm({register}) {
     setIsValid(target.closest("form").checkValidity());
   }
 
+  if (loggedIn) {
+    return <Redirect to="/movies"/>;
+  }
+
   return (
     <main className='main auth'>
-      <form name='auth' className='auth__form'>
+      <form name='auth' className='auth__form' onSubmit={handleSubmit}>
         <div className='auth__content'>
           <Link to='/' className='auth__logo link'>
             <img className='logo' src={logo} alt='Логотип' />
@@ -61,6 +87,7 @@ export default function AuthForm({register}) {
           />
         </div>
         <div className='auth__content'>
+          <label className='auth__error'>{errorSubmit}</label>
           <button 
             className={`auth__submit${isValid ? ' button' : ' auth__submit_disabled'}`} 
             type='submit' 

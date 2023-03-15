@@ -7,7 +7,7 @@ import Navigation from '../Navigation/Navigation';
 
 import logo from '../../images/logo.svg';
 
-export default function Header({loggin, callback}) {
+export default function Header({loggin, handleMenu}) {
   return (
     <header className={`header${main ? ' header_blue' : ''}`}>
       <Link to='/' className='link'>
@@ -15,7 +15,7 @@ export default function Header({loggin, callback}) {
       </Link>
       {
         loggin
-        ? <Navigation callback={callback} />
+        ? <Navigation handleMenu={handleMenu} />
         : <NavTab />
       }
     </header>

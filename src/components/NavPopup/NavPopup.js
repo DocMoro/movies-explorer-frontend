@@ -2,7 +2,7 @@ import './NavPopup.scss';
 
 import { useLocation, NavLink } from 'react-router-dom';
 
-export default function NavPopup({buttonMenu, callback}) {
+export default function NavPopup({menu, callback}) {
   const { pathname } = useLocation();
 
   function handleClickLink(e) {
@@ -18,7 +18,7 @@ export default function NavPopup({buttonMenu, callback}) {
   }
 
   return (
-    <div className={`popup${buttonMenu ? ' popup_active' : ''}`} onClick={handlerClickClose} >
+    <div className={`popup${menu ? ' popup_active' : ''}`} onClick={handlerClickClose} >
       <nav className='popup__container'>
         <button onClick={callback} className='popup__close button'></button>
         <div className='popup__nav'>

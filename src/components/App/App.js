@@ -14,43 +14,77 @@ import NotFound from '../NotFound/NotFound';
 import NavPopup from '../NavPopup/NavPopup';
 
 import moviesApi from '../../utils/MoviesApi';
+import mainApi from '../../utils/MainApi';
 import { ESC } from '../../utils/constans';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function App() {
-  const [ currentUser, setCurrentUser ] = useState({ name: 'Виталий', email: 'pochta@yandex.ru' });
+  const [ currentUser, setCurrentUser ] = useState({ name: '', email: '' });
 
-  const [ buttonMenu, setButtonMenu ] = useState(false);
+  const [ menu, setMenu ] = useState(false);
   const [ loader, setLoader ] = useState(true);
-  const [ loggin, setLoggin ] = useState(true);
+  const [ loggedIn, setLoggedIn ] = useState(false);
 
   useEffect(() => {
-    moviesApi.getCards()
-      .then(data => localStorage.setItem('cards', JSON.stringify(data)))
-      .then(() => setLoader(false))
-      .catch(err => console.log(err));
- 
-    return () => {
-      localStorage.removeItem('cards');
+    if(loggedIn) {
+      moviesApi.getCards()
+        .then(data => localStorage.setItem('cards', JSON.stringify(data)))
+        .then(() => setLoader(false))
+        .catch(err => console.log(err));
+
+      return () => {
+        localStorage.removeItem('cards');
+      }
     }
+  }, [loggedIn]);
+
+  function cbLogin(data) {
+    return mainApi.authorize(data)
+      .then(res => {
+        localStorage.setItem('token', res.token);
+        return tokenCheck(res.token);
+      })
+  }
+
+  function cbRegister(data) {
+    return mainApi.register(data)
+      .then(res => cbLogin(res))
+  }
+
+  function tokenCheck(token) {
+    if(token) {
+      return mainApi.getContent(token)
+        .then(res => {
+          setCurrentUser({ 
+            name: res.name, 
+            email: res.email 
+          });
+          setLoggedIn(true);
+        })
+    }
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    tokenCheck(token);
   }, []);
 
-  const handlerButtonMenu = useCallback(() => {
+  const handleMenu = useCallback(() => {
     function _handleEscClose(e) {
       if (e.keyCode === ESC) {
-        setButtonMenu(false);
+        setMenu(false);
       }
     }
 
-    if(!buttonMenu) {
+    if(!menu) {
       document.addEventListener('keydown', _handleEscClose);
     } else {
       document.removeEventListener('keydown', _handleEscClose);
     }
 
-    setButtonMenu(!buttonMenu);
-  }, [buttonMenu]);
+    setMenu(!menu);
+  }, [menu]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -58,8 +92,8 @@ export default function App() {
         <Switch>
           <Route path='/saved-movies'>
             <Header 
-              loggin={loggin} 
-              callback={handlerButtonMenu} 
+              loggin={loggedIn} 
+              handleMenu={handleMenu} 
             />
             <SavedMovies 
               loader={loader}
@@ -68,8 +102,8 @@ export default function App() {
           </Route>
           <Route path='/movies'>
             <Header 
-              loggin={loggin} 
-              callback={handlerButtonMenu} 
+              loggin={loggedIn} 
+              handleMenu={handleMenu} 
             />
             <Movies 
               loader={loader}
@@ -78,19 +112,27 @@ export default function App() {
           </Route>
           <Route path='/profile'>
             <Header 
-              loggin={loggin} 
-              callback={handlerButtonMenu} 
+              loggin={loggedIn} 
+              handleMenu={handleMenu} 
             />
             <Profile />
           </Route>
           <Route path='/signup'>
-            <AuthForm register={true} />
+            <AuthForm 
+              register={true}
+              cbSubmit={cbRegister}
+              loggedIn={loggedIn}
+            />
           </Route>
           <Route path='/signin'>
-            <AuthForm register={false} />
+            <AuthForm 
+              register={false} 
+              cbSubmit={cbLogin}
+              loggedIn={loggedIn}
+            />
           </Route>
           <Route exact path='/'>
-            <Header loggin={loggin} />
+            <Header loggin={loggedIn} />
             <Main />
             <Footer />
           </Route>
@@ -99,8 +141,8 @@ export default function App() {
           </Route>
         </Switch>
         <NavPopup 
-          buttonMenu={buttonMenu} 
-          callback={handlerButtonMenu} 
+          menu={menu} 
+          handleMenu={handleMenu} 
         />
       </div>
     </CurrentUserContext.Provider>
