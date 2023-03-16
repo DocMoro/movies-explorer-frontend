@@ -5,12 +5,8 @@ import { useState, useEffect } from 'react';
 import Card from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
-const dataCards = JSON.parse(localStorage.getItem('cards'));
-
-export default function MoviesCardList({saved, loader}) {
+export default function MoviesCardList({cards, setCards, saved, loader}) {
   const [ format, setFormat ] = useState({});
-  const [ cards, setCards ] = useState([]);
-  
   const [ buttonMore, setButtonMore ] = useState(false);
 
   useEffect(() => {

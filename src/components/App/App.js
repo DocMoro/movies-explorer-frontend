@@ -12,7 +12,6 @@ import NotFound from '../NotFound/NotFound';
 import NavPopup from '../NavPopup/NavPopup';
 
 import ProtectedRoute from '../../utils/ProtectedRoute';
-import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 import { ESC } from '../../utils/constans';
 
@@ -22,14 +21,12 @@ export default function App() {
   const [ currentUser, setCurrentUser ] = useState({ name: '', email: '' });
 
   const [ menu, setMenu ] = useState(false);
-  const [ loader, setLoader ] = useState(true);
   const [ loggedIn, setLoggedIn ] = useState(false);
 
   useEffect(() => {
     if(loggedIn) {
-      moviesApi.getCards()
-        .then(data => localStorage.setItem('cards', JSON.stringify(data)))
-        .then(() => setLoader(false))
+      mainApi.getCards()
+        .then(data => localStorage.setItem('user-cards', JSON.stringify(data)))
         .catch(err => console.log(err));
 
       return () => {
@@ -66,7 +63,8 @@ export default function App() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    tokenCheck(token);
+    tokenCheck(token)
+      .catch(err => console.log(err.message));
   }, []);
 
   const handleMenu = useCallback(() => {
@@ -91,7 +89,6 @@ export default function App() {
         <Switch>
           <Route path='/saved-movies'>
             <ProtectedRoute 
-              loader={loader}
               loggedIn={loggedIn}
               handleMenu={handleMenu}
               component={SavedMovies}
@@ -99,7 +96,6 @@ export default function App() {
           </Route>
           <Route path='/movies'>
             <ProtectedRoute 
-              loader={loader}
               loggedIn={loggedIn}
               handleMenu={handleMenu}
               component={Movies}
