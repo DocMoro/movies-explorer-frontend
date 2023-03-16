@@ -4,15 +4,14 @@ import { Route, Switch } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 
 import Main from '../Main/Main';
-import Header from '../Header/Header';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import AuthForm from '../AuthForm/AuthForm';
-import Footer from '../Footer/Footer';
 import NotFound from '../NotFound/NotFound';
 import NavPopup from '../NavPopup/NavPopup';
 
+import ProtectedRoute from '../../utils/ProtectedRoute';
 import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 import { ESC } from '../../utils/constans';
@@ -91,50 +90,47 @@ export default function App() {
       <div className='page'>
         <Switch>
           <Route path='/saved-movies'>
-            <Header 
-              loggin={loggedIn} 
-              handleMenu={handleMenu} 
-            />
-            <SavedMovies 
+            <ProtectedRoute 
               loader={loader}
+              loggedIn={loggedIn}
+              handleMenu={handleMenu}
+              component={SavedMovies}
             />
-            <Footer />
           </Route>
           <Route path='/movies'>
-            <Header 
-              loggin={loggedIn} 
-              handleMenu={handleMenu} 
-            />
-            <Movies 
+            <ProtectedRoute 
               loader={loader}
+              loggedIn={loggedIn}
+              handleMenu={handleMenu}
+              component={Movies}
             />
-            <Footer />
           </Route>
           <Route path='/profile'>
-            <Header 
-              loggin={loggedIn} 
-              handleMenu={handleMenu} 
+            <ProtectedRoute 
+              loggedIn={loggedIn}
+              handleMenu={handleMenu}
+              component={Profile}
             />
-            <Profile />
           </Route>
           <Route path='/signup'>
             <AuthForm 
+              loggedIn={loggedIn}
               register={true}
               cbSubmit={cbRegister}
-              loggedIn={loggedIn}
             />
           </Route>
           <Route path='/signin'>
             <AuthForm 
+              loggedIn={loggedIn}
               register={false} 
               cbSubmit={cbLogin}
-              loggedIn={loggedIn}
             />
           </Route>
           <Route exact path='/'>
-            <Header loggin={loggedIn} />
-            <Main />
-            <Footer />
+            <Main 
+              loggedIn={loggedIn}
+              handleMenu={handleMenu}
+            />
           </Route>
           <Route path='/'>
             <NotFound />

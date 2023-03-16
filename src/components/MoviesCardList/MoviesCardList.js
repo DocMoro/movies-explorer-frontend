@@ -7,7 +7,7 @@ import Preloader from '../Preloader/Preloader';
 
 const dataCards = JSON.parse(localStorage.getItem('cards'));
 
-export default function MoviesCardList({ saved, loader}) {
+export default function MoviesCardList({saved, loader}) {
   const [ format, setFormat ] = useState({});
   const [ cards, setCards ] = useState([]);
   

@@ -1,13 +1,22 @@
 import './Movies.scss';
 
+import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Footer from '../Footer/Footer';
 
-export default function Movies({cards, callback, buttonMore, loader}) {
+export default function Movies({loader, loggedIn, handleMenu}) {
   return (
-    <main className='main'>
-      <SearchForm />
-      <MoviesCardList cards={cards} saved={false} callback={callback} buttonMore={buttonMore} loader={loader} />
-    </main>
+    <>
+      <Header 
+        loggedIn={loggedIn} 
+        handleMenu={handleMenu} 
+      />
+      <main className='main'>
+        <SearchForm />
+        <MoviesCardList saved={false} loader={loader} />
+      </main>
+      <Footer />
+    </>
   )
 }
