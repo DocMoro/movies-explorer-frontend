@@ -25,11 +25,14 @@ const errorsSubmit = {
   registration: {
     'Переданы некорректные данные': 'При регистрации пользователя произошла ошибка.',
     'Пользователь с данным email уже существует': 'Пользователь с данным email уже существует'
+  },
+  search: {
+
   }
 }
 
-const baseError = 'На сервере произошла ошибка';
-
+const AUTH_BASE_ERROR = 'На сервере произошла ошибка';
+const SEARCH_BASE_ERROR = 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
 const ESC = 27;
 
 export {
@@ -37,6 +40,7 @@ export {
   nameTechs,
   projects,
   errorsSubmit,
-  baseError,
+  AUTH_BASE_ERROR,
+  SEARCH_BASE_ERROR,
   ESC
 }

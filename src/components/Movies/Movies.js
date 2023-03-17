@@ -8,41 +8,37 @@ import Footer from '../Footer/Footer';
 import cardFilter from '../../utils/CardFilter';
 import moviesApi from '../../utils/MoviesApi';
 
+import { SEARCH_BASE_ERROR } from '../../utils/constans';
+
 export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
   const [ loader, setLoader ] = useState(false);
   const [ cards, setCards ] = useState([]);
-  const [ submitError, setSubmitError ] = useState('');
 
-  function cbSearch(data) {
-    function setFilterCards(cards) {
-      cardFilter(data, cards)
-        .then(res => setCards(res))
-        .catch(err => handleInfoPopup(err.message))
-        .finally(() => setLoader(false));
+  function cbSearch(dataUser) {
+    function renderCards(data) {
+      const arr = cardFilter(dataUser, data);
+
+      if(!arr.length) {
+        handleInfoPopup('Ничего не найдено')
+      }
+  
+      setCards(arr);
     }
 
     const dataCards = JSON.parse(localStorage.getItem('cards'));
-    setSubmitError('');
     setLoader(true);
 
     if(dataCards) {
-      setFilterCards(dataCards);
+      renderCards(dataCards);
       return
     }
 
-    moviesApi.getCards(data)
+    moviesApi.getCards()
       .then(res => {
         localStorage.setItem('cards', res);
-        setFilterCards(res);
+        renderCards(res);
       })
-  }
-
-  async function cbSearch(data) {
-    setSubmitError('');
-    setLoader(true);
-    return cardFilter(data, dataCards)
-      .then(cards => setCards(cards))
-      .catch(err => setSubmitError(err))
+      .catch(() => handleInfoPopup(SEARCH_BASE_ERROR))
       .finally(() => setLoader(false));
   }
 
@@ -53,7 +49,7 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
         cbNavPopup={cbNavPopup} 
       />
       <main className='main'>
-        <SearchForm cbSearch={cbSearch} submitError={submitError} />
+        <SearchForm cbSearch={cbSearch} />
         <MoviesCardList cards={cards} setCards={setCards} saved={false} loader={loader} />
       </main>
       <Footer />

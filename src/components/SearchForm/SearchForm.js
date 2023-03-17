@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-export default function SearchForm({cbSearch, submitError}) {
+export default function SearchForm({cbSearch}) {
   const [data, setData] = useState({
     name: '',
     checkbox: false
@@ -46,7 +46,7 @@ export default function SearchForm({cbSearch, submitError}) {
         ></input>
         <button type='submit' className='search__button button'></button>
       </div>
-        <label className='search__input-error'>{submitError}</label>
+        <label className='search__input-error'></label>
       <FilterCheckbox handleCheckbox={handleCheckbox} checkbox={data.checkbox} />
     </form>
   )

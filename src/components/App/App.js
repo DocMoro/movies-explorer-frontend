@@ -117,6 +117,7 @@ export default function App() {
             <ProtectedRoute 
               loggedIn={loggedIn}
               cbNavPopup={handleNavPopup}
+              handleInfoPopup={handleInfoPopup}
               component={SavedMovies}
             />
           </Route>
@@ -124,6 +125,7 @@ export default function App() {
             <ProtectedRoute 
               loggedIn={loggedIn}
               cbNavPopup={handleNavPopup}
+              handleInfoPopup={handleInfoPopup}
               component={Movies}
             />
           </Route>

@@ -7,20 +7,24 @@ import Footer from '../Footer/Footer';
 
 import cardFilter from '../../utils/CardFilter';
 
+import { SEARCH_BASE_ERROR } from '../../utils/constans';
+
 const dataCards = JSON.parse(localStorage.getItem('user-cards'));
 
-export default function SavedMovies({loggedIn, cbNavPopup}) {
+export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
   const [ loader, setLoader ] = useState(false);
   const [ cards, setCards ] = useState(dataCards);
-  const [ submitError, setSubmitError ] = useState('');
 
-  async function cbSearch(data) {
-    setSubmitError('');
+  function cbSearch(data) {
     setLoader(true);
-    return cardFilter(data, dataCards)
-      .then(cards => setCards(cards))
-      .catch(err => setSubmitError(err.message))
-      .finally(() => setLoader(false));
+    const arr = cardFilter(data, dataCards);
+
+    if(!arr.length) {
+      handleInfoPopup('Ничего не найдено')
+    }
+
+    setCards(arr);
+    setLoader(false);
   }
 
   return (
@@ -30,7 +34,7 @@ export default function SavedMovies({loggedIn, cbNavPopup}) {
         cbNavPopup={cbNavPopup} 
       />
       <main className='main'>
-        <SearchForm cbSearch={cbSearch} submitError={submitError} />
+        <SearchForm cbSearch={cbSearch} />
         <MoviesCardList cards={cards} setCards={setCards} saved={true} loader={loader} />
       </main>
       <Footer />

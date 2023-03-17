@@ -1,4 +1,3 @@
-import accept from '../../images/accept.svg';
 import fail from '../../images/fail.svg';
 
 export default function InfoTooltip({infoPopup, cbInfoPopup}) {
@@ -14,14 +13,8 @@ export default function InfoTooltip({infoPopup, cbInfoPopup}) {
     <div className={`popup ${state && "popup_active"}`} onClick={onClick={handleInfoPopup}}>
       <div className="popup__auth-container">
         <button type="button" className="popup__button-close button" aria-label="Закрыть"></button>
-        <img className="popup__auth-image" src={error ? accept : fail}/>
-        <h2 className="popup__auth-title">
-        {
-          error 
-          ? 'Вы успешно зарегистрировались!'  
-          : 'Что-то пошло не так! Попробуйте ещё раз.'
-        }
-        </h2>
+        <img className="popup__auth-image" src={fail}/>
+        <h2 className="popup__auth-title">{error}</h2>
       </div>
     </div>
   )
