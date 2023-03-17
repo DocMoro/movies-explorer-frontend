@@ -8,7 +8,7 @@ import Footer from '../Footer/Footer';
 import cardFilter from '../../utils/CardFilter';
 import moviesApi from '../../utils/MoviesApi';
 
-export default function Movies({loggedIn, handleMenu}) {
+export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
   const [ loader, setLoader ] = useState(false);
   const [ cards, setCards ] = useState([]);
   const [ submitError, setSubmitError ] = useState('');
@@ -17,7 +17,7 @@ export default function Movies({loggedIn, handleMenu}) {
     function setFilterCards(cards) {
       cardFilter(data, cards)
         .then(res => setCards(res))
-        .catch(err => setSubmitError(err))
+        .catch(err => handleInfoPopup(err.message))
         .finally(() => setLoader(false));
     }
 
@@ -50,7 +50,7 @@ export default function Movies({loggedIn, handleMenu}) {
     <>
       <Header 
         loggedIn={loggedIn} 
-        handleMenu={handleMenu} 
+        cbNavPopup={cbNavPopup} 
       />
       <main className='main'>
         <SearchForm cbSearch={cbSearch} submitError={submitError} />

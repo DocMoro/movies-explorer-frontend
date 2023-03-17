@@ -7,12 +7,12 @@ import Techs from '../Techs/Techs';
 import AboutMe from '../AboutMe/AboutMe';
 import Footer from '../Footer/Footer';
 
-export default function Main({loggedIn, handleMenu}) {
+export default function Main({loggedIn, cbNavPopup}) {
   return (
     <>
       <Header 
         loggedIn={loggedIn}
-        handleMenu={handleMenu}
+        cbNavPopup={cbNavPopup}
       />
       <main className='main'>
         <Promo />

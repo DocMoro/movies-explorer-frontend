@@ -19,7 +19,7 @@ export default function SearchForm({cbSearch, submitError}) {
     });
   }
 
-  function handleClickCheckbox() {
+  function handleCheckbox() {
     setData({
       ...data,
       checkbox: !data.checkbox
@@ -47,7 +47,7 @@ export default function SearchForm({cbSearch, submitError}) {
         <button type='submit' className='search__button button'></button>
       </div>
         <label className='search__input-error'>{submitError}</label>
-      <FilterCheckbox callback={handleClickCheckbox} checkbox={data.checkbox} />
+      <FilterCheckbox handleCheckbox={handleCheckbox} checkbox={data.checkbox} />
     </form>
   )
 }

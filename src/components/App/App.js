@@ -10,6 +10,7 @@ import Profile from '../Profile/Profile';
 import AuthForm from '../AuthForm/AuthForm';
 import NotFound from '../NotFound/NotFound';
 import NavPopup from '../NavPopup/NavPopup';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 import ProtectedRoute from '../../utils/ProtectedRoute';
 import mainApi from '../../utils/MainApi';
@@ -20,7 +21,8 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 export default function App() {
   const [ currentUser, setCurrentUser ] = useState({ name: '', email: '' });
 
-  const [ menu, setMenu ] = useState(false);
+  const [ navPopup, setNavPopup ] = useState(false);
+  const [ infoPopup, setInfoPopup ] = useState({ state: false, error: '' });
   const [ loggedIn, setLoggedIn ] = useState(false);
 
   useEffect(() => {
@@ -67,21 +69,45 @@ export default function App() {
       .catch(err => console.log(err.message));
   }, []);
 
-  const handleMenu = useCallback(() => {
+  const handleNavPopup = useCallback(() => {
     function _handleEscClose(e) {
       if (e.keyCode === ESC) {
-        setMenu(false);
+        setNavPopup(false);
       }
     }
 
-    if(!menu) {
+    if(!navPopup) {
       document.addEventListener('keydown', _handleEscClose);
     } else {
       document.removeEventListener('keydown', _handleEscClose);
     }
 
-    setMenu(!menu);
-  }, [menu]);
+    setNavPopup(!navPopup);
+  }, [navPopup]);
+
+  const handleInfoPopup = useCallback((error = infoPopup.error) => {
+    const { state } = infoPopup;
+
+    function _handleEscClose(e) {
+      if (e.keyCode === ESC) {
+        setInfoPopup({
+          state: !state,
+          error: error
+        });
+      }
+    }
+
+    if(!state) {
+      document.addEventListener('keydown', _handleEscClose);
+    } else {
+      document.removeEventListener('keydown', _handleEscClose);
+    }
+
+    setInfoPopup({
+      state: !state,
+      error: error
+    });
+  }, [infoPopup]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -90,21 +116,21 @@ export default function App() {
           <Route path='/saved-movies'>
             <ProtectedRoute 
               loggedIn={loggedIn}
-              handleMenu={handleMenu}
+              cbNavPopup={handleNavPopup}
               component={SavedMovies}
             />
           </Route>
           <Route path='/movies'>
             <ProtectedRoute 
               loggedIn={loggedIn}
-              handleMenu={handleMenu}
+              cbNavPopup={handleNavPopup}
               component={Movies}
             />
           </Route>
           <Route path='/profile'>
             <ProtectedRoute 
               loggedIn={loggedIn}
-              handleMenu={handleMenu}
+              cbNavPopup={handleNavPopup}
               component={Profile}
             />
           </Route>
@@ -125,7 +151,7 @@ export default function App() {
           <Route exact path='/'>
             <Main 
               loggedIn={loggedIn}
-              handleMenu={handleMenu}
+              cbNavPopup={handleNavPopup}
             />
           </Route>
           <Route path='/'>
@@ -133,8 +159,12 @@ export default function App() {
           </Route>
         </Switch>
         <NavPopup 
-          menu={menu} 
-          handleMenu={handleMenu} 
+          navPopup={navPopup} 
+          cbNavPopup={handleNavPopup} 
+        />
+        <InfoTooltip 
+          infoPopup={infoPopup}
+          cbInfoPopup={handleInfoPopup}
         />
       </div>
     </CurrentUserContext.Provider>

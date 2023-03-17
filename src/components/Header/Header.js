@@ -7,7 +7,7 @@ import Navigation from '../Navigation/Navigation';
 
 import logo from '../../images/logo.svg';
 
-export default function Header({loggin, handleMenu}) {
+export default function Header({loggin, cbNavPopup}) {
   return (
     <header className={`header${main ? ' header_blue' : ''}`}>
       <Link to='/' className='link'>
@@ -15,7 +15,7 @@ export default function Header({loggin, handleMenu}) {
       </Link>
       {
         loggin
-        ? <Navigation handleMenu={handleMenu} />
+        ? <Navigation cbNavPopup={cbNavPopup} />
         : <NavTab />
       }
     </header>

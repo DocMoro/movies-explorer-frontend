@@ -9,7 +9,7 @@ import cardFilter from '../../utils/CardFilter';
 
 const dataCards = JSON.parse(localStorage.getItem('user-cards'));
 
-export default function SavedMovies({loggedIn, handleMenu}) {
+export default function SavedMovies({loggedIn, cbNavPopup}) {
   const [ loader, setLoader ] = useState(false);
   const [ cards, setCards ] = useState(dataCards);
   const [ submitError, setSubmitError ] = useState('');
@@ -19,7 +19,7 @@ export default function SavedMovies({loggedIn, handleMenu}) {
     setLoader(true);
     return cardFilter(data, dataCards)
       .then(cards => setCards(cards))
-      .catch(err => setSubmitError(err))
+      .catch(err => setSubmitError(err.message))
       .finally(() => setLoader(false));
   }
 
@@ -27,7 +27,7 @@ export default function SavedMovies({loggedIn, handleMenu}) {
     <>
       <Header 
         loggedIn={loggedIn} 
-        handleMenu={handleMenu} 
+        cbNavPopup={cbNavPopup} 
       />
       <main className='main'>
         <SearchForm cbSearch={cbSearch} submitError={submitError} />

@@ -9,7 +9,7 @@ import { REGEX } from '../../utils/constans';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-export default function Profile({loggedIn, handleMenu}) {
+export default function Profile({loggedIn, cbNavPopup}) {
   const currentUser = useContext(CurrentUserContext);
 
   const [values, setValues] = useState({});
@@ -49,7 +49,7 @@ export default function Profile({loggedIn, handleMenu}) {
     <>
       <Header 
         loggedIn={loggedIn} 
-        handleMenu={handleMenu} 
+        cbNavPopup={cbNavPopup} 
       />
       <main className='main profile'>
         <form name='search' className='profile__form'>
