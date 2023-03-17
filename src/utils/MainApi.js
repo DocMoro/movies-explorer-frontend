@@ -42,6 +42,39 @@ class MainApi {
     })
     .then(this._checkResponse)
   }
+
+  getUserCards() {
+    return fetch(`${this._url}movies`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(this._checkResponse);
+  }
+
+  deleteCard(id) {
+    return fetch(`${this._url}movies/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(this._checkResponse);
+  }
+
+  createCard(card) {
+    return fetch(`${this._url}movies`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(card)
+    })
+    .then(this._checkResponse);
+  }
 }
 
 const mainApi = new MainApi({

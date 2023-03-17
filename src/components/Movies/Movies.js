@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer';
 
 import cardFilter from '../../utils/CardFilter';
 import moviesApi from '../../utils/MoviesApi';
+import mainApi from '../../utils/MainApi';
 
 import { SEARCH_BASE_ERROR } from '../../utils/constans';
 
@@ -42,6 +43,17 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
       .finally(() => setLoader(false));
   }
 
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const method = isLiked ? 'DELETE' : 'PUT';
+    
+    return mainApi.likeCard(card._id, method)
+      .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      })
+      .catch(err => console.log(err));
+  }
+
   return (
     <>
       <Header 
@@ -50,7 +62,7 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
       />
       <main className='main'>
         <SearchForm cbSearch={cbSearch} />
-        <MoviesCardList cards={cards} setCards={setCards} saved={false} loader={loader} />
+        <MoviesCardList cards={cards} setCards={setCards} saved={false} loader={loader} cbButton={handleCardLike} />
       </main>
       <Footer />
     </>

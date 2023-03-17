@@ -27,7 +27,7 @@ export default function App() {
 
   useEffect(() => {
     if(loggedIn) {
-      mainApi.getCards()
+      mainApi.getUserCards()
         .then(data => localStorage.setItem('user-cards', JSON.stringify(data)))
         .catch(err => console.log(err));
 

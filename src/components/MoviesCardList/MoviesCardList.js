@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Card from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
-export default function MoviesCardList({cards, setCards, saved, loader}) {
+export default function MoviesCardList({cards, setCards, saved, loader, cbButton}) {
   const [ format, setFormat ] = useState({});
   const [ buttonMore, setButtonMore ] = useState(false);
 
@@ -55,7 +55,7 @@ export default function MoviesCardList({cards, setCards, saved, loader}) {
         : <>
             <ul className='movies__list'>
               {cards.map((card) => (
-                <Card card={card} saved={saved} key={card.id}/>
+                <Card card={card} saved={saved} cbButton={cbButton} key={card.id}/>
               ))}
             </ul>
             <button className={`movies__button${buttonMore ? ' movies__button_activated button' : ''}`} onClick={handleButtonMore} disabled={!buttonMore ? 'disabled' : ''}>Eщё</button>
