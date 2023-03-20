@@ -22,7 +22,7 @@ export default function App() {
   const [ currentUser, setCurrentUser ] = useState({ name: '', email: '' });
 
   const [ navPopup, setNavPopup ] = useState(false);
-  const [ infoPopup, setInfoPopup ] = useState({ state: false, error: '' });
+  const [ infoPopup, setInfoPopup ] = useState({ state: false, message: '', success: false });
   const [ loggedIn, setLoggedIn ] = useState(false);
 
   useEffect(() => {
@@ -43,6 +43,20 @@ export default function App() {
         localStorage.setItem('token', res.token);
         return tokenCheck(res.token);
       })
+  }
+
+  function cbExit() {
+    localStorage.clear();
+    setLoggedIn(false);
+  }
+
+  function cbUpdate(data) {
+    mainApi.setUserInfo(data)
+      .then(res => {
+        setCurrentUser(res);
+        handleInfoPopup('Сохраненно', true);
+      })
+      .catch(() => handleInfoPopup('Ошибка'));
   }
 
   function cbRegister(data) {
@@ -85,14 +99,15 @@ export default function App() {
     setNavPopup(!navPopup);
   }, [navPopup]);
 
-  const handleInfoPopup = useCallback((error = infoPopup.error) => {
+  const handleInfoPopup = useCallback((message = infoPopup.message, success = false) => {
     const { state } = infoPopup;
 
     function _handleEscClose(e) {
       if (e.keyCode === ESC) {
         setInfoPopup({
           state: !state,
-          error: error
+          message: message,
+          success: success
         });
       }
     }
@@ -105,7 +120,8 @@ export default function App() {
 
     setInfoPopup({
       state: !state,
-      error: error
+      message: message,
+      success: success
     });
   }, [infoPopup]);
 
@@ -133,6 +149,8 @@ export default function App() {
             <ProtectedRoute 
               loggedIn={loggedIn}
               cbNavPopup={handleNavPopup}
+              handleExit={cbExit}
+              cbUpdate={cbUpdate}
               component={Profile}
             />
           </Route>

@@ -75,6 +75,21 @@ class MainApi {
     })
     .then(this._checkResponse);
   }
+
+  setUserInfo({name, about}) {
+    return fetch(`${this._url}users/me`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        about: about
+      })
+    })
+    .then(this._checkResponse);
+  }
 }
 
 const mainApi = new MainApi({

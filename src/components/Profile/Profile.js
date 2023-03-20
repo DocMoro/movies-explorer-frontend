@@ -9,7 +9,7 @@ import { REGEX } from '../../utils/constans';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-export default function Profile({loggedIn, cbNavPopup}) {
+export default function Profile({loggedIn, cbNavPopup, handleExit, cbUpdate}) {
   const currentUser = useContext(CurrentUserContext);
 
   const [values, setValues] = useState({});
@@ -45,6 +45,12 @@ export default function Profile({loggedIn, cbNavPopup}) {
     return JSON.stringify(currentUser) !== JSON.stringify(obj);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    cbUpdate(values);
+  }
+
   return (
     <>
       <Header 
@@ -52,9 +58,9 @@ export default function Profile({loggedIn, cbNavPopup}) {
         cbNavPopup={cbNavPopup} 
       />
       <main className='main profile'>
-        <form name='search' className='profile__form'>
+        <form name='search' className='profile__form' onSubmit={handleSubmit}>
           <div className='profile__attic'>
-            <h1 className='profile__title'>Привет, Виталий!</h1>
+            <h1 className='profile__title'>{`Привет, ${currentUser.name}!`}</h1>
             <ul className='profile__list'>
               <li className='profile__cell'>
                 <h2 className='profile__subtitle'>Имя</h2>
@@ -95,10 +101,11 @@ export default function Profile({loggedIn, cbNavPopup}) {
                 <Link 
                   to='/' 
                   className='profile__button profile__button_red link'
+                  onClick={handleExit}
                 >Выйти из аккаунта</Link>
               </>
             : <>
-                <label className='auth-input__input-error'></label>
+                <label className='auth-input__input-error'>{message}</label>
                 <button 
                   className={`profile__submit ${isValid ? ' button' : ' profile__submit_disabled'}`} 
                   type='submit' 
