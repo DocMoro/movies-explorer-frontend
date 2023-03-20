@@ -44,14 +44,15 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-    const method = isLiked ? 'DELETE' : 'PUT';
-    
-    return mainApi.likeCard(card._id, method)
-      .then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    return mainApi.createCard(card)
+      .then(newCard => {
+        const dataCards = JSON.parse(localStorage.getItem('user-cards'));
+
+        localStorage.setItem('user-cards', JSON.stringify({
+          ...dataCards,
+          newCard
+        }));
       })
-      .catch(err => console.log(err));
   }
 
   return (

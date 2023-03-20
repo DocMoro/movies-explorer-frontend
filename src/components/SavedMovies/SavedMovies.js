@@ -17,7 +17,7 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
   const [ cards, setCards ] = useState(dataCards);
 
   useEffect(() => {
-    localStorage.setItem(localStorage.setItem('user-cards', JSON.stringify(cards)));
+    localStorage.setItem('user-cards', JSON.stringify(cards));
   }, [cards])
 
   function cbSearch(data) {
@@ -33,9 +33,8 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
   }
 
   function handleCardDelete(card) {
-    mainApi.deleteCard(card._id)
+    return mainApi.deleteCard(card._id)
       .then(() => setCards((state) => state.filter((c) => c._id !== card._id)))
-      .catch(err => console.log(err));
   }
 
   return (

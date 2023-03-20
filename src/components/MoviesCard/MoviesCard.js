@@ -1,27 +1,32 @@
 import './MoviesCard.scss';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const dataCards = localStorage.getItem('user-cards');
+const dataCards = JSON.parse(localStorage.getItem('user-cards'));
 
 export default function MoviesCard({card, saved, cbButton}) {
-  const { country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId } = card;
-  const [like, setLike] = useState(dataCards.map((c => JSON.stringify(c))).indexOf(JSON.stringify(card)) !== -1);
+  const { duration, image, nameRU, trailerLink } = card;
+  const [ isLiked, setIsLiked ] = useState(false);
 
-  function handleClickLike() {
+  if(!saved) {
+    useEffect(() => {
+      const isLike = Boolean(dataCards.find((c => c.movieId === card.id)));
+
+      setIsLiked(isLike);
+    }, [])
+  }
+
+  function handleClickCreate() {
+    const { id } = card;
+
     cbButton({ 
-      country,
-      director, 
-      duration, 
-      year, 
-      description, 
-      image, 
-      trailer, 
-      nameRU, 
-      nameEN, 
-      thumbnail, 
-      movieId 
-    });
+      ...card,
+      movieId: id
+    })
+      .then(() => {
+        setIsLiked(true);
+      })
+      .catch(err => console.log(err));
   }
 
   function getTimeString() {
@@ -32,7 +37,11 @@ export default function MoviesCard({card, saved, cbButton}) {
   }
 
   function handleClickDelete() {
-    cbButton(card);
+    cbButton(card._id)
+      .then(() => {
+        setIsLiked(false);
+      })
+      .catch(err => console.log(err));
   }
 
   return (
@@ -43,7 +52,7 @@ export default function MoviesCard({card, saved, cbButton}) {
       <div className='card__container'>
         <h3 className='card__title'>{nameRU}</h3>
         {saved ? <button className='card__button-delete' onClick={handleClickDelete}></button>
-               : <button className={`card__button-like${like ? ' card__button-like_active' : ''} button` } onClick={handleClickLike}></button>
+               : <button className={`card__button-like${isLiked ? ' card__button-like_active' : ''} button` } onClick={handleClickCreate}></button>
         }
       </div>
       <p className='card__duration'>{getTimeString()}</p>
