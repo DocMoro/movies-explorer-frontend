@@ -1,20 +1,10 @@
 import './MoviesCard.scss';
 
-import { useEffect, useState } from 'react';
-
-const dataCards = JSON.parse(localStorage.getItem('user-cards'));
+import { useState } from 'react';
 
 export default function MoviesCard({card, saved, cbButton}) {
   const { duration, image, nameRU, trailerLink } = card;
-  const [ isLiked, setIsLiked ] = useState(false);
-
-  if(!saved) {
-    useEffect(() => {
-      const isLike = Boolean(dataCards.find((c => c.movieId === card.id)));
-
-      setIsLiked(isLike);
-    }, [])
-  }
+  const [ isLiked, setIsLiked ] = useState(card.isLike);
 
   function handleClickCreate() {
     const { id } = card;

@@ -11,6 +11,8 @@ import mainApi from '../../utils/MainApi';
 
 import { SEARCH_BASE_ERROR } from '../../utils/constans';
 
+const userCards = JSON.parse(localStorage.getItem('user-cards'));
+
 export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
   const [ loader, setLoader ] = useState(false);
   const [ cards, setCards ] = useState([]);
@@ -22,6 +24,10 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
       if(!arr.length) {
         handleInfoPopup('Ничего не найдено')
       }
+
+      arr = arr.map(card => {
+        card.isLike = Boolean(userCards.find(userCard => userCard.movieId === card.id));
+      });
   
       setCards(arr);
     }
