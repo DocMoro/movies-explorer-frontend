@@ -5,9 +5,10 @@ import { useState, useEffect } from 'react';
 import Card from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
-export default function MoviesCardList({cards, setCards, saved, loader, cbButton}) {
+export default function MoviesCardList({dataCards, saved, loader, cbButton}) {
   const [ format, setFormat ] = useState({});
   const [ buttonMore, setButtonMore ] = useState(false);
+  const [ cards, setCards ] = useState(dataCards);
 
   useEffect(() => {
     function handleResize() {
@@ -38,11 +39,11 @@ export default function MoviesCardList({cards, setCards, saved, loader, cbButton
 
   useEffect(() => {
     setCards(dataCards.slice(0, format.columns * format.rows));
-  }, [format]);
+  }, [format, dataCards]);
 
   useEffect(() => {
     setButtonMore(cards.length < dataCards.length);
-  }, [cards]);
+  }, [cards, dataCards]);
 
   function handleButtonMore() {
     setCards(dataCards.slice(0, cards.length + format.columns));

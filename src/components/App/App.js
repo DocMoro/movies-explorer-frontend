@@ -62,6 +62,7 @@ export default function App() {
 
   function tokenCheck(token) {
     if(token) {
+      console.log(token);
       return mainApi.getContent(token)
         .then(res => {
           setCurrentUser({ 

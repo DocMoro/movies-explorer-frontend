@@ -18,7 +18,7 @@ export default function SearchForm({saved, cbSearch}) {
     if(dataSearch) {
       setData(dataSearch);
     }
-  }, []);
+  }, [saved]);
 
   function handleChange(e) {
     const {name, value} = e.target;

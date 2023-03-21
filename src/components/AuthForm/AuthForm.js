@@ -1,7 +1,7 @@
 import './AuthForm.scss';
 
-import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 
 import AuthInput from '../AuthInput/AuthInput';
 
@@ -21,7 +21,7 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
     }
   }, [isValid]);
 
-  const handleSubmit = useCallback(e => {
+  function handleSubmit(e) {
     e.preventDefault();
 
     cbSubmit(values)
@@ -33,7 +33,7 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
       });
 
     setValues({});
-  }, [cbSubmit]);
+  }
   
   function handleChange(e) {
     const target = e.target;

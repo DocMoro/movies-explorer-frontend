@@ -9,7 +9,7 @@ import logo from '../../images/logo.svg';
 
 export default function Header({loggin, cbNavPopup}) {
   return (
-    <header className={`header${main ? ' header_blue' : ''}`}>
+    <header className={`header${!loggin ? ' header_blue' : ''}`}>
       <Link to='/' className='link'>
         <img className='header__logo logo' src={logo} alt='Логотип' />
       </Link>

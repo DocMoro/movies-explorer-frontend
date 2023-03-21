@@ -25,11 +25,11 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
     if(cardsList) {
       setCards(cardsList);
     }
-  });
+  }, []);
 
   function cbSearch(dataUser) {
     function renderCards(data) {
-      const arr = cardFilter(dataUser, data);
+      let arr = cardFilter(dataUser, data);
 
       if(!arr.length) {
         handleInfoPopup('Ничего не найдено')
@@ -37,6 +37,7 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
 
       arr = arr.map(card => {
         card.isLike = Boolean(userCards.find(userCard => userCard.movieId === card.id));
+        return card;
       });
   
       setCards(arr);
@@ -80,7 +81,7 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
       />
       <main className='main'>
         <SearchForm saved={false} cbSearch={cbSearch} />
-        <MoviesCardList cards={cards} setCards={setCards} saved={false} loader={loader} cbButton={handleCardLike} />
+        <MoviesCardList dataCards={cards} saved={false} loader={loader} cbButton={handleCardLike} />
       </main>
       <Footer />
     </>

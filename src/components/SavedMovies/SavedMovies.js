@@ -1,6 +1,6 @@
 import './SavedMovies.scss';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
@@ -22,7 +22,7 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
     if(cardsList) {
       setCards(cardsList);
     }
-  });
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('user-cards', JSON.stringify(cards));
@@ -54,7 +54,7 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
       />
       <main className='main'>
         <SearchForm saved={true} cbSearch={cbSearch} />
-        <MoviesCardList cards={cards} setCards={setCards} saved={true} loader={loader} cbButton={handleCardDelete} />
+        <MoviesCardList dataCards={cards} saved={true} loader={loader} cbButton={handleCardDelete} />
       </main>
       <Footer />
     </>

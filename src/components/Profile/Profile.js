@@ -105,7 +105,7 @@ export default function Profile({loggedIn, cbNavPopup, handleExit, cbUpdate}) {
                 >Выйти из аккаунта</Link>
               </>
             : <>
-                <label className='auth-input__input-error'>{message}</label>
+                <label className='auth-input__input-error'></label>
                 <button 
                   className={`profile__submit ${isValid ? ' button' : ' profile__submit_disabled'}`} 
                   type='submit' 
