@@ -17,6 +17,14 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
   const [ cards, setCards ] = useState(dataCards);
 
   useEffect(() => {
+    const cardsList = JSON.parse(localStorage.getItem('search-user-cards'));
+
+    if(cardsList) {
+      setCards(cardsList);
+    }
+  });
+
+  useEffect(() => {
     localStorage.setItem('user-cards', JSON.stringify(cards));
   }, [cards])
 
@@ -28,6 +36,7 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
       handleInfoPopup('Ничего не найдено')
     }
 
+    localStorage.setItem('search-user-cards', JSON.stringify(arr));
     setCards(arr);
     setLoader(false);
   }
@@ -44,7 +53,7 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
         cbNavPopup={cbNavPopup} 
       />
       <main className='main'>
-        <SearchForm cbSearch={cbSearch} />
+        <SearchForm saved={true} cbSearch={cbSearch} />
         <MoviesCardList cards={cards} setCards={setCards} saved={true} loader={loader} cbButton={handleCardDelete} />
       </main>
       <Footer />

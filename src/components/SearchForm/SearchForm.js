@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-export default function SearchForm({cbSearch}) {
+export default function SearchForm({saved, cbSearch}) {
   const [err, setErr] = useState('');
   const [data, setData] = useState({
     name: '',
@@ -12,7 +12,8 @@ export default function SearchForm({cbSearch}) {
   });
 
   useEffect(() => {
-    const dataSearch = JSON.parse(localStorage.getItem('search'));
+    const localPath = saved ? 'user-search' : 'search';
+    const dataSearch = JSON.parse(localStorage.getItem(localPath));
 
     if(dataSearch) {
       setData(dataSearch);
@@ -40,8 +41,10 @@ export default function SearchForm({cbSearch}) {
     e.preventDefault();
     
     if(data.name !== '') {
+      const localPath = saved ? 'user-search' : 'search';
+
+      localStorage.setItem(localPath, JSON.stringify(data));
       cbSearch(data);
-      localStorage.setItem('search', JSON.stringify(data));
     } else {
       setErr('Нужно ввести ключевое слово');
     }

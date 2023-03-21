@@ -1,5 +1,7 @@
 import './Movies.scss';
 
+import { useEffect, useState } from 'react';
+
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -17,6 +19,14 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
   const [ loader, setLoader ] = useState(false);
   const [ cards, setCards ] = useState([]);
 
+  useEffect(() => {
+    const cardsList = JSON.parse(localStorage.getItem('search-cards'));
+
+    if(cardsList) {
+      setCards(cardsList);
+    }
+  });
+
   function cbSearch(dataUser) {
     function renderCards(data) {
       const arr = cardFilter(dataUser, data);
@@ -30,6 +40,7 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
       });
   
       setCards(arr);
+      localStorage.setItem('search-cards', JSON.stringify(arr));
     }
 
     const dataCards = JSON.parse(localStorage.getItem('cards'));
@@ -68,7 +79,7 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
         cbNavPopup={cbNavPopup} 
       />
       <main className='main'>
-        <SearchForm cbSearch={cbSearch} />
+        <SearchForm saved={false} cbSearch={cbSearch} />
         <MoviesCardList cards={cards} setCards={setCards} saved={false} loader={loader} cbButton={handleCardLike} />
       </main>
       <Footer />
