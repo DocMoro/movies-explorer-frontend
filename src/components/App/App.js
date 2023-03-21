@@ -30,10 +30,6 @@ export default function App() {
       mainApi.getUserCards()
         .then(data => localStorage.setItem('user-cards', JSON.stringify(data)))
         .catch(err => console.log(err));
-
-      return () => {
-        localStorage.removeItem('cards');
-      }
     }
   }, [loggedIn]);
 

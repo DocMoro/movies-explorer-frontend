@@ -1,6 +1,6 @@
 import './SearchForm.scss';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
@@ -9,6 +9,14 @@ export default function SearchForm({cbSearch}) {
     name: '',
     checkbox: false
   });
+
+  useEffect(() => {
+    const dataSearch = JSON.parse(localStorage.getItem('search'));
+
+    if(dataSearch) {
+      setData(dataSearch);
+    }
+  }, []);
 
   function handleChange(e) {
     const {name, value} = e.target;
@@ -30,6 +38,7 @@ export default function SearchForm({cbSearch}) {
     e.preventDefault();
   
     cbSearch(data);
+    localStorage.setItem('search', JSON.stringify(data));
   }
 
   return (
