@@ -7,7 +7,7 @@ import AuthInput from '../AuthInput/AuthInput';
 
 import logo from '../../images/logo.svg';
 
-import { errorsSubmit, AUTH_BASE_ERROR } from '../../utils/constans'
+import { ERR_SUBMIT, AUTH_BASE_ERROR } from '../../utils/constans'
 
 export default function AuthForm({register, cbSubmit, loggedIn}) {
   const [values, setValues] = useState({});
@@ -26,7 +26,7 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
 
     cbSubmit(values)
       .catch(err => {
-        const replaceError = register ? errorsSubmit.registration : errorsSubmit.loggin;
+        const replaceError = register ? ERR_SUBMIT.registration : ERR_SUBMIT.loggin;
         const message = replaceError[err.message] || AUTH_BASE_ERROR;
 
         setErrorSubmit(message);
