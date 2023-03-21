@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 export default function SearchForm({cbSearch}) {
+  const [err, setErr] = useState('');
   const [data, setData] = useState({
     name: '',
     checkbox: false
@@ -21,6 +22,7 @@ export default function SearchForm({cbSearch}) {
   function handleChange(e) {
     const {name, value} = e.target;
 
+    setErr('');
     setData({
       ...data,
       [name]: value
@@ -36,9 +38,13 @@ export default function SearchForm({cbSearch}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-  
-    cbSearch(data);
-    localStorage.setItem('search', JSON.stringify(data));
+    
+    if(data.name !== '') {
+      cbSearch(data);
+      localStorage.setItem('search', JSON.stringify(data));
+    } else {
+      setErr('Нужно ввести ключевое слово');
+    }
   }
 
   return (
@@ -55,7 +61,7 @@ export default function SearchForm({cbSearch}) {
         ></input>
         <button type='submit' className='search__button button'></button>
       </div>
-        <label className='search__input-error'></label>
+        <label className='search__input-error'>{err}</label>
       <FilterCheckbox handleCheckbox={handleCheckbox} checkbox={data.checkbox} />
     </form>
   )
