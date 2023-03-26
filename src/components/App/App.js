@@ -56,13 +56,14 @@ export default function App() {
   }
 
   function cbRegister(data) {
+    const { email, password } = data;
+
     return mainApi.register(data)
-      .then(res => cbLogin(res))
+      .then(() => cbLogin({ email, password }))
   }
 
   function tokenCheck(token) {
     if(token) {
-      console.log(token);
       return mainApi.getContent(token)
         .then(res => {
           setCurrentUser({ 
@@ -71,13 +72,13 @@ export default function App() {
           });
           setLoggedIn(true);
         })
+        .catch(err => console.log(err.message));
     }
   }
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    tokenCheck(token)
-      .catch(err => console.log(err.message));
+    tokenCheck(token);
   }, []);
 
   const handleNavPopup = useCallback(() => {

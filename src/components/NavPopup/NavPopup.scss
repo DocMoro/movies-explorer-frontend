@@ -33,12 +33,14 @@
       opacity: .3;
     }
 
-    & .popup__container {
+    & .menu__container {
       transform: translateX(0);
     }
   }
 
   &__container {
+    display: block;
+
     position: fixed;
     top: 0;
     right: 0;

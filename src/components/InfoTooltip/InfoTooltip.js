@@ -6,8 +6,6 @@ import accept from '../../images/accept.svg';
 export default function InfoTooltip({infoPopup, cbInfoPopup}) {
   const { state, message, success } = infoPopup;
 
-  console.log(infoPopup);
-
   function handleInfoPopup(e) {
     if(e.target === e.currentTarget) {
       cbInfoPopup()
