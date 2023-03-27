@@ -24,15 +24,22 @@ export default function App() {
   const [ navPopup, setNavPopup ] = useState(false);
   const [ infoPopup, setInfoPopup ] = useState({ state: false, message: '', success: false });
   const [ loggedIn, setLoggedIn ] = useState(false);
+  const [ loader, setLoader ] = useState(false);
+
+  function handleLoader() {
+    setLoader(!loader);
+  }
 
   useEffect(() => {
+    handleLoader();
+
     if(loggedIn) {
       mainApi.getUserCards()
         .then(data => {
           localStorage.setItem('user-cards', JSON.stringify(data));
-          setCards(data);
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => handleLoader());
     }
   }, [loggedIn]);
 
@@ -133,6 +140,8 @@ export default function App() {
           <Route path='/saved-movies'>
             <ProtectedRoute 
               loggedIn={loggedIn}
+              loader={loader}
+              handleLoader={handleLoader}
               cbNavPopup={handleNavPopup}
               handleInfoPopup={handleInfoPopup}
               component={SavedMovies}
@@ -141,6 +150,8 @@ export default function App() {
           <Route path='/movies'>
             <ProtectedRoute 
               loggedIn={loggedIn}
+              loader={loader}
+              handleLoader={handleLoader}
               cbNavPopup={handleNavPopup}
               handleInfoPopup={handleInfoPopup}
               component={Movies}

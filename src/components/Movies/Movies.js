@@ -13,8 +13,7 @@ import mainApi from '../../utils/MainApi';
 
 import { SEARCH_BASE_ERROR } from '../../utils/constans';
 
-export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
-  const [ loader, setLoader ] = useState(false);
+export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, handleInfoPopup}) {
   const [ cards, setCards ] = useState([]);
 
   useEffect(() => {
@@ -27,7 +26,7 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
 
   function cbSearch(dataSearch) {
     function renderCards(dataCards) {
-      const userCards = JSON.parse(localStorage.getItem('user-cards')) || [];
+      const userCards = JSON.parse(localStorage.getItem('user-cards'));
       let arr = cardFilter(dataSearch, dataCards);
 
       if(!arr.length) {
@@ -44,11 +43,11 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
     }
 
     const dataCards = JSON.parse(localStorage.getItem('cards'));
-    setLoader(true);
+    handleLoader();
 
     if(dataCards) {
       renderCards(dataCards);
-      setLoader(false);
+      handleLoader();
     } else {
       moviesApi.getCards()
         .then(res => {
@@ -56,7 +55,7 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
           renderCards(res);
         })
         .catch(() => handleInfoPopup(SEARCH_BASE_ERROR))
-        .finally(() => setLoader(false));
+        .finally(() => handleLoader());
     }
   }
 
@@ -79,7 +78,7 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
         cbNavPopup={cbNavPopup} 
       />
       <main className='main'>
-        <SearchForm saved={false} cbSearch={cbSearch} />
+        <SearchForm saved={false} cbSearch={cbSearch} loader={loader} />
         <MoviesCardList dataCards={cards} saved={false} loader={loader} cbButton={handleCardLike} />
       </main>
       <Footer />

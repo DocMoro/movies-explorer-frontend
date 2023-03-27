@@ -10,8 +10,7 @@ import Footer from '../Footer/Footer';
 import cardFilter from '../../utils/CardFilter';
 import mainApi from '../../utils/MainApi';
 
-export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
-  const [ loader, setLoader ] = useState(false);
+export default function SavedMovies({loggedIn, loader, handleLoader, cbNavPopup, handleInfoPopup}) {
   const [ cards, setCards ] = useState([]);
 
   useEffect(() => {
@@ -29,7 +28,7 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
   }, []);
 
   function cbSearch(dataSearch) {
-    setLoader(true);
+    handleLoader();
     const arr = cardFilter(dataSearch, JSON.parse(localStorage.getItem('user-cards')));
 
     if(!arr.length) {
@@ -38,7 +37,7 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
 
     localStorage.setItem('search-user-cards', JSON.stringify(arr));
     setCards(arr);
-    setLoader(false);
+    handleLoader();
   }
 
   function handleCardDelete(card) {
@@ -58,7 +57,7 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
         cbNavPopup={cbNavPopup} 
       />
       <main className='main'>
-        <SearchForm saved={true} cbSearch={cbSearch} />
+        <SearchForm saved={true} cbSearch={cbSearch} loader={loader} />
         <MoviesCardList dataCards={cards} saved={true} loader={loader} cbButton={handleCardDelete} />
       </main>
       <Footer />
