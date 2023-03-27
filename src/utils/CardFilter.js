@@ -1,5 +1,5 @@
-export default async function cardFilter(data, dataCards) {
-  const { name: key, checkbox } = data;
+export default async function cardFilter(dataSearch, dataCards) {
+  const { name: key, checkbox } = dataSearch;
 
   return checkbox
     ?

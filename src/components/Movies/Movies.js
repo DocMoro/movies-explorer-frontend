@@ -18,29 +18,29 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
   const [ cards, setCards ] = useState([]);
 
   useEffect(() => {
-    const cardsList = JSON.parse(localStorage.getItem('search-cards'));
+    const searchCards = JSON.parse(localStorage.getItem('search-cards'));
 
-    if(cardsList) {
-      setCards(cardsList);
+    if(searchCards) {
+      setCards(searchCards);
     }
   }, []);
 
-  function cbSearch(dataUser) {
-    function renderCards(data) {
-      const userCards = JSON.parse(localStorage.getItem('user-cards'));
-      let arr = cardFilter(dataUser, data);
+  function cbSearch(dataSearch) {
+    function renderCards(dataCards) {
+      const userCards = JSON.parse(localStorage.getItem('user-cards')) || [];
+      let arr = cardFilter(dataSearch, dataCards);
 
       if(!arr.length) {
         handleInfoPopup('Ничего не найдено')
+      } else if(userCards) {
+        arr = arr.map(card => {
+          card.isLike = Boolean(userCards.find(userCard => userCard.movieId === card.id));
+          return card;
+        });
       }
 
-      arr = arr.map(card => {
-        card.isLike = Boolean(userCards.find(userCard => userCard.movieId === card.id));
-        return card;
-      });
-  
-      setCards(arr);
       localStorage.setItem('search-cards', JSON.stringify(arr));
+      setCards(arr);
     }
 
     const dataCards = JSON.parse(localStorage.getItem('cards'));
@@ -48,25 +48,25 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
 
     if(dataCards) {
       renderCards(dataCards);
-      return
+      setLoader(false);
+    } else {
+      moviesApi.getCards()
+        .then(res => {
+          localStorage.setItem('cards', JSON.stringify(res));
+          renderCards(res);
+        })
+        .catch(() => handleInfoPopup(SEARCH_BASE_ERROR))
+        .finally(() => setLoader(false));
     }
-
-    moviesApi.getCards()
-      .then(res => {
-        localStorage.setItem('cards', res);
-        renderCards(res);
-      })
-      .catch(() => handleInfoPopup(SEARCH_BASE_ERROR))
-      .finally(() => setLoader(false));
   }
 
   function handleCardLike(card) {
     return mainApi.createCard(card)
       .then(newCard => {
-        const dataCards = JSON.parse(localStorage.getItem('user-cards'));
+        const userCards = JSON.parse(localStorage.getItem('user-cards'));
 
         localStorage.setItem('user-cards', JSON.stringify({
-          ...dataCards,
+          ...userCards,
           newCard
         }));
       })

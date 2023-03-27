@@ -24,20 +24,13 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
 
       if(userCards) {
         setCards(userCards);
-      } else {
-        mainApi.getUserCards()
-          .then(data => {
-            localStorage.setItem('user-cards', JSON.stringify(data));
-            setCards(data);
-          })
-          .catch(err => console.log(err));
       }
     }
   }, []);
 
-  function cbSearch(data) {
+  function cbSearch(dataSearch) {
     setLoader(true);
-    const arr = cardFilter(data, JSON.parse(localStorage.getItem('user-cards')));
+    const arr = cardFilter(dataSearch, JSON.parse(localStorage.getItem('user-cards')));
 
     if(!arr.length) {
       handleInfoPopup('Ничего не найдено')
