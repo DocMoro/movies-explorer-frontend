@@ -10,17 +10,28 @@ import Footer from '../Footer/Footer';
 import cardFilter from '../../utils/CardFilter';
 import mainApi from '../../utils/MainApi';
 
-const dataCards = JSON.parse(localStorage.getItem('user-cards'));
-
 export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
   const [ loader, setLoader ] = useState(false);
-  const [ cards, setCards ] = useState(dataCards);
+  const [ cards, setCards ] = useState([]);
 
   useEffect(() => {
-    const cardsList = JSON.parse(localStorage.getItem('search-user-cards'));
+    const searchCards = JSON.parse(localStorage.getItem('search-user-cards'));
 
-    if(cardsList) {
-      setCards(cardsList);
+    if(searchCards) {
+      setCards(searchCards);
+    } else {
+      const userCards = JSON.parse(localStorage.getItem('user-cards'));
+
+      if(userCards) {
+        setCards(userCards);
+      } else {
+        mainApi.getUserCards()
+          .then(data => {
+            localStorage.setItem('user-cards', JSON.stringify(data));
+            setCards(data);
+          })
+          .catch(err => console.log(err));
+      }
     }
   }, []);
 
@@ -30,7 +41,7 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
 
   function cbSearch(data) {
     setLoader(true);
-    const arr = cardFilter(data, dataCards);
+    const arr = cardFilter(data, JSON.parse(localStorage.getItem('user-cards')));
 
     if(!arr.length) {
       handleInfoPopup('Ничего не найдено')

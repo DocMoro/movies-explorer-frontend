@@ -13,8 +13,6 @@ import mainApi from '../../utils/MainApi';
 
 import { SEARCH_BASE_ERROR } from '../../utils/constans';
 
-const userCards = JSON.parse(localStorage.getItem('user-cards'));
-
 export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
   const [ loader, setLoader ] = useState(false);
   const [ cards, setCards ] = useState([]);
@@ -29,6 +27,7 @@ export default function Movies({loggedIn, cbNavPopup, handleInfoPopup}) {
 
   function cbSearch(dataUser) {
     function renderCards(data) {
+      const userCards = JSON.parse(localStorage.getItem('user-cards'));
       let arr = cardFilter(dataUser, data);
 
       if(!arr.length) {

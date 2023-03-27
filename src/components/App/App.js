@@ -25,14 +25,6 @@ export default function App() {
   const [ infoPopup, setInfoPopup ] = useState({ state: false, message: '', success: false });
   const [ loggedIn, setLoggedIn ] = useState(false);
 
-  useEffect(() => {
-    if(loggedIn) {
-      mainApi.getUserCards()
-        .then(data => localStorage.setItem('user-cards', JSON.stringify(data)))
-        .catch(err => console.log(err));
-    }
-  }, [loggedIn]);
-
   function cbLogin(data) {
     return mainApi.authorize(data)
       .then(res => {
