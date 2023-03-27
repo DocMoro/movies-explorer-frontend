@@ -43,12 +43,11 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
     }
 
     const dataCards = JSON.parse(localStorage.getItem('cards'));
-    handleLoader();
 
     if(dataCards) {
       renderCards(dataCards);
-      handleLoader();
     } else {
+      handleLoader();
       moviesApi.getCards()
         .then(res => {
           localStorage.setItem('cards', JSON.stringify(res));

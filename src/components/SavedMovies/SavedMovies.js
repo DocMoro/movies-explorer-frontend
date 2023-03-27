@@ -10,7 +10,7 @@ import Footer from '../Footer/Footer';
 import cardFilter from '../../utils/CardFilter';
 import mainApi from '../../utils/MainApi';
 
-export default function SavedMovies({loggedIn, loader, handleLoader, cbNavPopup, handleInfoPopup}) {
+export default function SavedMovies({loggedIn, loader, cbNavPopup, handleInfoPopup}) {
   const [ cards, setCards ] = useState([]);
 
   useEffect(() => {
@@ -28,7 +28,6 @@ export default function SavedMovies({loggedIn, loader, handleLoader, cbNavPopup,
   }, []);
 
   function cbSearch(dataSearch) {
-    handleLoader();
     const arr = cardFilter(dataSearch, JSON.parse(localStorage.getItem('user-cards')));
 
     if(!arr.length) {
@@ -37,7 +36,6 @@ export default function SavedMovies({loggedIn, loader, handleLoader, cbNavPopup,
 
     localStorage.setItem('search-user-cards', JSON.stringify(arr));
     setCards(arr);
-    handleLoader();
   }
 
   function handleCardDelete(card) {

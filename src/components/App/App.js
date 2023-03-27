@@ -30,18 +30,19 @@ export default function App() {
     setLoader(!loader);
   }, [loader]);
 
-  useEffect(() => {
-    handleLoader();
+  console.log(loader);
 
+  useEffect(() => {
     if(loggedIn) {
+      setLoader(true);
       mainApi.getUserCards()
         .then(data => {
           localStorage.setItem('user-cards', JSON.stringify(data));
         })
         .catch(err => console.log(err))
-        .finally(() => handleLoader());
+        .finally(() => setLoader(false));
     }
-  }, [loggedIn, handleLoader]);
+  }, [loggedIn]);
 
   function cbLogin(data) {
     return mainApi.authorize(data)
@@ -141,7 +142,6 @@ export default function App() {
             <ProtectedRoute 
               loggedIn={loggedIn}
               loader={loader}
-              handleLoader={handleLoader}
               cbNavPopup={handleNavPopup}
               handleInfoPopup={handleInfoPopup}
               component={SavedMovies}

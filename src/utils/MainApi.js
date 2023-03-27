@@ -44,7 +44,7 @@ class MainApi {
   }
 
   getUserCards() {
-    return fetch(`${this._url}movies`, {
+    return fetch(`${this._URL}movies`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ class MainApi {
   }
 
   deleteCard(id) {
-    return fetch(`${this._url}movies/${id}`, {
+    return fetch(`${this._URL}movies/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -65,7 +65,7 @@ class MainApi {
   }
 
   createCard(card) {
-    return fetch(`${this._url}movies`, {
+    return fetch(`${this._URL}movies`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -77,7 +77,7 @@ class MainApi {
   }
 
   setUserInfo({name, about}) {
-    return fetch(`${this._url}users/me`, {
+    return fetch(`${this._URL}users/me`, {
       method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,

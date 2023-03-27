@@ -38,9 +38,20 @@
     
     margin-left: 10px;
 
-    &_disabled {
-      color: #C2C2C2;
-      background-color: #F8F8F8;
+    transition: opacity .5s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .8;
+    }
+
+    &:disabled {
+      background-color: #C2C2C2;
+
+      &:hover {
+        cursor: default;
+        opacity: 1;
+      }
     }
   }
 

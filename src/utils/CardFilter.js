@@ -1,4 +1,4 @@
-export default async function cardFilter(dataSearch, dataCards) {
+export default function cardFilter(dataSearch, dataCards) {
   let { name: key, checkbox } = dataSearch;
   key = key.toLowerCase();
 

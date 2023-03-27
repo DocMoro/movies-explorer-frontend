@@ -64,7 +64,7 @@ export default function SearchForm({saved, cbSearch, loader}) {
         ></input>
         <button 
           type='submit' 
-          className={`search__button ${loader ? 'search__button_disabled' : 'button'}}`} 
+          className='search__button'
           disabled={loader ? 'disabled' : ''}>
         </button>
       </div>
