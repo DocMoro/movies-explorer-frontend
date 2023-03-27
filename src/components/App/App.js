@@ -26,9 +26,9 @@ export default function App() {
   const [ loggedIn, setLoggedIn ] = useState(false);
   const [ loader, setLoader ] = useState(false);
 
-  function handleLoader() {
+  const handleLoader = useCallback(() => {
     setLoader(!loader);
-  }
+  }, [loader]);
 
   useEffect(() => {
     handleLoader();
@@ -41,7 +41,7 @@ export default function App() {
         .catch(err => console.log(err))
         .finally(() => handleLoader());
     }
-  }, [loggedIn]);
+  }, [loggedIn, handleLoader]);
 
   function cbLogin(data) {
     return mainApi.authorize(data)
