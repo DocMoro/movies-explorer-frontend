@@ -36,7 +36,7 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('user-cards', JSON.stringify(cards));
+    localStorage.setItem('search-user-cards', JSON.stringify(cards));
   }, [cards])
 
   function cbSearch(data) {
@@ -47,14 +47,18 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
       handleInfoPopup('Ничего не найдено')
     }
 
-    localStorage.setItem('search-user-cards', JSON.stringify(arr));
     setCards(arr);
     setLoader(false);
   }
 
   function handleCardDelete(card) {
     return mainApi.deleteCard(card._id)
-      .then(() => setCards((state) => state.filter((c) => c._id !== card._id)))
+      .then(() => {
+        const newUserCards = JSON.parse(localStorage.getItem('user-cards')).filter(c => c._id !== card._id);
+
+        localStorage.setItem('user-cards', JSON.stringify(newUserCards));
+        setCards((state) => state.filter(c => c._id !== card._id));
+      })
   }
 
   return (
