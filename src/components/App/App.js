@@ -47,7 +47,7 @@ export default function App() {
     return mainApi.authorize(data)
       .then(res => {
         localStorage.setItem('token', res.token);
-        return tokenCheck(res.token);
+        tokenCheck(res.token);
       })
   }
 
