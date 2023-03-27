@@ -30,8 +30,6 @@ export default function App() {
     setLoader(!loader);
   }, [loader]);
 
-  console.log(loader);
-
   useEffect(() => {
     if(loggedIn) {
       setLoader(true);
@@ -48,7 +46,7 @@ export default function App() {
     return mainApi.authorize(data)
       .then(res => {
         localStorage.setItem('token', res.token);
-        tokenCheck(res.token);
+        return tokenCheck(res.token);
       })
   }
 
@@ -73,7 +71,7 @@ export default function App() {
       .then(() => cbLogin({ email, password }))
   }
 
-  function tokenCheck(token) {
+  async function tokenCheck(token) {
     if(token) {
       return mainApi.getContent(token)
         .then(res => {
@@ -83,13 +81,14 @@ export default function App() {
           });
           setLoggedIn(true);
         })
-        .catch(err => console.log(err.message));
     }
   }
 
   useEffect(() => {
+    setInfoPopup({ state: true, message: 'Загрузка', success: false });
     const token = localStorage.getItem('token');
-    tokenCheck(token);
+    tokenCheck(token)
+      .finally(() => setInfoPopup({ state: false, message: 'Загрузка', success: false }))
   }, []);
 
   const handleNavPopup = useCallback(() => {

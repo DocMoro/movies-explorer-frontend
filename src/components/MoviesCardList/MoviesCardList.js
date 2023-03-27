@@ -57,7 +57,7 @@ export default function MoviesCardList({dataCards, saved, loader, cbButton}) {
         : <>
             <ul className='movies__list'>
               {cards.map((card) => (
-                <Card card={card} saved={saved} cbButton={cbButton} key={card.id}/>
+                <Card card={card} saved={saved} cbButton={cbButton} key={saved ? card._id : card.id}/>
               ))}
             </ul>
             <button className={`movies__button${buttonMore ? ' movies__button_activated button' : ''}`} onClick={handleButtonMore} disabled={!buttonMore ? 'disabled' : ''}>Eщё</button>

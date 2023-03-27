@@ -44,7 +44,7 @@ export default function SavedMovies({loggedIn, loader, cbNavPopup, handleInfoPop
         const newUserCards = JSON.parse(localStorage.getItem('user-cards')).filter(c => c._id !== card._id);
 
         localStorage.setItem('user-cards', JSON.stringify(newUserCards));
-        setCards((state) => state.filter(c => c._id !== card._id));
+        setCards(newUserCards);
       })
   }
 

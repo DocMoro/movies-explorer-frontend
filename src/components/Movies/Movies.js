@@ -17,28 +17,37 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
   const [ cards, setCards ] = useState([]);
 
   useEffect(() => {
-    const searchCards = JSON.parse(localStorage.getItem('search-cards'));
+    let searchCards = JSON.parse(localStorage.getItem('search-cards'));
 
     if(searchCards) {
+      searchCards = getLikeCards(searchCards);
       setCards(searchCards);
     }
   }, []);
+
+  function getLikeCards(arr) {
+    const userCards = JSON.parse(localStorage.getItem('user-cards'));
+
+    arr = arr.map(card => {
+      card.isLike = Boolean(userCards.find(userCard => userCard.movieId === card.id));
+      return card;
+    });
+
+    return arr
+  }
 
   function cbSearch(dataSearch) {
     function renderCards(dataCards) {
       const userCards = JSON.parse(localStorage.getItem('user-cards'));
       let arr = cardFilter(dataSearch, dataCards);
+      localStorage.setItem('search-cards', JSON.stringify(arr));
 
       if(!arr.length) {
         handleInfoPopup('Ничего не найдено')
       } else if(userCards) {
-        arr = arr.map(card => {
-          card.isLike = Boolean(userCards.find(userCard => userCard.movieId === card.id));
-          return card;
-        });
+        arr = getLikeCards(arr);
       }
 
-      localStorage.setItem('search-cards', JSON.stringify(arr));
       setCards(arr);
     }
 
@@ -63,10 +72,8 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
       .then(newCard => {
         const userCards = JSON.parse(localStorage.getItem('user-cards'));
 
-        localStorage.setItem('user-cards', JSON.stringify({
-          ...userCards,
-          newCard
-        }));
+        userCards.push(newCard);
+        localStorage.setItem('user-cards', JSON.stringify(userCards));
       })
   }
 
