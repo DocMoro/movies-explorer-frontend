@@ -35,10 +35,6 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('search-user-cards', JSON.stringify(cards));
-  }, [cards])
-
   function cbSearch(data) {
     setLoader(true);
     const arr = cardFilter(data, JSON.parse(localStorage.getItem('user-cards')));
@@ -47,6 +43,7 @@ export default function SavedMovies({loggedIn, cbNavPopup, handleInfoPopup}) {
       handleInfoPopup('Ничего не найдено')
     }
 
+    localStorage.setItem('search-user-cards', JSON.stringify(arr));
     setCards(arr);
     setLoader(false);
   }

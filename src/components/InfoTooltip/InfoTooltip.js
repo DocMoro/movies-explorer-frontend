@@ -12,10 +12,14 @@ export default function InfoTooltip({infoPopup, cbInfoPopup}) {
     }
   }
 
+  function handlerClouse() {
+    cbInfoPopup();
+  }
+
   return (
     <div className={`popup${state ? " popup_active" : ''}`} onClick={handleInfoPopup}>
       <div className="popup__auth-container">
-        <button type="button" className="popup__button-close button" aria-label="Закрыть"></button>
+        <button type="button" className="popup__button-close button" aria-label="Закрыть" onClick={handlerClouse}></button>
         <img className="popup__auth-image" src={success ? accept : fail} alt={success ? 'Успех' : 'Провал'} />
         <h2 className="popup__auth-title">{message}</h2>
       </div>
