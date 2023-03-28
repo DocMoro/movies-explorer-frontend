@@ -114,8 +114,8 @@ export default function App() {
       if (e.keyCode === ESC) {
         setInfoPopup({
           state: !state,
-          message: message,
-          success: success
+          message,
+          success
         });
       }
     }
@@ -128,8 +128,8 @@ export default function App() {
 
     setInfoPopup({
       state: !state,
-      message: message,
-      success: success
+      message,
+      success
     });
   }, [infoPopup]);
 

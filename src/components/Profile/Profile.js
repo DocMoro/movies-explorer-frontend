@@ -12,7 +12,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 export default function Profile({loggedIn, cbNavPopup, handleExit, cbUpdate}) {
   const currentUser = useContext(CurrentUserContext);
 
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({ name: '', email: '' });
   const [isValid, setIsValid] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 

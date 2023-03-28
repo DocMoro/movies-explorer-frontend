@@ -10,7 +10,7 @@ import logo from '../../images/logo.svg';
 import { ERR_SUBMIT, AUTH_BASE_ERROR } from '../../utils/constans'
 
 export default function AuthForm({register, cbSubmit, loggedIn}) {
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({ name: '', email: '', password: '' });
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState('');
@@ -21,10 +21,17 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
     }
   }, [isValid]);
 
+  useEffect(() => {
+    setValues({ name: '', email: '', password: '' });
+    setIsValid(false);
+  }, [register]);
+
   function handleSubmit(e) {
     e.preventDefault();
 
-    cbSubmit(values)
+    const obj = register ? values : { email: values.email, password: values.password };
+
+    cbSubmit(obj)
       .catch(err => {
         const replaceError = register ? ERR_SUBMIT.registration : ERR_SUBMIT.loggin;
         const message = replaceError[err.message] || AUTH_BASE_ERROR;
@@ -32,7 +39,7 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
         setErrorSubmit(message);
       });
 
-    setValues({});
+    setValues({ name: '', email: '', password: '' });
   }
   
   function handleChange(e) {
