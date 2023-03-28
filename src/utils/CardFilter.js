@@ -1,14 +1,18 @@
 export default function cardFilter(dataSearch, dataCards) {
   let { name: key, checkbox } = dataSearch;
-  key = key.toLowerCase();
+  key = key.toLowerCase().split(' ');
+
+  function includesKeys(name) {
+    return key.reduce((prev, curr) => prev && name.toLowerCase().includes(curr), true)
+  }
 
   return checkbox
     ?
     dataCards.filter(card => {
       const { nameRU, duration } = card;
 
-      return nameRU.toLowerCase().indexOf(key) !== -1 && duration < 40;
+      return includesKeys(nameRU) && duration < 40;
     })
     :
-    dataCards.filter(card => card.nameRU.toLowerCase().indexOf(key) !== -1);
+    dataCards.filter(card => includesKeys(card.nameRU));
 }
