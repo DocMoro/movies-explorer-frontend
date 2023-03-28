@@ -11,6 +11,7 @@ import AuthForm from '../AuthForm/AuthForm';
 import NotFound from '../NotFound/NotFound';
 import NavPopup from '../NavPopup/NavPopup';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import LoadPopup from '../LoadPopup/LoadPopup';
 
 import ProtectedRoute from '../../utils/ProtectedRoute';
 import mainApi from '../../utils/MainApi';
@@ -23,6 +24,7 @@ export default function App() {
 
   const [ navPopup, setNavPopup ] = useState(false);
   const [ infoPopup, setInfoPopup ] = useState({ state: false, message: '', success: false });
+  const [ loadPopup, setLoadPopup ] = useState(true);
   const [ loggedIn, setLoggedIn ] = useState(false);
   const [ loader, setLoader ] = useState(false);
 
@@ -85,10 +87,9 @@ export default function App() {
   }
 
   useEffect(() => {
-    setInfoPopup({ state: true, message: 'Загрузка', success: false });
     const token = localStorage.getItem('token');
     tokenCheck(token)
-      .finally(() => setInfoPopup({ state: false, message: 'Загрузка', success: false }))
+      .finally(() => setLoadPopup(false))
   }, []);
 
   const handleNavPopup = useCallback(() => {
@@ -196,6 +197,9 @@ export default function App() {
         <InfoTooltip 
           infoPopup={infoPopup}
           cbInfoPopup={handleInfoPopup}
+        />
+        <LoadPopup 
+          loadPopup={loadPopup}
         />
       </div>
     </CurrentUserContext.Provider>

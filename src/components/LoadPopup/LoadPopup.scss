@@ -1,0 +1,22 @@
+.load {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: #000;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0s .5s, visibility 0s .5s linear;
+
+  &_active {
+    visibility: visible;
+    opacity: .5;
+  }
+}
