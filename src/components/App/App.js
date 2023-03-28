@@ -28,10 +28,6 @@ export default function App() {
   const [ loggedIn, setLoggedIn ] = useState(false);
   const [ loader, setLoader ] = useState(false);
 
-  const handleLoader = useCallback(() => {
-    setLoader(!loader);
-  }, [loader]);
-
   useEffect(() => {
     if(loggedIn) {
       setLoader(true);
@@ -151,7 +147,7 @@ export default function App() {
             <ProtectedRoute 
               loggedIn={loggedIn}
               loader={loader}
-              handleLoader={handleLoader}
+              handleLoader={setLoader}
               cbNavPopup={handleNavPopup}
               handleInfoPopup={handleInfoPopup}
               component={Movies}

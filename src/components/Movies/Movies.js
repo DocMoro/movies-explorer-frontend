@@ -56,14 +56,14 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
     if(dataCards) {
       renderCards(dataCards);
     } else {
-      handleLoader();
+      handleLoader(true);
       moviesApi.getCards()
         .then(res => {
           localStorage.setItem('cards', JSON.stringify(res));
           renderCards(res);
         })
         .catch(() => handleInfoPopup(SEARCH_BASE_ERROR))
-        .finally(() => handleLoader());
+        .finally(() => handleLoader(false));
     }
   }
 
