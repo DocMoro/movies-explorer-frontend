@@ -22,8 +22,9 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
   }, [isValid]);
 
   useEffect(() => {
-    setValues({ name: '', email: '', password: '' });
-    setIsValid(false);
+    setDefaultValues();
+    setErrors({});
+    setErrorSubmit('');
   }, [register]);
 
   function handleSubmit(e) {
@@ -37,9 +38,13 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
         const message = replaceError[err.message] || AUTH_BASE_ERROR;
 
         setErrorSubmit(message);
-      });
+      })
+      .finally(() => setDefaultValues());
+  }
 
+  function setDefaultValues() {
     setValues({ name: '', email: '', password: '' });
+    setIsValid(false);
   }
   
   function handleChange(e) {
