@@ -40,14 +40,10 @@ export default function SearchForm({saved, cbSearch, loader}) {
   function handleSubmit(e) {
     e.preventDefault();
     
-    if(data.name !== '') {
-      const localPath = saved ? 'user-search' : 'search';
+    const localPath = saved ? 'user-search' : 'search';
 
-      localStorage.setItem(localPath, JSON.stringify(data));
-      cbSearch(data);
-    } else {
-      setErr('Нужно ввести ключевое слово');
-    }
+    localStorage.setItem(localPath, JSON.stringify(data));
+    cbSearch(data);
   }
 
   return (
@@ -60,7 +56,6 @@ export default function SearchForm({saved, cbSearch, loader}) {
           type='text' 
           onChange={handleChange} 
           value={data.name} 
-          required
         ></input>
         <button 
           type='submit' 

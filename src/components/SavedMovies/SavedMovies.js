@@ -34,7 +34,12 @@ export default function SavedMovies({loggedIn, loader, cbNavPopup, handleInfoPop
       handleInfoPopup('Ничего не найдено')
     }
 
-    localStorage.setItem('search-user-cards', JSON.stringify(arr));
+    if(dataSearch.name !== '') {
+      localStorage.setItem('search-user-cards', JSON.stringify(arr));
+    } else {
+      localStorage.removeItem('search-user-cards');
+    }
+
     setCards(arr);
   }
 
@@ -42,9 +47,18 @@ export default function SavedMovies({loggedIn, loader, cbNavPopup, handleInfoPop
     return mainApi.deleteCard(card._id)
       .then(() => {
         const newUserCards = JSON.parse(localStorage.getItem('user-cards')).filter(c => c._id !== card._id);
+        const searchCards = JSON.parse(localStorage.getItem('search-user-cards'));
+
+        if(searchCards) {
+          const newSearchCards = searchCards.filter(c => c._id !== card._id);
+
+          localStorage.setItem('search-user-cards', JSON.stringify(newSearchCards));
+          setCards(newSearchCards);
+        } else {
+          setCards(newUserCards);
+        }
 
         localStorage.setItem('user-cards', JSON.stringify(newUserCards));
-        setCards(newUserCards);
       })
   }
 
