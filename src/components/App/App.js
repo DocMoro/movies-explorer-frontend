@@ -54,9 +54,12 @@ export default function App() {
   }
 
   function cbUpdate(data) {
-    mainApi.setUserInfo(data)
+    return mainApi.setUserInfo(data)
       .then(res => {
-        setCurrentUser(res);
+        setCurrentUser({
+          name: res.name,
+          email: res.email
+        });
         handleInfoPopup('Сохраненно', true);
       })
       .catch(() => handleInfoPopup('Ошибка'));

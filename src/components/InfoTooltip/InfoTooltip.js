@@ -8,12 +8,12 @@ export default function InfoTooltip({infoPopup, cbInfoPopup}) {
 
   function handleInfoPopup(e) {
     if(e.target === e.currentTarget) {
-      cbInfoPopup()
+      cbInfoPopup(message, success)
     }
   }
 
   function handlerClouse() {
-    cbInfoPopup();
+    cbInfoPopup(message, success)
   }
 
   return (

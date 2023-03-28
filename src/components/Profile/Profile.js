@@ -48,7 +48,11 @@ export default function Profile({loggedIn, cbNavPopup, handleExit, cbUpdate}) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    cbUpdate(values);
+    cbUpdate(values)
+      .finally(() => {
+        setIsEdit(false);
+        setIsValid(false);
+      });
   }
 
   return (
