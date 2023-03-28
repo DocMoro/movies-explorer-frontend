@@ -34,10 +34,10 @@ export default function SavedMovies({loggedIn, loader, cbNavPopup, handleInfoPop
       handleInfoPopup('Ничего не найдено')
     }
 
-    if(dataSearch.name !== '') {
-      localStorage.setItem('search-user-cards', JSON.stringify(arr));
-    } else {
+    if(dataSearch.name === '' && !dataSearch.checkbox) {
       localStorage.removeItem('search-user-cards');
+    } else {
+      localStorage.setItem('search-user-cards', JSON.stringify(arr));
     }
 
     setCards(arr);
