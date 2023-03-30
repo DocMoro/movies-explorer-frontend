@@ -9,7 +9,6 @@ export default function MoviesCardList({dataCards, saved, loader, cbButton}) {
   const [ format, setFormat ] = useState({});
   const [ buttonMore, setButtonMore ] = useState(false);
   const [ cards, setCards ] = useState(dataCards);
-  const [ counter, setCounter ] = useState(0);
 
   useEffect(() => {
     function handleResize() {
@@ -39,15 +38,15 @@ export default function MoviesCardList({dataCards, saved, loader, cbButton}) {
   }, []);
 
   useEffect(() => {
-    setCards(dataCards.slice(0, format.columns * (format.rows + counter)));
-  }, [format, dataCards, counter]);
+    setCards(dataCards.slice(0, format.columns * format.rows));
+  }, [format, dataCards]);
 
   useEffect(() => {
     setButtonMore(cards.length < dataCards.length);
   }, [cards, dataCards]);
 
   function handleButtonMore() {
-    setCounter(counter + 1);
+    setCards(dataCards.slice(0, cards.length + format.columns));
   }
 
   return (
