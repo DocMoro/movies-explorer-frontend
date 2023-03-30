@@ -15,6 +15,7 @@ export default function Profile({loggedIn, cbNavPopup, handleExit, cbUpdate}) {
   const [values, setValues] = useState({ name: '', email: '' });
   const [isValid, setIsValid] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const {name, email} = currentUser;
@@ -47,11 +48,13 @@ export default function Profile({loggedIn, cbNavPopup, handleExit, cbUpdate}) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsValid(false);
+    setLoading(true);
 
     cbUpdate(values)
       .finally(() => {
         setIsEdit(false);
-        setIsValid(false);
+        setLoading(false);
       });
   }
 
@@ -75,7 +78,7 @@ export default function Profile({loggedIn, cbNavPopup, handleExit, cbUpdate}) {
                   value={values.name} 
                   onChange={handleChange} 
                   pattern={REGEX} 
-                  disabled={!isEdit ? 'disabled' : ''} 
+                  disabled={!isEdit || loading ? 'disabled' : ''} 
                   required
                 ></input>
               </li>
@@ -87,7 +90,7 @@ export default function Profile({loggedIn, cbNavPopup, handleExit, cbUpdate}) {
                   type='email' 
                   value={values.email} 
                   onChange={handleChange} 
-                  disabled={!isEdit ? 'disabled' : ''} 
+                  disabled={!isEdit || loading ? 'disabled' : ''} 
                   required
                 ></input>
               </li>

@@ -2,7 +2,7 @@ import './AuthInput.scss';
 
 import { REGEX } from '../../utils/constans';
 
-export default function AuthInput({text, cbChange, value, error}) {
+export default function AuthInput({text, cbChange, value, error, loading}) {
   let data;
   
   switch(text) {
@@ -50,6 +50,7 @@ export default function AuthInput({text, cbChange, value, error}) {
             value={value} 
             onChange={cbChange} 
             pattern={REGEX}
+            disabled={loading ? 'disabled' : ''}
             required
           ></input>
         : <input 
@@ -57,7 +58,8 @@ export default function AuthInput({text, cbChange, value, error}) {
             name={data.name} 
             type={data.type} 
             value={value} 
-            onChange={cbChange} 
+            onChange={cbChange}
+            disabled={loading ? 'disabled' : ''}
             required
           ></input>
       }

@@ -14,6 +14,7 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if(isValid) {
@@ -23,6 +24,7 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
 
   useEffect(() => {
     setDefaultValues();
+    setIsValid(false);
     setErrors({});
     setErrorSubmit('');
   }, [register]);
@@ -32,6 +34,9 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
 
     const obj = register ? values : { email: values.email, password: values.password };
 
+    setIsValid(false);
+    setLoading(true);
+
     cbSubmit(obj)
       .catch(err => {
         const replaceError = register ? ERR_SUBMIT.registration : ERR_SUBMIT.loggin;
@@ -39,12 +44,14 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
 
         setErrorSubmit(message);
       })
-      .finally(() => setDefaultValues());
+      .finally(() => {
+        setDefaultValues();
+        setLoading(false);
+      });
   }
 
   function setDefaultValues() {
     setValues({ name: '', email: '', password: '' });
-    setIsValid(false);
   }
   
   function handleChange(e) {
@@ -82,7 +89,8 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
               text='Имя' 
               cbChange={handleChange} 
               value={values.name} 
-              error={errors.name} 
+              error={errors.name}
+              loading={loading}
             /> 
           }
           <AuthInput 
@@ -90,12 +98,14 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
             cbChange={handleChange} 
             value={values.email} 
             error={errors.email} 
+            loading={loading}
           />
           <AuthInput 
             text='Пароль' 
             cbChange={handleChange} 
             value={values.password} 
-            error={errors.password} 
+            error={errors.password}
+            loading={loading}
           />
         </div>
         <div className='auth__content'>
