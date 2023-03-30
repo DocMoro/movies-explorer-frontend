@@ -24,8 +24,7 @@ export default function App() {
 
   const [ navPopup, setNavPopup ] = useState(false);
   const [ infoPopup, setInfoPopup ] = useState({ state: false, message: '', success: false });
-  const [ loadPopup, setLoadPopup ] = useState(true);
-  const [ loggedIn, setLoggedIn ] = useState(false);
+  const [ loggedIn, setLoggedIn ] = useState(null);
   const [ loader, setLoader ] = useState(false);
 
   useEffect(() => {
@@ -44,7 +43,7 @@ export default function App() {
     return mainApi.authorize(data)
       .then(res => {
         localStorage.setItem('token', res.token);
-        return tokenCheck(res.token);
+        tokenCheck(res.token);
       })
   }
 
@@ -72,9 +71,9 @@ export default function App() {
       .then(() => cbLogin({ email, password }))
   }
 
-  async function tokenCheck(token) {
+  function tokenCheck(token) {
     if(token) {
-      return mainApi.getContent(token)
+      mainApi.getContent(token)
         .then(res => {
           setCurrentUser({ 
             name: res.name, 
@@ -82,13 +81,18 @@ export default function App() {
           });
           setLoggedIn(true);
         })
+        .catch(() => {
+          setLoggedIn(false);
+        });
+    } else {
+      setLoggedIn(false);
     }
   }
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    tokenCheck(token)
-      .finally(() => setLoadPopup(false))
+
+    tokenCheck(token);
   }, []);
 
   const handleNavPopup = useCallback(() => {
@@ -136,6 +140,10 @@ export default function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='page'>
+        {loggedIn === null
+        ?
+        <LoadPopup />
+        :
         <Switch>
           <Route path='/saved-movies'>
             <ProtectedRoute 
@@ -188,7 +196,7 @@ export default function App() {
           <Route path='/'>
             <NotFound />
           </Route>
-        </Switch>
+        </Switch>}
         <NavPopup 
           navPopup={navPopup} 
           cbNavPopup={handleNavPopup} 
@@ -196,9 +204,6 @@ export default function App() {
         <InfoTooltip 
           infoPopup={infoPopup}
           cbInfoPopup={handleInfoPopup}
-        />
-        <LoadPopup 
-          loadPopup={loadPopup}
         />
       </div>
     </CurrentUserContext.Provider>

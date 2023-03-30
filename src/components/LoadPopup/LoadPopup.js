@@ -2,9 +2,9 @@ import './LoadPopup.scss';
 
 import Preloader from '../Preloader/Preloader'; 
 
-export default function LoadPopup({loadPopup}) {
+export default function LoadPopup() {
   return (
-    <div className={`load${loadPopup ? ' load_active' : ''}`}>
+    <div className='load'>
       <Preloader />
     </div>
   )
