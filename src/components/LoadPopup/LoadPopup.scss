@@ -9,14 +9,28 @@
   right: 0;
   bottom: 0;
 
-  background-color: #000;
+  z-index: 1;
 
   visibility: hidden;
   opacity: 0;
   transition: opacity 0s .5s, visibility 0s .5s linear;
 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: -1;
+
+    opacity: .5;
+    background-color: #000;
+  }
+
   &_active {
     visibility: visible;
-    opacity: .5;
+    opacity: 1;
   }
 }
