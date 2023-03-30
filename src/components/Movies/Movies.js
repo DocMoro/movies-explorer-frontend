@@ -20,47 +20,54 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
     let searchCards = JSON.parse(localStorage.getItem('search-cards'));
 
     if(searchCards) {
-      searchCards = getLikeCards(searchCards);
+      searchCards = setLikeCards(searchCards);
       setCards(searchCards);
     }
   }, []);
 
-  function getLikeCards(arr) {
+  function setLikeCards(arr) {
     const userCards = JSON.parse(localStorage.getItem('user-cards'));
 
-    arr = arr.map(card => {
-      card.isLike = Boolean(userCards.find(userCard => userCard.movieId === card.id));
-      return card;
-    });
+    if(userCards) {
+      arr = arr.map(card => {
+        card.isLike = Boolean(userCards.find(userCard => userCard.movieId === card.id));
+        return card;
+      });
+    }
 
     return arr
   }
 
-  function cbSearch(dataSearch) {
-    function renderCards(dataCards) {
-      const userCards = JSON.parse(localStorage.getItem('user-cards'));
-      let arr = cardFilter(dataSearch, dataCards);
-      localStorage.setItem('search-cards', JSON.stringify(arr));
+  function renderCards(dataSearch, Cards) {
+    let filteredCards = cardFilter(dataSearch, Cards);
+    localStorage.setItem('search-cards', JSON.stringify(filteredCards));
 
-      if(!arr.length) {
-        handleInfoPopup('Ничего не найдено')
-      } else if(userCards) {
-        arr = getLikeCards(arr);
-      }
-
-      setCards(arr);
+    if(!filteredCards.length) {
+      handleInfoPopup('Ничего не найдено')
+    } else {
+      filteredCards = setLikeCards(filteredCards);
     }
 
+    setCards(filteredCards);
+  }
+
+  function cbCheckbox(dataSearch) {
+    const dataCards = JSON.parse(localStorage.getItem('cards'));
+
+    renderCards(dataSearch, dataCards);
+  }
+
+  function cbSearch(dataSearch) {
     const dataCards = JSON.parse(localStorage.getItem('cards'));
 
     if(dataCards) {
-      renderCards(dataCards);
+      renderCards(dataSearch, dataCards);
     } else {
       handleLoader(true);
       moviesApi.getCards()
         .then(res => {
           localStorage.setItem('cards', JSON.stringify(res));
-          renderCards(res);
+          renderCards(dataSearch, res);
         })
         .catch(() => handleInfoPopup(SEARCH_BASE_ERROR))
         .finally(() => handleLoader(false));
@@ -84,7 +91,7 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
         cbNavPopup={cbNavPopup} 
       />
       <main className='main'>
-        <SearchForm saved={false} cbSearch={cbSearch} loader={loader} />
+        <SearchForm saved={false} cbSearch={cbSearch} cbCheckbox={cbCheckbox} loader={loader} />
         <MoviesCardList dataCards={cards} saved={false} loader={loader} cbButton={handleCardLike} />
       </main>
       <Footer />

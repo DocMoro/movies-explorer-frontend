@@ -69,7 +69,7 @@ export default function SavedMovies({loggedIn, loader, cbNavPopup, handleInfoPop
         cbNavPopup={cbNavPopup} 
       />
       <main className='main'>
-        <SearchForm saved={true} cbSearch={cbSearch} loader={loader} />
+        <SearchForm saved={true} cbSearch={cbSearch} cbCheckbox={cbSearch} loader={loader} />
         <MoviesCardList dataCards={cards} saved={true} loader={loader} cbButton={handleCardDelete} />
       </main>
       <Footer />

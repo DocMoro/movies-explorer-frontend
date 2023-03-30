@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-export default function SearchForm({saved, cbSearch, loader}) {
+export default function SearchForm({saved, cbSearch, cbCheckbox, loader}) {
   const [err, setErr] = useState('');
   const [data, setData] = useState({
     name: '',
@@ -20,6 +20,32 @@ export default function SearchForm({saved, cbSearch, loader}) {
     }
   }, [saved]);
 
+  function saveSearch(data) {
+    const localPath = saved ? 'user-search' : 'search';
+
+    localStorage.setItem(localPath, JSON.stringify(data));
+  }
+
+  function handleCheckbox() {
+    setData((state) => {
+      const newState = {
+        ...state,
+        checkbox: !state.checkbox
+      };
+
+      cbCheckbox(newState);
+      saveSearch(newState);
+      return newState
+    })
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    
+    saveSearch(data);
+    cbSearch(data);
+  }
+
   function handleChange(e) {
     const {name, value} = e.target;
 
@@ -28,22 +54,6 @@ export default function SearchForm({saved, cbSearch, loader}) {
       ...data,
       [name]: value
     });
-  }
-
-  function handleCheckbox() {
-    setData({
-      ...data,
-      checkbox: !data.checkbox
-    })
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    
-    const localPath = saved ? 'user-search' : 'search';
-
-    localStorage.setItem(localPath, JSON.stringify(data));
-    cbSearch(data);
   }
 
   return (
