@@ -1,4 +1,4 @@
-.popup {
+.menu {
   position: fixed;
   display: block;
   
@@ -19,7 +19,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    opacity: .3;
+
+    opacity: 0;
+    transition: .5s;
 
     z-index: -1;
   }
@@ -27,12 +29,18 @@
   &_active {
     visibility: visible;
 
-    & .popup__container {
+    &::before {
+      opacity: .3;
+    }
+
+    & .menu__container {
       transform: translateX(0);
     }
   }
 
   &__container {
+    display: block;
+
     position: fixed;
     top: 0;
     right: 0;

@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
 
-  padding: 0 70px;
+  padding: 0 70px 39px;
 
   &__container {
     display: flex;
@@ -37,6 +37,22 @@
     border: none;
     
     margin-left: 10px;
+
+    transition: opacity .5s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .8;
+    }
+
+    &:disabled {
+      background-color: #C2C2C2;
+
+      &:hover {
+        cursor: default;
+        opacity: 1;
+      }
+    }
   }
 
   &__input-error {

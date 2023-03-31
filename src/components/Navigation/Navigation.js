@@ -2,7 +2,7 @@ import './Navigation.scss';
 
 import { NavLink, useLocation } from 'react-router-dom';
 
-export default function Navigation({callback}) {
+export default function Navigation({cbNavPopup}) {
   const { pathname } = useLocation();
 
   return (
@@ -12,7 +12,7 @@ export default function Navigation({callback}) {
         <NavLink to='saved-movies' className={`navigation__link navigation__link_to_saved-movies link${pathname === '/saved-movies' ? ' navigation__link_active' : ''}`}>Сохраненные фильмы</NavLink>
         <NavLink to='profile' className={`navigation__link navigation__link_to_profile link${pathname === '/profile' ? ' navigation__link_active' : ''}`}>Аккаунт</NavLink>
       </nav>
-      <button onClick={callback} className='button-menu button'></button>
+      <button onClick={cbNavPopup} className={`button button-menu${pathname === '/' ? ' button-menu_main' : ''}`}></button>
     </>
   )
 }

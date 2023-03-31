@@ -43,6 +43,10 @@
   background-position: center;
   background-repeat: no-repeat;
   background-color: #202020;
+
+  &_main {
+    background-color: #073042;
+  }
 }
 
 @media screen and (max-width: 1090px) {

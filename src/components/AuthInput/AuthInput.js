@@ -1,6 +1,8 @@
 import './AuthInput.scss';
 
-export default function AuthInput({text}) {
+import { REGEX } from '../../utils/constans';
+
+export default function AuthInput({text, cbChange, value, error, loading}) {
   let data;
   
   switch(text) {
@@ -39,8 +41,29 @@ export default function AuthInput({text}) {
   return (
     <fieldset className='auth-input'>
       <h2 className='auth-input__title'>{data.text}</h2>
-      <input className='auth-input__input input' name={data.name} type={data.type} required></input>
-      <label className={`auth-input__input-error ${data.name}Register`}></label>
+      {
+        data.name === 'name'
+        ? <input 
+            className='auth-input__input input' 
+            name={data.name} 
+            type={data.type} 
+            value={value} 
+            onChange={cbChange} 
+            pattern={REGEX}
+            disabled={loading ? 'disabled' : ''}
+            required
+          ></input>
+        : <input 
+            className='auth-input__input input' 
+            name={data.name} 
+            type={data.type} 
+            value={value} 
+            onChange={cbChange}
+            disabled={loading ? 'disabled' : ''}
+            required
+          ></input>
+      }
+      <label className='auth-input__input-error'>{error}</label>
     </fieldset>
   )
 }
