@@ -1,6 +1,6 @@
 import './SavedMovies.scss';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
@@ -27,7 +27,7 @@ export default function SavedMovies({loggedIn, loader, cbNavPopup, handleInfoPop
     }
   }, []);
 
-  function cbSearch(dataSearch) {
+  const cbSearch = useCallback((dataSearch) => {
     const arr = cardFilter(dataSearch, JSON.parse(localStorage.getItem('user-cards')));
 
     if(!arr.length) {
@@ -41,9 +41,9 @@ export default function SavedMovies({loggedIn, loader, cbNavPopup, handleInfoPop
     }
 
     setCards(arr);
-  }
+  }, [handleInfoPopup])
 
-  function handleCardDelete(card) {
+  const handleCardDelete = useCallback((card) => {
     return mainApi.deleteCard(card._id)
       .then(() => {
         const newUserCards = JSON.parse(localStorage.getItem('user-cards')).filter(c => c._id !== card._id);
@@ -60,7 +60,7 @@ export default function SavedMovies({loggedIn, loader, cbNavPopup, handleInfoPop
 
         localStorage.setItem('user-cards', JSON.stringify(newUserCards));
       })
-  }
+  }, [])
 
   return (
     <>

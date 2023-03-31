@@ -1,12 +1,12 @@
 import './MoviesCard.scss';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export default function MoviesCard({card, saved, cbButton}) {
   const { duration, image, nameRU, trailerLink } = card;
   const [ isLiked, setIsLiked ] = useState(card.isLike);
 
-  function handleClickCreate() {
+  const handleClickCreate = useCallback(() => {
     const { id, country, director, year, description, nameEN } = card;
 
     cbButton({ 
@@ -26,22 +26,22 @@ export default function MoviesCard({card, saved, cbButton}) {
         setIsLiked(true);
       })
       .catch(err => console.log(err));
-  }
+  }, [card, cbButton, duration, image, nameRU, trailerLink])
 
-  function getTimeString() {
-    const hours = Math.floor(duration / 60);
-    const minutes = duration % 60;
-
-    return `${hours}ч ${minutes}м`
-  }
-
-  function handleClickDelete() {
+  const handleClickDelete = useCallback(() => {
     cbButton(card)
       .then(() => {
         setIsLiked(false);
       })
       .catch(err => console.log(err));
-  }
+  }, [cbButton, card])
+
+  const getTimeString = useCallback(() => {
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+
+    return `${hours}ч ${minutes}м`
+  }, [duration])
 
   return (
     <li className='card'>

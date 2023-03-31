@@ -1,6 +1,6 @@
 import './Movies.scss';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
@@ -16,16 +16,7 @@ import { SEARCH_BASE_ERROR } from '../../utils/constans';
 export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, handleInfoPopup}) {
   const [ cards, setCards ] = useState([]);
 
-  useEffect(() => {
-    let searchCards = JSON.parse(localStorage.getItem('search-cards'));
-
-    if(searchCards) {
-      searchCards = setLikeCards(searchCards);
-      setCards(searchCards);
-    }
-  }, []);
-
-  function setLikeCards(arr) {
+  const setLikeCards = useCallback((arr) => {
     const userCards = JSON.parse(localStorage.getItem('user-cards'));
 
     if(userCards) {
@@ -36,9 +27,19 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
     }
 
     return arr
-  }
+  }, [])
 
-  function renderCards(dataSearch, Cards) {
+  const handleCardLike = useCallback((card) => {
+    return mainApi.createCard(card)
+      .then(newCard => {
+        const userCards = JSON.parse(localStorage.getItem('user-cards'));
+
+        userCards.push(newCard);
+        localStorage.setItem('user-cards', JSON.stringify(userCards));
+      })
+  }, [])
+
+  const renderCards = useCallback((dataSearch, Cards) => {
     let filteredCards = cardFilter(dataSearch, Cards);
     localStorage.setItem('search-cards', JSON.stringify(filteredCards));
 
@@ -49,15 +50,15 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
     }
 
     setCards(filteredCards);
-  }
+  }, [handleInfoPopup, setLikeCards])
 
-  function cbCheckbox(dataSearch) {
+  const cbCheckbox = useCallback((dataSearch) => {
     const dataCards = JSON.parse(localStorage.getItem('cards'));
 
     renderCards(dataSearch, dataCards);
-  }
+  }, [renderCards])
 
-  function cbSearch(dataSearch) {
+  const cbSearch = useCallback((dataSearch) => {
     const dataCards = JSON.parse(localStorage.getItem('cards'));
 
     if(dataCards) {
@@ -72,17 +73,16 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
         .catch(() => handleInfoPopup(SEARCH_BASE_ERROR))
         .finally(() => handleLoader(false));
     }
-  }
+  }, [handleInfoPopup, handleLoader, renderCards])
 
-  function handleCardLike(card) {
-    return mainApi.createCard(card)
-      .then(newCard => {
-        const userCards = JSON.parse(localStorage.getItem('user-cards'));
+  useEffect(() => {
+    let searchCards = JSON.parse(localStorage.getItem('search-cards'));
 
-        userCards.push(newCard);
-        localStorage.setItem('user-cards', JSON.stringify(userCards));
-      })
-  }
+    if(searchCards) {
+      searchCards = setLikeCards(searchCards);
+      setCards(searchCards);
+    }
+  }, [setLikeCards])
 
   return (
     <>

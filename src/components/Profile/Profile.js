@@ -1,7 +1,7 @@
 import './Profile.scss';
 
 import { Link } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 
 import Header from '../Header/Header';
 
@@ -30,7 +30,11 @@ export default function Profile({loggedIn, cbNavPopup, handleExit, cbUpdate}) {
     setIsEdit(!isEdit);
   }
 
-  function handleChange(e) {
+  const identityVerification = useCallback((obj) => {
+    return JSON.stringify(currentUser) !== JSON.stringify(obj);
+  }, [currentUser])
+
+  const handleChange = useCallback((e) => {
     const target = e.target;
     const currentDate = {
       ...values, 
@@ -38,15 +42,10 @@ export default function Profile({loggedIn, cbNavPopup, handleExit, cbUpdate}) {
     };
 
     setValues(currentDate);
-
     setIsValid(identityVerification(currentDate) && target.closest("form").checkValidity());
-  }
+  }, [identityVerification, values])
 
-  function identityVerification(obj) {
-    return JSON.stringify(currentUser) !== JSON.stringify(obj);
-  }
-
-  function handleSubmit(e) {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
     setIsValid(false);
     setLoading(true);
@@ -56,7 +55,7 @@ export default function Profile({loggedIn, cbNavPopup, handleExit, cbUpdate}) {
         setIsEdit(false);
         setLoading(false);
       });
-  }
+  }, [cbUpdate, values])
 
   return (
     <>

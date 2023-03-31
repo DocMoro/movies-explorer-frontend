@@ -1,6 +1,6 @@
 import './AuthForm.scss';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 import AuthInput from '../AuthInput/AuthInput';
@@ -16,20 +16,11 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
   const [errorSubmit, setErrorSubmit] = useState('');
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if(isValid) {
-      setErrorSubmit('');
-    }
-  }, [isValid]);
+  const setDefaultValues = useCallback(() => {
+    setValues({ name: '', email: '', password: '' });
+  }, []);
 
-  useEffect(() => {
-    setDefaultValues();
-    setIsValid(false);
-    setErrors({});
-    setErrorSubmit('');
-  }, [register]);
-
-  function handleSubmit(e) {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
 
     const obj = register ? values : { email: values.email, password: values.password };
@@ -48,13 +39,9 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
         setDefaultValues();
         setLoading(false);
       });
-  }
-
-  function setDefaultValues() {
-    setValues({ name: '', email: '', password: '' });
-  }
+  }, [cbSubmit, register, values, setDefaultValues]);
   
-  function handleChange(e) {
+  const handleChange = useCallback((e) => {
     const target = e.target;
     const {name, value} = target;
 
@@ -69,7 +56,20 @@ export default function AuthForm({register, cbSubmit, loggedIn}) {
     });
 
     setIsValid(target.closest("form").checkValidity());
-  }
+  }, [errors, values]);
+
+  useEffect(() => {
+    setDefaultValues();
+    setIsValid(false);
+    setErrors({});
+    setErrorSubmit('');
+  }, [register, setDefaultValues]);
+
+  useEffect(() => {
+    if(isValid) {
+      setErrorSubmit('');
+    }
+  }, [isValid]);
 
   if (loggedIn) {
     return <Redirect to="/movies"/>;

@@ -1,6 +1,6 @@
 import './MoviesCardList.scss';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import Card from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
@@ -45,9 +45,9 @@ export default function MoviesCardList({dataCards, saved, loader, cbButton}) {
     setButtonMore(cards.length < dataCards.length);
   }, [cards, dataCards]);
 
-  function handleButtonMore() {
+  const handleButtonMore = useCallback(() => {
     setCards(dataCards.slice(0, cards.length + format.columns));
-  }
+  }, [cards, dataCards, format])
 
   return (
     <section className='movies'>

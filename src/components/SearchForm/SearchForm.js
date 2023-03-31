@@ -1,6 +1,6 @@
 import './SearchForm.scss';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
@@ -20,13 +20,13 @@ export default function SearchForm({saved, cbSearch, cbCheckbox, loader}) {
     }
   }, [saved]);
 
-  function saveSearch(data) {
+  const saveSearch = useCallback((data) => {
     const localPath = saved ? 'user-search' : 'search';
 
     localStorage.setItem(localPath, JSON.stringify(data));
-  }
+  }, [saved])
 
-  function handleCheckbox() {
+  const handleCheckbox = useCallback(() => {
     setData((state) => {
       const newState = {
         ...state,
@@ -37,16 +37,16 @@ export default function SearchForm({saved, cbSearch, cbCheckbox, loader}) {
       saveSearch(newState);
       return newState
     })
-  }
+  }, [cbCheckbox, saveSearch])
 
-  function handleSubmit(e) {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
     
     saveSearch(data);
     cbSearch(data);
-  }
+  }, [saveSearch, cbSearch, data])
 
-  function handleChange(e) {
+  const handleChange = useCallback((e) =>{
     const {name, value} = e.target;
 
     setErr('');
@@ -54,7 +54,7 @@ export default function SearchForm({saved, cbSearch, cbCheckbox, loader}) {
       ...data,
       [name]: value
     });
-  }
+  }, [data])
 
   return (
     <form name='search' className='search' onSubmit={handleSubmit} >

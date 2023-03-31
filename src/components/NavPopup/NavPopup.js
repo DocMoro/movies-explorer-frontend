@@ -1,21 +1,22 @@
 import './NavPopup.scss';
 
 import { useLocation, NavLink } from 'react-router-dom';
+import { useCallback } from 'react';
 
 export default function NavPopup({navPopup, cbNavPopup}) {
   const { pathname } = useLocation();
 
-  function handleClickLink(e) {
+  const handleClickLink = useCallback((e) => {
     if(pathname !== e.target.pathname) {
       cbNavPopup();
     }
-  }
+  }, [cbNavPopup, pathname])
 
-  function handlerClickClose (e) {
+  const handlerClickClose = useCallback((e) => {
     if(e.target === e.currentTarget) {
       cbNavPopup();
     }
-  }
+  }, [cbNavPopup])
 
   return (
     <div className={`menu${navPopup ? ' menu_active' : ''}`} onClick={handlerClickClose} >

@@ -27,90 +27,6 @@ export default function App() {
   const [ loggedIn, setLoggedIn ] = useState(null);
   const [ loader, setLoader ] = useState(false);
 
-  useEffect(() => {
-    if(loggedIn) {
-      setLoader(true);
-      mainApi.getUserCards()
-        .then(data => {
-          localStorage.setItem('user-cards', JSON.stringify(data));
-        })
-        .catch(err => console.log(err))
-        .finally(() => setLoader(false));
-    }
-  }, [loggedIn]);
-
-  function cbLogin(data) {
-    return mainApi.authorize(data)
-      .then(res => {
-        localStorage.setItem('token', res.token);
-        tokenCheck(res.token);
-      })
-  }
-
-  function cbExit() {
-    localStorage.clear();
-    setLoggedIn(false);
-  }
-
-  function cbUpdate(data) {
-    return mainApi.setUserInfo(data)
-      .then(res => {
-        setCurrentUser({
-          name: res.name,
-          email: res.email
-        });
-        handleInfoPopup('Сохраненно', true);
-      })
-      .catch(() => handleInfoPopup('Ошибка'));
-  }
-
-  function cbRegister(data) {
-    const { email, password } = data;
-
-    return mainApi.register(data)
-      .then(() => cbLogin({ email, password }))
-  }
-
-  function tokenCheck(token) {
-    if(token) {
-      mainApi.getContent(token)
-        .then(res => {
-          setCurrentUser({ 
-            name: res.name, 
-            email: res.email 
-          });
-          setLoggedIn(true);
-        })
-        .catch(() => {
-          setLoggedIn(false);
-        });
-    } else {
-      setLoggedIn(false);
-    }
-  }
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    tokenCheck(token);
-  }, []);
-
-  const handleNavPopup = useCallback(() => {
-    function _handleEscClose(e) {
-      if (e.keyCode === ESC) {
-        setNavPopup(false);
-      }
-    }
-
-    if(!navPopup) {
-      document.addEventListener('keydown', _handleEscClose);
-    } else {
-      document.removeEventListener('keydown', _handleEscClose);
-    }
-
-    setNavPopup(!navPopup);
-  }, [navPopup]);
-
   const handleInfoPopup = useCallback((message = infoPopup.message, success = false) => {
     const { state } = infoPopup;
 
@@ -135,7 +51,91 @@ export default function App() {
       message,
       success
     });
-  }, [infoPopup]);
+  }, [infoPopup])
+
+  const handleNavPopup = useCallback(() => {
+    function _handleEscClose(e) {
+      if (e.keyCode === ESC) {
+        setNavPopup(false);
+      }
+    }
+
+    if(!navPopup) {
+      document.addEventListener('keydown', _handleEscClose);
+    } else {
+      document.removeEventListener('keydown', _handleEscClose);
+    }
+
+    setNavPopup(!navPopup);
+  }, [navPopup])
+
+  const tokenCheck = useCallback((token) => {
+    if(token) {
+      mainApi.getContent(token)
+        .then(res => {
+          setCurrentUser({ 
+            name: res.name, 
+            email: res.email 
+          });
+          setLoggedIn(true);
+        })
+        .catch(() => {
+          setLoggedIn(false);
+        });
+    } else {
+      setLoggedIn(false);
+    }
+  }, [])
+
+  const cbLogin = useCallback((data) => {
+    return mainApi.authorize(data)
+      .then(res => {
+        localStorage.setItem('token', res.token);
+        tokenCheck(res.token);
+      })
+  }, [tokenCheck])
+
+  const cbExit = useCallback(() => {
+    localStorage.clear();
+    setLoggedIn(false);
+  }, [])
+
+  const cbUpdate = useCallback((data) => {
+    return mainApi.setUserInfo(data)
+      .then(res => {
+        setCurrentUser({
+          name: res.name,
+          email: res.email
+        });
+        handleInfoPopup('Сохраненно', true);
+      })
+      .catch(() => handleInfoPopup('Ошибка'));
+  }, [handleInfoPopup])
+
+  const cbRegister = useCallback((data) => {
+    const { email, password } = data;
+
+    return mainApi.register(data)
+      .then(() => cbLogin({ email, password }))
+  }, [cbLogin])
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    tokenCheck(token);
+  }, [tokenCheck]);
+
+  useEffect(() => {
+    if(loggedIn) {
+      setLoader(true);
+      mainApi.getUserCards()
+        .then(data => {
+          localStorage.setItem('user-cards', JSON.stringify(data));
+        })
+        .catch(err => console.log(err))
+        .finally(() => setLoader(false));
+    }
+  }, [loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

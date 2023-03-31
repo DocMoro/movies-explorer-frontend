@@ -1,20 +1,22 @@
 import './InfoTooltip.scss';
 
+import { useCallback } from 'react';
+
 import fail from '../../images/fail.svg';
 import accept from '../../images/accept.svg';
 
 export default function InfoTooltip({infoPopup, cbInfoPopup}) {
   const { state, message, success } = infoPopup;
 
-  function handleInfoPopup(e) {
+  const handleInfoPopup = useCallback((e) => {
     if(e.target === e.currentTarget) {
       cbInfoPopup(message, success)
     }
-  }
+  }, [cbInfoPopup, message, success])
 
-  function handlerClouse() {
+  const handlerClouse = useCallback(() => {
     cbInfoPopup(message, success)
-  }
+  }, [cbInfoPopup, message, success])
 
   return (
     <div className={`popup${state ? " popup_active" : ''}`} onClick={handleInfoPopup}>
