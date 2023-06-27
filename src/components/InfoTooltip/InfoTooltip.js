@@ -10,13 +10,13 @@ export default function InfoTooltip({infoPopup, cbInfoPopup}) {
 
   const handleInfoPopup = useCallback((e) => {
     if(e.target === e.currentTarget) {
-      cbInfoPopup(message, success)
+      cbInfoPopup()
     }
-  }, [cbInfoPopup, message, success])
+  }, [cbInfoPopup])
 
   const handlerClouse = useCallback(() => {
-    cbInfoPopup(message, success)
-  }, [cbInfoPopup, message, success])
+    cbInfoPopup()
+  }, [cbInfoPopup])
 
   return (
     <div className={`popup${state ? " popup_active" : ''}`} onClick={handleInfoPopup}>

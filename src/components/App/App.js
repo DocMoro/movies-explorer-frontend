@@ -27,15 +27,14 @@ export default function App() {
   const [ loggedIn, setLoggedIn ] = useState(null);
   const [ loader, setLoader ] = useState(false);
 
-  const handleInfoPopup = useCallback((message = infoPopup.message, success = false) => {
+  const handleInfoPopup = useCallback((message = infoPopup.message, success = infoPopup.success) => {
     const { state } = infoPopup;
 
     function _handleEscClose(e) {
       if (e.keyCode === ESC) {
         setInfoPopup({
-          state: !state,
-          message,
-          success
+          ...infoPopup,
+          state: !state
         });
       }
     }
@@ -109,7 +108,7 @@ export default function App() {
         });
         handleInfoPopup('Сохраненно', true);
       })
-      .catch(() => handleInfoPopup('Ошибка'));
+      .catch(() => handleInfoPopup('Ошибка', false));
   }, [handleInfoPopup])
 
   const cbRegister = useCallback((data) => {

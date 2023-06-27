@@ -31,7 +31,7 @@ export default function SavedMovies({loggedIn, loader, cbNavPopup, handleInfoPop
     const arr = cardFilter(dataSearch, JSON.parse(localStorage.getItem('user-cards')));
 
     if(!arr.length) {
-      handleInfoPopup('Ничего не найдено')
+      handleInfoPopup('Ничего не найдено', false)
     }
 
     if(dataSearch.name === '' && !dataSearch.checkbox) {

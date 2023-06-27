@@ -44,7 +44,7 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
     localStorage.setItem('search-cards', JSON.stringify(filteredCards));
 
     if(!filteredCards.length) {
-      handleInfoPopup('Ничего не найдено')
+      handleInfoPopup('Ничего не найдено', false)
     } else {
       filteredCards = setLikeCards(filteredCards);
     }
@@ -70,7 +70,7 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
           localStorage.setItem('cards', JSON.stringify(res));
           renderCards(dataSearch, res);
         })
-        .catch(() => handleInfoPopup(SEARCH_BASE_ERROR))
+        .catch(() => handleInfoPopup(SEARCH_BASE_ERROR, false))
         .finally(() => handleLoader(false));
     }
   }, [handleInfoPopup, handleLoader, renderCards])
