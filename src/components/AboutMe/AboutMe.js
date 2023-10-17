@@ -8,8 +8,8 @@ export default function AboutMe() {
       <h2 className='about-me__header page__header'>Студент</h2>
         <div className='about-me__info'>
           <div className='about-me__container'>
-            <h3 className='about-me__title'>Виталий</h3>
-            <h4 className='about-me__subtitle'>Фронтенд-разработчик, 30 лет</h4>
+            <h3 className='about-me__title'>Андрей</h3>
+            <h4 className='about-me__subtitle'>Фронтенд-разработчик, 25 лет</h4>
             <p className='about-me__text'>Я родился и живу в Санкт-Петербурге, закончил факультет 
               "Информационных и управляющих систем" БГТУ Военмех. Я люблю актерское мастерство, 
               биографии поэтов, а ещё увлекаюсь экстремальными видами спорта. С 2020 

@@ -4,15 +4,15 @@ const NAME_TECHS = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'
 
 const PROJECTS = [
   {
-    link: 'https://github.com/DocMoro',
+    link: 'https://docmoro.github.io/how-to-learn/',
     name: 'Статический сайт'
   },
   {
-    link: 'https://github.com/DocMoro',
+    link: 'https://docmoro.github.io/russian-travel/',
     name: 'Адаптивный сайт'
   },
   {
-    link: 'https://github.com/DocMoro',
+    link: 'https://docmoro.github.io/mesto/',
     name: 'Одностраничное приложение'
   }
 ];
