@@ -14,6 +14,14 @@ const PROJECTS = [
   {
     link: 'https://docmoro.github.io/mesto/',
     name: 'Одностраничное приложение'
+  },
+  {
+    link: 'https://andreymorogin.mesto.nomoredomainsrocks.ru/',
+    name: 'Приложение с авторизацией'
+  },
+  {
+    link: 'https://dnd-characters.ru/',
+    name: 'Многостраничный пет-проект'
   }
 ];
 
