@@ -14,4 +14,4 @@
 - Поиск и фильтрация по карточкам на стороне пользователя,
 - Лайк понравившихся карточек.
 ----------------------------------------------------------
-*Домен:* [https://andreymorogin.movies.nomoredomains.work]
+*Домен:* [https://andreymorogin.movies.nomoredomainsrocks.ru]
