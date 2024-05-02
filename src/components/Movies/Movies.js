@@ -55,8 +55,19 @@ export default function Movies({loggedIn, loader, handleLoader, cbNavPopup, hand
   const cbCheckbox = useCallback((dataSearch) => {
     const dataCards = JSON.parse(localStorage.getItem('cards'));
 
-    renderCards(dataSearch, dataCards);
-  }, [renderCards])
+    if(dataCards) {
+      renderCards(dataSearch, dataCards);
+    } else {
+      handleLoader(true);
+      moviesApi.getCards()
+        .then(res => {
+          localStorage.setItem('cards', JSON.stringify(res));
+          renderCards(dataSearch, res);
+        })
+        .catch(() => handleInfoPopup(SEARCH_BASE_ERROR, false))
+        .finally(() => handleLoader(false));
+    }
+  }, [handleInfoPopup, handleLoader, renderCards])
 
   const cbSearch = useCallback((dataSearch) => {
     const dataCards = JSON.parse(localStorage.getItem('cards'));
